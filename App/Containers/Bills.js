@@ -13,7 +13,7 @@ export default class Bills extends React.Component {
         <Text
           style={styles.text}
         >
-        I am the Bills component. I cannot be seen, apparently.
+        I am the Bills component. I cannot be seen, apparently. {
         </Text>
       </View>
     )
