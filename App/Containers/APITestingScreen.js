@@ -15,7 +15,8 @@ import styles from './Styles/APITestingScreenStyle'
 // API buttons here:
 const endpoints = [
   { label: 'Get City (Boise)', endpoint: 'getCity', args: ['Boise'] },
-  { label: 'Get City (Toronto)', endpoint: 'getCity', args: ['Toronto'] }
+  { label: 'Get City (Toronto)', endpoint: 'getCity', args: ['Toronto'] },
+  { label: 'Get Bills', endpoint: 'bills' }
 ]
 
 export default class APITestingScreen extends React.Component {
@@ -36,8 +37,10 @@ export default class APITestingScreen extends React.Component {
 
   showResult (response: Object, title: string = 'Response') {
     this.refs.container.scrollTo({x: 0, y: 0, animated: true})
+    console.log(response)
     if (response.ok) {
       this.refs.result.setState({message: FJSON.plain(response.data), title: title})
+      // this.refs.result.setState({message: FJSON.plain(response.data), title: title})
     } else {
       this.refs.result.setState({message: `${response.problem} - ${response.status}`, title: title})
     }
@@ -104,6 +107,7 @@ class APIResult extends React.Component {
   }
 
   renderView () {
+    console.log(this.state.message)
     return (
       <ScrollView style={{ top: 0, bottom: 0, left: 0, right: 0, position: 'absolute' }} overflow='hidden'>
         <TouchableOpacity
