@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "lintdiff": "git diff --name-only --cached --relative | grep '\\.js$' | eslint",
+    "lintdiff": "git diff --name-only --cached --relative | grep '\\.js$' | xargs eslint",
     "lint": "npm run lintdiff",
     "fixcode": "standard --fix",
     "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean",
