@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "lint": "eslint ./App/Components/Containers",
-    "lintdiff": "git diff --name-only --cached --relative | grep '\\.js$' | xargs standard | snazzy",
+    "lintdiff": "git diff --name-only --cached --relative | grep '\\.js$' | eslint",
+    "lint": "npm run lintdiff",
     "fixcode": "standard --fix",
     "clean": "rm -rf $TMPDIR/react-* && watchman watch-del-all && npm cache clean",
     "clean:android": "cd android/ && ./gradlew clean && cd .. && react-native run-android",
