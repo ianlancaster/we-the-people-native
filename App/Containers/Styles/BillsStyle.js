@@ -1,7 +1,7 @@
 const styles = {
   text: {
-    color: 'black',
-  },
-};
+    color: 'black'
+  }
+}
 
 export default styles
