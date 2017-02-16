@@ -39,9 +39,9 @@ class NavigationRouter extends Component {
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-            <Scene initial key='landing' component={Landing} title='Landing' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
+            <Scene key='bills' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
+            <Scene key='landing' component={Landing} title='Landing' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
             <Scene key='header' component={Header} title='Header' />
-            <Scene key='bills' component={Bills} title='Bills' />
             <Scene key='bill-card-in-list' component={BillCardInList} title='BillCardInList' />
             <Scene key='nav-side-menu' component={NavSideMenu} title='NavSideMenu' />
             <Scene key='bill-detail' component={BillDetail} title='BillDetail' />
