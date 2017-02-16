@@ -1,5 +1,7 @@
+// @flow
+
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, Button } from 'react-native'
 // import styles from './Styles/BillsStyle'
 // import { Images } from '../Themes'
 // import DrawerButton from '../Components/DrawerButton'
@@ -7,12 +9,20 @@ import { Text, View } from 'react-native'
 
 export default class Landing extends React.Component {
 
-  render () {
+  test() {
+
+  }
+
+  render() {
     return (
       <View>
         <Text>
         I am the Landing component. I cannot be seen, apparently.
         </Text>
+        <Button
+          title="I am a button."
+          onPress={this.test}
+        />
       </View>
     )
   }

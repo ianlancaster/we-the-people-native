@@ -7,7 +7,7 @@ import styles from './Styles/BillsStyle'
 
 export default class Bills extends React.Component {
 
-  render () {
+  render() {
     return (
       <View>
         <Text
