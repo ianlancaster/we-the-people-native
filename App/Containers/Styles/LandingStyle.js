@@ -1,6 +1,6 @@
 const styles = {
   bottomImage: {
-    height: 150,
+    height: 250,
   },
   container: {
     flex: 1,
