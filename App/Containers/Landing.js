@@ -1,10 +1,10 @@
 // @flow
 
 import React from 'react'
-import { Text, View, Button } from 'react-native'
+import { Text, View, Button, Image } from 'react-native'
 import styles from './Styles/LandingStyle'
 import Footer from './Footer'
-// import { Images } from '../Themes'
+import { Images } from '../Themes'
 // import DrawerButton from '../Components/DrawerButton'
 // import { Actions as NavigationActions } from 'react-native-router-flux'
 
@@ -19,6 +19,12 @@ export default class Landing extends React.Component {
         <Text>
         We The People
         </Text>
+        <View style={styles.bottomSection}>
+          <Image
+            source={Images.congressBackground}
+            style={styles.bottomImage}
+          />
+        </View>
         <Button
           title="I am a button."
           onPress={this.test}
