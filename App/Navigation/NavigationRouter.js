@@ -22,6 +22,7 @@ import ThemeScreen from '../Containers/ThemeScreen'
 import DeviceInfoScreen from '../Containers/DeviceInfoScreen'
 import Bills from '../Containers/Bills'
 import Landing from '../Containers/Landing'
+import Footer from '../Containers/Footer'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -36,6 +37,7 @@ class NavigationRouter extends Component {
 
             <Scene initial key='landing' component={Landing} title='Landing' />
             <Scene key='bills' component={Bills} title='Bills' />
+            <Scene key='footer' component={Footer} title='Footer' />
 
             <Scene key='presentationScreen' component={PresentationScreen} title='Ignite' renderLeftButton={NavItems.hamburgerButton} />
             <Scene key='componentExamples' component={AllComponentsScreen} title='Components' />
