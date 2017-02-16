@@ -27,9 +27,11 @@ export default class Footer extends React.Component {
         />
         <Image
           source={Images.bell}
+          style={styles.icon}
         />
         <Image
           source={Images.me}
+          style={styles.icon}
         />
       </View>
     )
