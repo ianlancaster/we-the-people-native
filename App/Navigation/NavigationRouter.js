@@ -40,7 +40,7 @@ class NavigationRouter extends Component {
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
 
-            <Scene initial key='landing' component={Landing} title='Landing' />
+            <Scene initial key='landing' component={Landing} title='Landing' renderRightButton={NavItems.hamburgerButton} renderBackButton={() => false} />
             <Scene key='header' component={Header} title='Header' />
             <Scene key='bills' component={Bills} title='Bills' />
             <Scene key='footer' component={Footer} title='Footer' />
