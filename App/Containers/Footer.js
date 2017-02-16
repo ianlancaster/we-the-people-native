@@ -18,7 +18,7 @@ export default class Footer extends React.Component {
       <View style={styles.container}>
         <TouchableHighlight onPress={this.goToBillsPage}>
           <Image
-            source={Images.logo}
+            source={Images.billScroll}
           />
         </TouchableHighlight>
       </View>
