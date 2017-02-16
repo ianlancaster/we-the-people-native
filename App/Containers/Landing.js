@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { Text, View, Button } from 'react-native'
-// import styles from './Styles/BillsStyle'
+import styles from './Styles/LandingStyle'
 // import { Images } from '../Themes'
 // import DrawerButton from '../Components/DrawerButton'
 // import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -10,12 +10,11 @@ import { Text, View, Button } from 'react-native'
 export default class Landing extends React.Component {
 
   test() {
-
   }
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>
         I am the Landing component. I cannot be seen, apparently.
         </Text>
