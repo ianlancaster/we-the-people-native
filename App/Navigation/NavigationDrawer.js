@@ -6,6 +6,7 @@ import { DefaultRenderer, Actions as NavigationActions } from 'react-native-rout
 import DrawerContent from '../Containers/DrawerContent'
 import { connect } from 'react-redux'
 import Styles from './Styles/NavigationDrawerStyle'
+import Footer from '../Containers/Footer'
 
 /* *******************
 * Documentation: https://github.com/root-two/react-native-drawer
@@ -34,6 +35,7 @@ class NavigationDrawer extends Component {
         })}
       >
         <DefaultRenderer navigationState={children[0]} onNavigate={this.props.onNavigate} />
+        <Footer />
       </Drawer>
     )
   }
