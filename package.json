@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "react-native run-ios && node server/main.js",
+    "old start": "node node_modules/react-native/local-cli/cli.js start",
     "lint": "eslint App/Containers",
     "lintdiff": "git diff --name-only --cached --relative | grep '\\.js$' | xargs standard | snazzy",
     "fixcode": "standard --fix",
@@ -30,6 +31,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.9.0",
+    "express": "^4.14.1",
     "format-json": "^1.0.3",
     "lodash": "^4.17.2",
     "querystringify": "0.0.4",
