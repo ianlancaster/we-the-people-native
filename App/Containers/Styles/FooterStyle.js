@@ -1,10 +1,16 @@
 const styles = {
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgb(134, 148, 247)',
-  }
+    backgroundColor: '#112E50',
+    flex: 0,
+    alignItems: 'flex-end',
+    flexDirection:'row',
+  },
+  icon: {
+    marginLeft: 30,
+  },
+  text: {
+    color: '#FFF',
+  },
 }
 
 export default styles

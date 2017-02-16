@@ -34,16 +34,14 @@ import BillDetail from '../Containers/BillDetail'
 ***************************/
 
 class NavigationRouter extends Component {
-  render () {
+  render() {
     return (
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
-
             <Scene initial key='landing' component={Landing} title='Landing' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
             <Scene key='header' component={Header} title='Header' />
             <Scene key='bills' component={Bills} title='Bills' />
-            <Scene key='footer' component={Footer} title='Footer' />
             <Scene key='bill-card-in-list' component={BillCardInList} title='BillCardInList' />
             <Scene key='nav-side-menu' component={NavSideMenu} title='NavSideMenu' />
             <Scene key='bill-detail' component={BillDetail} title='BillDetail' />
@@ -64,6 +62,7 @@ class NavigationRouter extends Component {
             <Scene key='deviceInfo' component={DeviceInfoScreen} title='Device Info' />
           </Scene>
         </Scene>
+        <Scene key='footer' component={Footer} title='Footer' />
       </Router>
     )
   }

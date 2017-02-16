@@ -9,11 +9,11 @@ export default class Bills extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text
           style={styles.text}
         >
-        I am the Bills component. I cannot be seen, apparently.
+        I am the Bills component.
         </Text>
       </View>
     )

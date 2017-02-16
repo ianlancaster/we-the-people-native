@@ -1,4 +1,7 @@
 const styles = {
+  bottomImage: {
+    height: 250,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',

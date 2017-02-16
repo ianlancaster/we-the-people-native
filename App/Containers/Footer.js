@@ -1,27 +1,58 @@
 // @flow
 
 import React from 'react'
-import { Text, View, Button } from 'react-native'
+import { Text, View, Button, Image, TouchableHighlight } from 'react-native'
 import styles from './Styles/FooterStyle'
-// import { Images } from '../Themes'
+import { Images } from '../Themes'
 // import DrawerButton from '../Components/DrawerButton'
-// import { Actions as NavigationActions } from 'react-native-router-flux'
+import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class Footer extends React.Component {
 
-  test() {
+  goToBillsPage() {
+    NavigationActions.bills()
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>
-        I am the Footer component. I cannot be seen, apparently.
+        <TouchableHighlight onPress={this.goToBillsPage}>
+          <Image
+            source={Images.billScroll}
+          />
+        </TouchableHighlight>
+        <Text
+          style={styles.text}
+        >
+        Bills
         </Text>
-        <Button
-          title="I am a button."
-          onPress={this.test}
+        <Image
+          source={Images.congress}
+          style={styles.icon}
         />
+        <Text
+          style={styles.text}
+        >
+        Congress
+        </Text>
+        <Image
+          source={Images.bell}
+          style={styles.icon}
+        />
+        <Text
+          style={styles.text}
+        >
+        Notifications
+        </Text>
+        <Image
+          source={Images.me}
+          style={styles.icon}
+        />
+        <Text
+          style={styles.text}
+        >
+        Me
+        </Text>
       </View>
     )
   }
