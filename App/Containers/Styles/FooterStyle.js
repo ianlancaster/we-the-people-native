@@ -1,10 +1,13 @@
 const styles = {
   container: {
+    backgroundColor: '#112E50',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgb(134, 148, 247)',
-  }
+    alignItems: 'flex-end',
+    flexDirection:'row',
+  },
+  icon: {
+
+  },
 }
 
 export default styles

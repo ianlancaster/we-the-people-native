@@ -23,6 +23,7 @@ export default class Footer extends React.Component {
         </TouchableHighlight>
         <Image
           source={Images.congress}
+          style={styles.icon}
         />
         <Image
           source={Images.bell}
