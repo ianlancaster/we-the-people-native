@@ -14,6 +14,7 @@
     "class-methods-use-this": "off",
     "comma-dangle": "off",
     "react/jsx-filename-extension": "off",
+    "import/first": "off",
     "jsx-quotes": "off",
     "no-alert": "off",
     "no-extra-semi": "off",
