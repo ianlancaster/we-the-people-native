@@ -25,6 +25,7 @@ import Landing from '../Containers/Landing'
 import Footer from '../Containers/Footer'
 import BillCardInList from '../Containers/BillCardInList'
 import Header from '../Containers/Header'
+import NavSideMenu from '../Containers/NavSideMenu'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -42,6 +43,7 @@ class NavigationRouter extends Component {
             <Scene key='bills' component={Bills} title='Bills' />
             <Scene key='footer' component={Footer} title='Footer' />
             <Scene key='bill-card-in-list' component={BillCardInList} title='BillCardInList' />
+            <Scene key='nav-side-menu' component={NavSideMenu} title='NavSideMenu' />
 
             <Scene key='presentationScreen' component={PresentationScreen} title='Ignite' renderLeftButton={NavItems.hamburgerButton} />
             <Scene key='componentExamples' component={AllComponentsScreen} title='Components' />
