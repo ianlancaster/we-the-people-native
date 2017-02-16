@@ -20,6 +20,7 @@ import MapviewExample from '../Containers/MapviewExample'
 import APITestingScreen from '../Containers/APITestingScreen'
 import ThemeScreen from '../Containers/ThemeScreen'
 import DeviceInfoScreen from '../Containers/DeviceInfoScreen'
+
 import Bills from '../Containers/Bills'
 import Landing from '../Containers/Landing'
 import Footer from '../Containers/Footer'
