@@ -26,7 +26,7 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>congress.api.sunlightfoundation.com</key>
+			<key>localhost:3000</key>
 			<dict>
 				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
 				<true/>

@@ -2,7 +2,7 @@
 import apisauce from 'apisauce'
 
 // our "constructor"
-const create = (baseURL = 'https://congress.api.sunlightfoundation.com/') => {
+const create = (baseURL = 'http://localhost:3000/') => {
 // const create = (baseURL = 'http://api.openweathermap.org/data/2.5/') => {
   // ------
   // STEP 1
@@ -10,7 +10,6 @@ const create = (baseURL = 'https://congress.api.sunlightfoundation.com/') => {
   //
   // Create and configure an apisauce-based api object.
   //
-  console.log('ping')
 
   // const api = apisauce.create({
   //   // base URL is read from the "constructor"
@@ -54,7 +53,7 @@ const create = (baseURL = 'https://congress.api.sunlightfoundation.com/') => {
   // Since we can't hide from that, we embrace it by getting out of the
   // way at this level.
   //
-  const getCity = (city) => api.get('bills?bill_id=hr3590-111')
+  const getCity = (city) => api.get('api/bills/1')
 
   // ------
   // STEP 3
