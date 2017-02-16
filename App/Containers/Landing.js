@@ -17,7 +17,7 @@ export default class Landing extends React.Component {
     return (
       <View style={styles.container}>
         <Text>
-        I am the Landing component.
+        We The People
         </Text>
         <Button
           title="I am a button."

@@ -8,6 +8,9 @@ const styles = {
   icon: {
     marginLeft: 30,
   },
+  text: {
+    color: '#FFF',
+  },
 }
 
 export default styles
