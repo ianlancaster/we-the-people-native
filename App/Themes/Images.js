@@ -7,7 +7,10 @@ const images = {
   ignite: require('../Images/ignite_logo.png'),
   tileBg: require('../Images/tile_bg.png'),
   background: require('../Images/BG.png'),
-  billScroll: require('../Images/bill-scroll.png')
+  billScroll: require('../Images/bill-scroll.png'),
+  congress: require('../Images/congress.png'),
+  bell: require('../Images/bell.png'),
+  me: require('../Images/me.png'),
 }
 
 export default images

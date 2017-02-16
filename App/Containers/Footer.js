@@ -21,6 +21,15 @@ export default class Footer extends React.Component {
             source={Images.billScroll}
           />
         </TouchableHighlight>
+        <Image
+          source={Images.congress}
+        />
+        <Image
+          source={Images.bell}
+        />
+        <Image
+          source={Images.me}
+        />
       </View>
     )
   }
