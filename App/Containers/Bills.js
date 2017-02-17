@@ -11,7 +11,7 @@ import FullButton from '../Components/FullButton'
 const endpoints = [
   { label: 'Get City (Boise)', endpoint: 'getCity', args: ['Boise'] },
   { label: 'pageOne', endpoint: 'getBills', args: [1] },
-  { label: 'pageTwo', endpoint: 'getBills', args: [2] }
+  { label: 'pageTwo', endpoint: 'getBills', args: [2] },
 ]
 
 export default class Bills extends React.Component {
@@ -26,7 +26,14 @@ export default class Bills extends React.Component {
   showResult (response, title = 'Response') {
     // this.refs.container.scrollTo({x: 0, y: 0, animated: true})
     if (response.ok) {
-      this.refs.result.setState({message: FJSON.plain(response.data), title: title})
+      console.log(response.data[0])
+      let billData = response.data[0].official_title
+      // let billData = response.data[0].map((bill) => {
+      //   return <Text>{bill.official_title}</Text>
+      //   })
+
+      this.refs.result.setState({message: billData, title: title})
+      // this.refs.result.setState({message: FJSON.plain(response.data), title: title})
       // this.refs.result.setState({message: FJSON.plain(response.data), title: title})
     } else {
       this.refs.result.setState({message: `${response.problem} - ${response.status}`, title: title })
@@ -34,6 +41,7 @@ export default class Bills extends React.Component {
   }
 
   tryEndpoint (apiEndpoint) {
+    // console.log('endpoint', apiEndpoint)
     const { label, endpoint, args = [''] } = apiEndpoint
     this.api[endpoint].apply(this, args).then((result) => {
       this.showResult(result, label || `${endpoint}(${args.join(', ')})`)
@@ -104,6 +112,7 @@ class APIResult extends React.Component {
   }
 
   render () {
+    console.log('message state', this.state.message)
     let messageView = null
     if (this.state.message) {
       return this.renderView()
