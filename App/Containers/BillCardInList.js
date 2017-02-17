@@ -8,11 +8,17 @@ import styles from './Styles/BillCardInListStyle'
 // import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class BillCardInList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
 
+    };
+  }
   test() {
   }
 
   render() {
+    console.log('props', this.props)
     return (
       <View style={styles.container}>
         <Text>

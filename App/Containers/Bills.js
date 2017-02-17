@@ -4,9 +4,10 @@ import styles from './Styles/BillsStyle'
 import API from '../Services/Api'
 import FJSON from 'format-json'
 import FullButton from '../Components/FullButton'
+import BillCardInList from './BillCardInList'
 // import { Images } from '../Themes'
 // import DrawerButton from '../Components/DrawerButton'
-// import { Actions as NavigationActions } from 'react-native-router-flux'
+import { Actions as NavigationActions } from 'react-native-router-flux'
 
 const endpoints = [
   { label: 'Get City (Boise)', endpoint: 'getCity', args: ['Boise'] },
@@ -26,11 +27,10 @@ export default class Bills extends React.Component {
   showResult (response, title = 'Response') {
     // this.refs.container.scrollTo({x: 0, y: 0, animated: true})
     if (response.ok) {
-      console.log(response.data[0])
-      let billData = response.data[0].official_title
-      // let billData = response.data[0].map((bill) => {
-      //   return <Text>{bill.official_title}</Text>
-      //   })
+      // let billData = response.data[0].official_title
+      let billData = response.data.map((bill) => {
+        return <BillCardInList {...bill} />
+        })
 
       this.refs.result.setState({message: billData, title: title})
       // this.refs.result.setState({message: FJSON.plain(response.data), title: title})
