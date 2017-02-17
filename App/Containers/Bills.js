@@ -28,8 +28,8 @@ export default class Bills extends React.Component {
     // this.refs.container.scrollTo({x: 0, y: 0, animated: true})
     if (response.ok) {
       // let billData = response.data[0].official_title
-      let billData = response.data.map((bill) => {
-        return <BillCardInList {...bill} />
+      const billData = response.data.map((bill) => {
+        return <BillCardInList {...bill} key={bill.bill_id}/>
         })
 
       this.refs.result.setState({message: billData, title: title})

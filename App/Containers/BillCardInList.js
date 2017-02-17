@@ -14,6 +14,7 @@ export default class BillCardInList extends React.Component {
 
     };
   }
+
   test() {
   }
 
@@ -23,6 +24,15 @@ export default class BillCardInList extends React.Component {
       <View style={styles.container}>
         <Text>
         Title: {this.props.official_title}
+        </Text>
+        <Text>
+        Introduced on: {this.props.introduced_on}
+        </Text>
+        <Text>
+        Last Action: {this.props.last_action_at}
+        </Text>
+        <Text>
+        Chamber: {this.props.chamber}
         </Text>
         <Button
           title="I am a button."
