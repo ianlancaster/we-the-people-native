@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, ScrollView } from 'react-native'
+import { Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import styles from './Styles/BillsStyle'
 import API from '../Services/Api'
 import FJSON from 'format-json'
@@ -23,6 +23,23 @@ export default class Bills extends React.Component {
     this.api = API.create()
   }
 
+  showResult (response, title = 'Response') {
+    // this.refs.container.scrollTo({x: 0, y: 0, animated: true})
+    if (response.ok) {
+      this.refs.result.setState({message: FJSON.plain(response.data), title: title})
+      // this.refs.result.setState({message: FJSON.plain(response.data), title: title})
+    } else {
+      this.refs.result.setState({message: `${response.problem} - ${response.status}`, title: title })
+    }
+  }
+
+  tryEndpoint (apiEndpoint) {
+    const { label, endpoint, args = [''] } = apiEndpoint
+    this.api[endpoint].apply(this, args).then((result) => {
+      this.showResult(result, label || `${endpoint}(${args.join(', ')})`)
+    })
+  }
+
   renderButton (apiEndpoint) {
     const { label, endpoint, args = [''] } = apiEndpoint
     return (
@@ -34,23 +51,6 @@ export default class Bills extends React.Component {
     return endpoints.map((endpoint) => this.renderButton(endpoint))
   }
 
-  showResult (response, title = 'Response') {
-    this.refs.container.scrollTo({x: 0, y: 0, animated: true})
-    if (response.ok) {
-      this.refs.result.setState({message: FJSON.plain(response.data), title})
-      // this.refs.result.setState({message: FJSON.plain(response.data), title: title})
-    } else {
-      this.refs.result.setState({message: `${response.problem} - ${response.status}`, title})
-    }
-  }
-
-  tryEndpoint (apiEndpoint) {
-    const { label, endpoint, args = [''] } = apiEndpoint
-    this.api[endpoint].apply(this, args).then((result) => {
-      this.showResult(result, label || `${endpoint}(${args.join(', ')})`)
-    })
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -60,8 +60,8 @@ export default class Bills extends React.Component {
           >
             Bills:
           </Text>
+          <APIResult ref='result' />
           {this.renderButtons()}
-          <APIResult ref={() => 'result'} />
         </ScrollView>
       </View>
     )
@@ -88,7 +88,6 @@ class APIResult extends React.Component {
   }
 
   renderView () {
-    console.log(this.state.message)
     return (
       <ScrollView style={{ top: 0, bottom: 0, left: 0, right: 0, position: 'absolute' }} overflow='hidden'>
         <TouchableOpacity
