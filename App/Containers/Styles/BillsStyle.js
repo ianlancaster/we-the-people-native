@@ -5,6 +5,9 @@ const styles = {
     alignItems: 'center',
     backgroundColor: 'rgb(134, 148, 247)',
   },
+  scrollContainer: {
+    flex: 1,
+  },
   text: {
     color: 'black'
   }
