@@ -5,8 +5,14 @@ const styles = {
     alignItems: 'center',
     backgroundColor: 'rgb(134, 148, 247)',
   },
+  scrollContainer: {
+    backgroundColor: 'red',
+    flex: 5,
+  },
   text: {
-    color: 'black'
+    color: 'black',
+    fontSize: 40,
+    paddingTop: 70,
   }
 }
 

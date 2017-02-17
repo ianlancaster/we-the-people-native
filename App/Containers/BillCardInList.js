@@ -8,15 +8,31 @@ import styles from './Styles/BillCardInListStyle'
 // import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class BillCardInList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
 
   test() {
   }
 
   render() {
+    console.log('props', this.props)
     return (
       <View style={styles.container}>
         <Text>
-        I am the BillCardInList component. I cannot be seen, apparently.
+        Title: {this.props.official_title}
+        </Text>
+        <Text>
+        Introduced on: {this.props.introduced_on}
+        </Text>
+        <Text>
+        Last Action: {this.props.last_action_at}
+        </Text>
+        <Text>
+        Chamber: {this.props.chamber}
         </Text>
         <Button
           title="I am a button."
