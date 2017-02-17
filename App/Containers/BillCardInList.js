@@ -22,7 +22,7 @@ export default class BillCardInList extends React.Component {
     return (
       <View style={styles.container}>
         <Text>
-        I am the BillCardInList component. I cannot be seen, apparently.
+        Title: {this.props.official_title}
         </Text>
         <Button
           title="I am a button."
