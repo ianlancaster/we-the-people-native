@@ -6,10 +6,13 @@ const styles = {
     backgroundColor: 'rgb(134, 148, 247)',
   },
   scrollContainer: {
-    flex: 1,
+    backgroundColor: 'red',
+    flex: 5,
   },
   text: {
-    color: 'black'
+    color: 'black',
+    fontSize: 40,
+    paddingTop: 70,
   }
 }
 
