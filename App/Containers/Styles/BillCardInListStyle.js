@@ -1,4 +1,8 @@
 const styles = {
+  billId: {
+    alignSelf: 'flex-end',
+    marginBottom: 10,
+  },
   container: {
     backgroundColor: '#FFF',
     flex: 1,
@@ -9,7 +13,7 @@ const styles = {
     },
     shadowOpacity: 0.5,
     width: 300,
-  }
+  },
 }
 
 export default styles

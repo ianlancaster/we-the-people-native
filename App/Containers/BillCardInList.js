@@ -25,7 +25,7 @@ export default class BillCardInList extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text>
+        <Text style={styles.billId}>
           {bill.id}
         </Text>
         <Text>
