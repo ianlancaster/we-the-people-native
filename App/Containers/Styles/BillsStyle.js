@@ -6,7 +6,6 @@ const styles = {
     backgroundColor: 'rgb(134, 148, 247)',
   },
   scrollContainer: {
-    backgroundColor: 'red',
     flex: 5,
   },
   text: {

@@ -19,9 +19,7 @@ const endpoints = [
 export default class Bills extends React.Component {
   constructor() {
     super()
-    this.state = {
 
-    }
     this.api = API.create()
   }
 
