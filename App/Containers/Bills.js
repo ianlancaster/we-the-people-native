@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, ScrollView, TouchableOpacity } from 'react-native'
+import { Text, View, ScrollView, TouchableOpacity, Button } from 'react-native'
 import styles from './Styles/BillsStyle'
 import APIBills from '../Services/APIBills'
 import FJSON from 'format-json'
@@ -20,15 +20,27 @@ export default class Bills extends React.Component {
   constructor() {
     super()
     this.state = {
-      bills: null
+      bills: null,
+      showOnlyActive: false,
     }
 
     this.api = APIBills.create()
   }
 
+  showOnlyActiveBills() {
+    this.setState({ showOnlyActive: true });
+    this.tryEndpoint()
+  }
+
   showResult(response, title = 'Response') {
+    let bills = response.data
     if (response.ok) {
-      this.setState({ bills: response.data });
+      if (this.state.showOnlyActive) {
+        bills = response.data.filter((bill) => {
+          return bill.history.active === true
+        })
+      }
+      this.setState({ bills });
       this.billData = this.state.bills.map((bill) => {
         return <BillCardInList {...bill} key={bill.bill_id} />
       })
@@ -52,6 +64,11 @@ export default class Bills extends React.Component {
     return (
       <View style={styles.container}>
         {this.tryEndpoint()}
+        <Button
+          title="Show Only Active Bills"
+          onPress={this.showOnlyActiveBills}
+          style={styles.showActiveButton}
+        />
         <ScrollView style={styles.scrollContainer} ref={() => 'container'}>
           <Text
             style={styles.text}

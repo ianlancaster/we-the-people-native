@@ -8,6 +8,11 @@ const styles = {
   scrollContainer: {
     flex: 5,
   },
+  showActiveButton: {
+    height: 100,
+    paddingTop: 70,
+    width: 100,
+  },
   text: {
     color: 'black',
     fontSize: 40,
