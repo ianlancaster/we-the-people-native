@@ -15,9 +15,6 @@ export default class BillCardInList extends React.Component {
     };
   }
 
-  test() {
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -33,11 +30,14 @@ export default class BillCardInList extends React.Component {
         <Text>
         Chamber: {this.props.chamber}
         </Text>
-        <Button
-          title="I am a button."
-          onPress={this.test}
-        />
       </View>
     )
   }
+}
+
+BillCardInList.propTypes = {
+  official_title: React.PropTypes.string,
+  introduced_on: React.PropTypes.string,
+  last_action_at: React.PropTypes.string,
+  chamber: React.PropTypes.string,
 }

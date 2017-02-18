@@ -23,12 +23,12 @@ export default class Bills extends React.Component {
     this.api = API.create()
   }
 
-  showResult (response, title = 'Response') {
+  showResult(response, title = 'Response') {
     // this.refs.container.scrollTo({x: 0, y: 0, animated: true})
     if (response.ok) {
       const billData = response.data.map((bill) => {
-        return <BillCardInList {...bill} key={bill.bill_id}/>
-        })
+        return <BillCardInList {...bill} key={bill.bill_id} />
+      })
 
       this.refs.result.setState(
         {
@@ -46,28 +46,33 @@ export default class Bills extends React.Component {
     }
   }
 
-  tryEndpoint (apiEndpoint) {
+  tryEndpoint(apiEndpoint) {
     const { label, endpoint, args = [''] } = apiEndpoint
     this.api[endpoint].apply(this, args).then((result) => {
       this.showResult(result, label || `${endpoint}(${args.join(', ')})`)
     })
   }
 
-  renderButton (apiEndpoint) {
+  renderButton(apiEndpoint) {
     const { label, endpoint, args = [''] } = apiEndpoint
     return (
-      <FullButton text={label || `${endpoint}(${args.join(', ')})`} onPress={this.tryEndpoint.bind(this, apiEndpoint)} styles={{marginTop: 10}} key={`${endpoint}-${args.join('-')}`} />
+      <FullButton
+        text={label || `${endpoint}(${args.join(', ')})`}
+        onPress={this.tryEndpoint.bind(this, apiEndpoint)}
+        styles={{ marginTop: 10 }}
+        key={`${endpoint}-${args.join('-')}`}
+      />
     )
   }
 
-  renderButtons () {
-    return endpoints.map((endpoint) => this.renderButton(endpoint))
+  renderButtons() {
+    return endpoints.map(endpoint => this.renderButton(endpoint))
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.scrollContainer} ref={() => 'container' }>
+        <ScrollView style={styles.scrollContainer} ref={() => 'container'}>
           <Text
             style={styles.text}
           >

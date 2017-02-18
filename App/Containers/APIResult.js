@@ -11,12 +11,7 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class APIResult extends React.Component {
 
-  state: {
-    message: boolean,
-    title: boolean
-  }
-
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       message: false,
@@ -25,18 +20,24 @@ export default class APIResult extends React.Component {
   }
 
   onApiPress = () => {
-    this.setState({message: false})
+    this.setState(
+      {
+        message: false
+      })
   }
 
-  renderView () {
+  renderView() {
     return (
       <ScrollView style={{ top: 0, bottom: 0, left: 0, right: 0, position: 'absolute' }} overflow='hidden'>
         <TouchableOpacity
-          style={{backgroundColor: 'white', padding: 20}}
+          style={{ backgroundColor: 'white', padding: 20 }}
           onPress={this.onApiPress}
         >
           <Text>{this.state.title} Response:</Text>
-          <Text allowFontScaling={false} style={{fontFamily: 'CourierNewPS-BoldMT', fontSize: 10}}>
+          <Text
+            allowFontScaling={false}
+            style={{ fontFamily: 'CourierNewPS-BoldMT', fontSize: 10 }}
+          >
             {this.state.message}
           </Text>
         </TouchableOpacity>
@@ -44,7 +45,7 @@ export default class APIResult extends React.Component {
     )
   }
 
-  render () {
+  render() {
     let messageView = null
     if (this.state.message) {
       return this.renderView()
