@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 import { Text, View, Button } from 'react-native'
 import styles from './Styles/BillCardInListStyle'
@@ -15,11 +13,7 @@ export default class BillCardInList extends React.Component {
     };
   }
 
-  test() {
-  }
-
   render() {
-    console.log('props', this.props)
     return (
       <View style={styles.container}>
         <Text>
@@ -34,11 +28,14 @@ export default class BillCardInList extends React.Component {
         <Text>
         Chamber: {this.props.chamber}
         </Text>
-        <Button
-          title="I am a button."
-          onPress={this.test}
-        />
       </View>
     )
   }
+}
+
+BillCardInList.propTypes = {
+  official_title: React.PropTypes.string,
+  introduced_on: React.PropTypes.string,
+  last_action_at: React.PropTypes.string,
+  chamber: React.PropTypes.string,
 }
