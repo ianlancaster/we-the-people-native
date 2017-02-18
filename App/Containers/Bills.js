@@ -31,6 +31,10 @@ export default class Bills extends React.Component {
     this.setState({ showOnlyActive: false });
   }
 
+  showOnlyActiveBills = () => {
+    this.setState({ showOnlyActive: true });
+  }
+
   showResult(response, title = 'Response') {
     let bills = response.data
     if (response.ok) {
@@ -66,10 +70,13 @@ export default class Bills extends React.Component {
             Bills:
           </Text>
           {this.state.showOnlyActive ? <Text>Only active bill(s) shown.</Text> : <Text />}
-          <Button
+          {this.state.showOnlyActive ? <Button
             title="Show All Bills."
             onPress={this.showAllBills}
-          />
+          /> : <Button
+            title="Show Only Active Bills."
+            onPress={this.showOnlyActiveBills}
+          />}
           {this.billData ? this.billData : <Text>Loading....</Text>}
         </ScrollView>
       </View>
