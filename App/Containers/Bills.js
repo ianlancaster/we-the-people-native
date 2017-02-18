@@ -27,6 +27,10 @@ export default class Bills extends React.Component {
     this.api = APIBills.create()
   }
 
+  showAllBills = () => {
+    this.setState({ showOnlyActive: false });
+  }
+
   showResult(response, title = 'Response') {
     let bills = response.data
     if (response.ok) {
@@ -51,10 +55,6 @@ export default class Bills extends React.Component {
     })
   }
 
-  renderButtons() {
-    return endpoints.map(endpoint => this.renderButton(endpoint))
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -66,6 +66,10 @@ export default class Bills extends React.Component {
             Bills:
           </Text>
           {this.state.showOnlyActive ? <Text>Only active bill(s) shown.</Text> : <Text />}
+          <Button
+            title="Show All Bills."
+            onPress={this.showAllBills}
+          />
           {this.billData ? this.billData : <Text>Loading....</Text>}
         </ScrollView>
       </View>
