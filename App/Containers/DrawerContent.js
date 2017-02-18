@@ -33,6 +33,11 @@ class DrawerContent extends Component {
     NavigationActions.bills()
   }
 
+  handleDateIntroduced = () => {
+    this.toggleDrawer()
+    NavigationActions.billsSortByDateIntroduced()
+  }
+
   handlePressComponents = () => {
     this.toggleDrawer()
     NavigationActions.componentExamples()
@@ -64,6 +69,8 @@ class DrawerContent extends Component {
         <Image source={Images.logo} style={styles.logo} />
         <DrawerButton text='Bills' onPress={this.handleBills} />
         <DrawerButton text='Show Only Active Bills' onPress={this.handleActiveBills} />
+        <DrawerButton text='Sort Bills by Date Introduced' onPress={this.handleDateIntroduced} />
+
         <DrawerButton text='Component Examples' onPress={this.handlePressComponents} />
         <DrawerButton text='Usage Examples' onPress={this.handlePressUsage} />
         <DrawerButton text='API Testing' onPress={this.handlePressAPI} />
