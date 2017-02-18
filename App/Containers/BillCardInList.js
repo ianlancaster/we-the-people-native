@@ -19,7 +19,6 @@ export default class BillCardInList extends React.Component {
   }
 
   render() {
-    console.log('props', this.props)
     return (
       <View style={styles.container}>
         <Text>
