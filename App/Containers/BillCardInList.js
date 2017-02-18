@@ -14,10 +14,11 @@ export default class BillCardInList extends React.Component {
   }
 
   render() {
+    const truncTitle = `${this.props.official_title.split(' ').slice(0, 10).join(' ')}...`
     return (
       <View style={styles.container}>
         <Text>
-        Title: {this.props.official_title}
+        Title: {truncTitle}
         </Text>
         <Text>
         Introduced on: {this.props.introduced_on}
