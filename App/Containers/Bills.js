@@ -19,50 +19,29 @@ const endpoints = [
 export default class Bills extends React.Component {
   constructor() {
     super()
+    this.state = {
+      bills: null
+    }
 
     this.api = APIBills.create()
   }
 
   showResult(response, title = 'Response') {
-    // this.refs.container.scrollTo({x: 0, y: 0, animated: true})
     if (response.ok) {
-      const billData = response.data.map((bill) => {
+      this.setState({ bills: response.data });
+      this.billData = this.state.bills.map((bill) => {
         return <BillCardInList {...bill} key={bill.bill_id} />
       })
-
-      this.refs.result.setState(
-        {
-          message: billData,
-          title,
-        }
-      )
     } else {
-      this.refs.result.setState(
-        {
-          message: `${response.problem} - ${response.status}`,
-          title,
-        }
-      )
+      throw new Error('There was a problem with the API call.')
     }
   }
 
-  tryEndpoint(apiEndpoint) {
-    const { label, endpoint, args = [''] } = apiEndpoint
-    this.api[endpoint].apply(this, args).then((result) => {
-      this.showResult(result, label || `${endpoint}(${args.join(', ')})`)
+  tryEndpoint() {
+    const endpoint = endpoints[0].endpoint
+    this.api[endpoint].apply(this).then((result) => {
+      this.showResult(result)
     })
-  }
-
-  renderButton(apiEndpoint) {
-    const { label, endpoint, args = [''] } = apiEndpoint
-    return (
-      <FullButton
-        text={label || `${endpoint}(${args.join(', ')})`}
-        onPress={this.tryEndpoint.bind(this, apiEndpoint)}
-        styles={{ marginTop: 10 }}
-        key={`${endpoint}-${args.join('-')}`}
-      />
-    )
   }
 
   renderButtons() {
@@ -72,14 +51,14 @@ export default class Bills extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        {this.tryEndpoint()}
         <ScrollView style={styles.scrollContainer} ref={() => 'container'}>
           <Text
             style={styles.text}
           >
             Bills:
           </Text>
-          <APIResult ref='result' />
-          {this.renderButtons()}
+          {this.billData ? this.billData : <Text>Loading....</Text>}
         </ScrollView>
       </View>
     )
