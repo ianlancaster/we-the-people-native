@@ -22,7 +22,7 @@
     "no-unused-vars": "off",
     "prefer-const": "off",
     "react/jsx-no-bind": "off",
-    "react/no-string-refs": "off",
+    "react/no-string-refs": "warn",
     "react/prefer-stateless-function": "off",
     "react/require-default-props": "off",
     "semi": "off"
