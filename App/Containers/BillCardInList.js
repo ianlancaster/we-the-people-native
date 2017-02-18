@@ -5,13 +5,8 @@ import styles from './Styles/BillCardInListStyle'
 // import DrawerButton from '../Components/DrawerButton'
 // import { Actions as NavigationActions } from 'react-native-router-flux'
 
+// maybe make into a dumb component
 export default class BillCardInList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    };
-  }
 
   render() {
     const bill = {

@@ -23,6 +23,11 @@ class DrawerContent extends Component {
     this.context.drawer.toggle()
   }
 
+  handleActiveBills = () => {
+    this.toggleDrawer()
+    NavigationActions.billsActive()
+  }
+
   handleBills = () => {
     this.toggleDrawer()
     NavigationActions.bills()
@@ -58,6 +63,7 @@ class DrawerContent extends Component {
       <ScrollView style={styles.container}>
         <Image source={Images.logo} style={styles.logo} />
         <DrawerButton text='Bills' onPress={this.handleBills} />
+        <DrawerButton text='Show Only Active Bills' onPress={this.handleActiveBills} />
         <DrawerButton text='Component Examples' onPress={this.handlePressComponents} />
         <DrawerButton text='Usage Examples' onPress={this.handlePressUsage} />
         <DrawerButton text='API Testing' onPress={this.handlePressAPI} />

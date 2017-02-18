@@ -17,19 +17,14 @@ const endpoints = [
 ]
 
 export default class Bills extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       bills: null,
-      showOnlyActive: false,
+      showOnlyActive: this.props.showOnlyActive || false,
     }
 
     this.api = APIBills.create()
-  }
-
-  showOnlyActiveBills() {
-    this.setState({ showOnlyActive: true });
-    this.tryEndpoint()
   }
 
   showResult(response, title = 'Response') {
@@ -64,20 +59,20 @@ export default class Bills extends React.Component {
     return (
       <View style={styles.container}>
         {this.tryEndpoint()}
-        <Button
-          title="Show Only Active Bills"
-          onPress={this.showOnlyActiveBills}
-          style={styles.showActiveButton}
-        />
         <ScrollView style={styles.scrollContainer} ref={() => 'container'}>
           <Text
             style={styles.text}
           >
             Bills:
           </Text>
+          {this.state.showOnlyActive ? <Text>Only active bill(s) shown.</Text> : <Text />}
           {this.billData ? this.billData : <Text>Loading....</Text>}
         </ScrollView>
       </View>
     )
   }
+}
+
+Bills.propTypes = {
+  showOnlyActive: React.PropTypes.bool,
 }
