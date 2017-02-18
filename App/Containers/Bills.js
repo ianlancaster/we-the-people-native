@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import styles from './Styles/BillsStyle'
-import API from '../Services/Api'
+import APIBills from '../Services/APIBills'
 import FJSON from 'format-json'
 import FullButton from '../Components/FullButton'
 import BillCardInList from './BillCardInList'
@@ -11,7 +11,7 @@ import APIResult from './APIResult';
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 const endpoints = [
-  { label: 'Get City (Boise)', endpoint: 'getCity', args: ['Boise'] },
+  { label: 'Get Bills', endpoint: 'getTheBills' },
   { label: 'pageOne', endpoint: 'getBills', args: [1] },
   { label: 'pageTwo', endpoint: 'getBills', args: [2] },
 ]
@@ -20,7 +20,7 @@ export default class Bills extends React.Component {
   constructor() {
     super()
 
-    this.api = API.create()
+    this.api = APIBills.create()
   }
 
   showResult(response, title = 'Response') {
