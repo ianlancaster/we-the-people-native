@@ -8,6 +8,10 @@ import styles from './Styles/BillCardInListStyle'
 // maybe make into a dumb component
 export default class BillCardInList extends React.Component {
 
+  viewBillDetails() {
+    // navigate to bill details page and pass down relevant info to it as props
+  }
+
   render() {
     const bill = {
       id: this.props.bill_id,
@@ -35,6 +39,10 @@ export default class BillCardInList extends React.Component {
         <Text>
         Chamber: {bill.chamber}
         </Text>
+        <Button
+          title="View Bill Details"
+          onPress={this.viewBillDetails}
+        />
       </View>
     )
   }
