@@ -37,7 +37,7 @@ const BillStatus = () => {
         fill={white}
         stroke={black}
       />
-      {TextBubble()}
+      {TextBubble('HC')}
     </Svg>
   )
 }
@@ -47,11 +47,11 @@ BillStatus.propTypes = {
   exampleProp2: PropTypes.number
 }
 
-const TextBubble = () => {
+const TextBubble = (text, x, y, color) => {
   return (
     <G
-      x='20'
-      y='30'
+      x={x || '20'}
+      y={'30'}
     >
       <Circle
         r='10'
@@ -69,7 +69,7 @@ const TextBubble = () => {
         fontSize='12'
         fontWeight='bold'
         textAnchor='middle'
-      >HC</Text>
+      >{text}</Text>
     </G>
   )
 }

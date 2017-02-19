@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { Text, View, Button, Image } from 'react-native'
+import { Text, View, ScrollView, Button, Image } from 'react-native'
 import styles from './Styles/LandingStyle'
 import { Images } from '../Themes'
 import BillStatus from '../Components/BillStatus'
@@ -29,7 +29,15 @@ export default class Landing extends React.Component {
           title='I am a button.'
           onPress={this.test}
         />
-        <BillStatus />
+        <ScrollView>
+          <BillStatus />
+          <BillStatus />
+          <BillStatus />
+          <BillStatus />
+          <BillStatus />
+          <BillStatus />
+          <BillStatus />
+        </ScrollView>
       </View>
     )
   }
