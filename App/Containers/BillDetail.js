@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 import { Text, View, Button } from 'react-native'
 import styles from './Styles/BillDetailStyle'
@@ -11,24 +9,30 @@ export default class BillDetail extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-
+      id: this.props.id,
+      title: this.props.title,
+      dateIntroduced: this.props.dateIntroduced,
+      lastAction: this.props.lastAction,
+      chamber: this.props.chamber
     }
   }
 
-  test () {
-  }
-
   render () {
+    const { id } = this.state
     return (
       <View style={styles.container}>
         <Text>
-        I am the BillDetail component.
+          {id}
         </Text>
-        <Button
-          title='I am a button.'
-          onPress={this.test}
-        />
       </View>
     )
   }
+}
+
+BillDetail.propTypes = {
+  id: React.PropTypes.string,
+  title: React.PropTypes.string,
+  dateIntroduced: React.PropTypes.string,
+  lastAction: React.PropTypes.string,
+  chamber: React.PropTypes.string
 }

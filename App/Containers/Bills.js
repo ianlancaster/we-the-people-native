@@ -25,7 +25,11 @@ export default class Bills extends React.Component {
       bills: null,
       showOnlyActive: this.props.showOnlyActive || false,
       sortByDateIntroduced: this.props.sortByDateIntroduced || false,
-      title: ''
+      id: '',
+      title: '',
+      dateIntroduced: '',
+      lastAction: '',
+      chamber: ''
     }
 
     this.api = APIBills.create()
@@ -39,8 +43,12 @@ export default class Bills extends React.Component {
     this.setState({ showOnlyActive: true })
   }
 
-  showDetailedBill = (title) => {
+  showDetailedBill = (id, title, dateIntroduced, lastAction, chamber) => {
+    this.setState({ id })
     this.setState({ title })
+    this.setState({ dateIntroduced })
+    this.setState({ lastAction })
+    this.setState({ chamber })
     this.setState({ list: false })
   }
 
@@ -78,7 +86,7 @@ export default class Bills extends React.Component {
   }
 
   render () {
-    const { showOnlyActive, sortByDateIntroduced, title, list } = this.state
+    const { showOnlyActive, sortByDateIntroduced, title, id, dateIntroduced, lastAction, chamber, list } = this.state
     if (list) {
       return (
         <View style={styles.container}>
@@ -103,7 +111,13 @@ export default class Bills extends React.Component {
       )
     } else {
       return (
-        <BillDetail />
+        <BillDetail
+          id={id}
+          title={title}
+          dateIntroduced={dateIntroduced}
+          lastAction={lastAction}
+          chamber={chamber}
+        />
       )
     }
   }

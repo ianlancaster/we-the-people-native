@@ -38,7 +38,14 @@ export default class BillCardInList extends React.Component {
         </Text>
         <Button
           title='View Bill Details'
-          onPress={() => { this.props.onChange(bill.title) }}
+          onPress={() => {
+            this.props.onChange(
+            bill.id,
+            bill.title,
+            bill.dateIntroduced,
+            bill.lastAction,
+            bill.chamber)
+          }}
         />
       </View>
     )
