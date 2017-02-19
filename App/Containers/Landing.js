@@ -9,10 +9,10 @@ import { Images } from '../Themes'
 
 export default class Landing extends React.Component {
 
-  test() {
+  test () {
   }
 
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <Text>
@@ -25,7 +25,7 @@ export default class Landing extends React.Component {
           />
         </View>
         <Button
-          title="I am a button."
+          title='I am a button.'
           onPress={this.test}
         />
       </View>

@@ -7,7 +7,7 @@ import { ApplicationStyles } from '../Themes'
 import DebugSettings from '../Config/DebugSettings'
 let globalExamplesRegistry = []
 
-export const addExample = (title: string, usage: () => React$Element<*>) => { if (DebugSettings.includeExamples) globalExamplesRegistry.push({title, usage}) }
+export const addExample = (title: string, usage: () => React$Element<*>) => { if (DebugSettings.includeExamples) globalExamplesRegistry.push({title, usage}) } // eslint-disable-line
 
 const renderExample = (example: Object) => {
   return (

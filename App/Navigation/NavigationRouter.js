@@ -34,7 +34,7 @@ import BillDetail from '../Containers/BillDetail'
 ***************************/
 
 class NavigationRouter extends Component {
-  render() {
+  render () {
     return (
       <Router>
         <Scene key='drawer' component={NavigationDrawer} open={false}>

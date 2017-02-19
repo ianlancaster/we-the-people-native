@@ -23,7 +23,7 @@ test('the text is set properly - uppercase', (t) => {
 
 test('onPress', (t) => {
   let i = 0 // i guess i could have used sinon here too... less is more i guess
-  const onPress = () => i++
+  const onPress = () => i += 1
   const wrapperPress = shallow(<RoundedButton onPress={onPress} text='hi' />)
 
   t.is(wrapperPress.prop('onPress'), onPress) // uses the right handler

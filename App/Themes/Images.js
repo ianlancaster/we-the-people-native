@@ -11,7 +11,7 @@ const images = {
   congress: require('../Images/congress.png'),
   bell: require('../Images/bell.png'),
   me: require('../Images/me.png'),
-  congressBackground: require('../Images/congress-background.png'),
+  congressBackground: require('../Images/congress-background.png')
 }
 
 export default images

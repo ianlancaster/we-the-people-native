@@ -3,14 +3,14 @@ const styles = {
     backgroundColor: '#112E50',
     flex: 0,
     alignItems: 'flex-end',
-    flexDirection:'row',
+    flexDirection: 'row'
   },
   icon: {
-    marginLeft: 30,
+    marginLeft: 30
   },
   text: {
-    color: '#FFF',
-  },
+    color: '#FFF'
+  }
 }
 
 export default styles

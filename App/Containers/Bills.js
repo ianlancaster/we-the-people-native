@@ -5,7 +5,7 @@ import APIBills from '../Services/APIBills'
 import FJSON from 'format-json'
 import FullButton from '../Components/FullButton'
 import BillCardInList from './BillCardInList'
-import APIResult from './APIResult';
+import APIResult from './APIResult'
 // import { Images } from '../Themes'
 // import DrawerButton from '../Components/DrawerButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -13,30 +13,30 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 const endpoints = [
   { label: 'Get Bills', endpoint: 'getTheBills' },
   { label: 'pageOne', endpoint: 'getBills', args: [1] },
-  { label: 'pageTwo', endpoint: 'getBills', args: [2] },
+  { label: 'pageTwo', endpoint: 'getBills', args: [2] }
 ]
 
 export default class Bills extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       bills: null,
       showOnlyActive: this.props.showOnlyActive || false,
-      sortByDateIntroduced: this.props.sortByDateIntroduced || false,
+      sortByDateIntroduced: this.props.sortByDateIntroduced || false
     }
 
     this.api = APIBills.create()
   }
 
   showAllBills = () => {
-    this.setState({ showOnlyActive: false });
+    this.setState({ showOnlyActive: false })
   }
 
   showOnlyActiveBills = () => {
-    this.setState({ showOnlyActive: true });
+    this.setState({ showOnlyActive: true })
   }
 
-  showResult(response, title = 'Response') {
+  showResult (response, title = 'Response') {
     let bills = response.data
     if (response.ok) {
       if (this.state.showOnlyActive) {
@@ -47,9 +47,9 @@ export default class Bills extends React.Component {
       if (this.state.sortByDateIntroduced) {
         bills = response.data.sort((a, b) => {
           return Date.parse(a.introduced_on) - Date.parse(b.introduced_on)
-        });
+        })
       }
-      this.setState({ bills });
+      this.setState({ bills })
       this.billData = this.state.bills.map((bill) => {
         return <BillCardInList {...bill} key={bill.bill_id} />
       })
@@ -58,14 +58,14 @@ export default class Bills extends React.Component {
     }
   }
 
-  tryEndpoint() {
+  tryEndpoint () {
     const endpoint = endpoints[0].endpoint
     this.api[endpoint].apply(this).then((result) => {
       this.showResult(result)
     })
   }
 
-  render() {
+  render () {
     const { showOnlyActive, sortByDateIntroduced } = this.state
     return (
       <View style={styles.container}>
@@ -78,10 +78,10 @@ export default class Bills extends React.Component {
           </Text>
           {showOnlyActive ? <Text>Only active bill(s) shown.</Text> : <Text />}
           {showOnlyActive ? <Button
-            title="Show All Bills."
+            title='Show All Bills.'
             onPress={this.showAllBills}
           /> : <Button
-            title="Show Only Active Bills."
+            title='Show Only Active Bills.'
             onPress={this.showOnlyActiveBills}
           />}
           {this.billData ? this.billData : <Text>Loading....</Text>}
@@ -93,5 +93,5 @@ export default class Bills extends React.Component {
 
 Bills.propTypes = {
   showOnlyActive: React.PropTypes.bool,
-  sortByDateIntroduced: React.PropTypes.bool,
+  sortByDateIntroduced: React.PropTypes.bool
 }
