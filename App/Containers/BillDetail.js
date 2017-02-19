@@ -24,19 +24,19 @@ export default class BillDetail extends React.Component {
     const prettifiedLastAction = moment(lastAction).format('MMM Do YYYY')
     return (
       <View style={styles.container}>
-        <Text>
-          {id}
+        <Text style={styles.id}>
+          {id.toUpperCase()}
         </Text>
-        <Text>
+        <Text style={styles.title}>
           {title}
         </Text>
-        <Text>
+        <Text style={styles.dateIntroduced}>
           Proposed {prettifiedDateIntroduced}
         </Text>
-        <Text>
+        <Text style={styles.lastAction}>
           Last Action {prettifiedLastAction}
         </Text>
-        <Text>
+        <Text style={styles.chamber}>
           Chamber {chamber}
         </Text>
       </View>
