@@ -14,12 +14,24 @@ export default class BillDetail extends React.Component {
       title: this.props.title,
       dateIntroduced: this.props.dateIntroduced,
       lastAction: this.props.lastAction,
-      chamber: this.props.chamber
+      chamber: this.props.chamber,
+      isThereATitleButton: false
     }
   }
 
+  componentWillMount () {
+    if (this.state.title.split(' ').length > 50) {
+      this.setState({ title: `${this.state.title.split(' ').slice(0, 50).join(' ')}...` })
+      this.setState({ isThereATitleButton: true })
+    }
+  }
+
+  showFullTitle = () => {
+    this.setState({ title: this.props.title })
+  }
+
   render () {
-    const { id, title, dateIntroduced, lastAction, chamber } = this.state
+    const { id, title, dateIntroduced, lastAction, chamber, isThereATitleButton } = this.state
     const prettifiedDateIntroduced = moment(dateIntroduced).format('MMM Do YYYY')
     const prettifiedLastAction = moment(lastAction).format('MMM Do YYYY')
     return (
@@ -28,8 +40,12 @@ export default class BillDetail extends React.Component {
           {id.toUpperCase()}
         </Text>
         <Text style={styles.title}>
-          {title}
+          {this.state.title}
         </Text>
+        {isThereATitleButton ? <Button
+          title='Show Full Title'
+          onPress={this.showFullTitle}
+          /> : <Text />}
         <Text style={styles.dateIntroduced}>
           Proposed {prettifiedDateIntroduced}
         </Text>
