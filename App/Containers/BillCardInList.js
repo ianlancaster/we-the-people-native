@@ -57,5 +57,7 @@ BillCardInList.propTypes = {
   official_title: React.PropTypes.string,
   introduced_on: React.PropTypes.string,
   last_action_at: React.PropTypes.string,
-  chamber: React.PropTypes.string
+  chamber: React.PropTypes.string,
+  onChange: React.PropTypes.func,
+  showDetailedBill: React.PropTypes.func
 }
