@@ -1,5 +1,8 @@
 {
-  "extends": "airbnb",
+  "extends": [
+    "standard",
+    "standard-react"
+  ],
   "plugins": [
     "react"
   ],
@@ -11,21 +14,17 @@
     "es6": true
   },
   "rules": {
-    "arrow-body-style": "off",
-    "class-methods-use-this": "off",
-    "comma-dangle": "off",
-    "react/jsx-filename-extension": "off",
-    "import/first": "off",
-    "jsx-quotes": "off",
     "no-alert": "off",
-    "no-extra-semi": "off",
     "no-unused-vars": "off",
-    "prefer-const": "off",
     "react/jsx-no-bind": "off",
-    "react/no-string-refs": "warn",
+    "react/no-string-refs": "off",
     "react/prefer-stateless-function": "off",
     "react/require-default-props": "off",
-    "semi": "off"
+    "no-return-assign": "off",
+    "react/prop-types": "off"
+  },
+  "globals": {
+    "__DEV__": false
   },
   "parser": "babel-eslint"
 }

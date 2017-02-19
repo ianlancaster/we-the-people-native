@@ -11,7 +11,7 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class APIResult extends React.Component {
 
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       message: false,
@@ -26,7 +26,7 @@ export default class APIResult extends React.Component {
       })
   }
 
-  renderView() {
+  renderView () {
     return (
       <ScrollView style={{ top: 0, bottom: 0, left: 0, right: 0, position: 'absolute' }} overflow='hidden'>
         <TouchableOpacity
@@ -45,7 +45,7 @@ export default class APIResult extends React.Component {
     )
   }
 
-  render() {
+  render () {
     let messageView = null
     if (this.state.message) {
       return this.renderView()

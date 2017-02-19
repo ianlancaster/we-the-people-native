@@ -9,17 +9,17 @@ import styles from './Styles/BillDetailStyle'
 
 export default class BillDetail extends React.Component {
 
-  test() {
+  test () {
   }
 
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <Text>
         I am the BillDetail component.
         </Text>
         <Button
-          title="I am a button."
+          title='I am a button.'
           onPress={this.test}
         />
       </View>

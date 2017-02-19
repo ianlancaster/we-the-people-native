@@ -9,11 +9,11 @@ import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class Footer extends React.Component {
 
-  goToBillsPage() {
+  goToBillsPage () {
     NavigationActions.bills()
   }
 
-  render() {
+  render () {
     return (
       <View style={styles.container}>
         <TouchableHighlight onPress={this.goToBillsPage}>

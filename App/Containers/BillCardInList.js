@@ -8,13 +8,13 @@ import styles from './Styles/BillCardInListStyle'
 // maybe make into a dumb component
 export default class BillCardInList extends React.Component {
 
-  render() {
+  render () {
     const bill = {
       id: this.props.bill_id,
       title: this.props.official_title,
       dateIntroduced: this.props.introduced_on,
       lastAction: this.props.last_action_at,
-      chamber: this.props.chamber,
+      chamber: this.props.chamber
     }
     const truncTitle = `${bill.title.split(' ').slice(0, 10).join(' ')}...`
 
@@ -45,5 +45,5 @@ BillCardInList.propTypes = {
   official_title: React.PropTypes.string,
   introduced_on: React.PropTypes.string,
   last_action_at: React.PropTypes.string,
-  chamber: React.PropTypes.string,
+  chamber: React.PropTypes.string
 }
