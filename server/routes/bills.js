@@ -4,7 +4,7 @@ const router = express.Router()
 const pick = require('lodash').pick
 
 router.get('/api/bills/:page', (req, res) => {
-  fetch(`https://congress.api.sunlightfoundation.com/bills?page=${req.params.page}`)
+  fetch(`https://congress.api.sunlightfoundation.com/bills`)
   .then(response => response.json())
   .then(data => {
     let prunedBills = []
