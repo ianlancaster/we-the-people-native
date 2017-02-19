@@ -22,9 +22,18 @@ export default class Bills extends React.Component {
     this.state = {
       bills: null,
       showOnlyActive: this.props.showOnlyActive || false,
+      sortByDateIntroduced: this.props.sortByDateIntroduced || false,
     }
 
     this.api = APIBills.create()
+  }
+
+  showAllBills = () => {
+    this.setState({ showOnlyActive: false });
+  }
+
+  showOnlyActiveBills = () => {
+    this.setState({ showOnlyActive: true });
   }
 
   showResult(response, title = 'Response') {
@@ -34,6 +43,11 @@ export default class Bills extends React.Component {
         bills = response.data.filter((bill) => {
           return bill.history.active === true
         })
+      }
+      if (this.state.sortByDateIntroduced) {
+        bills = response.data.sort((a, b) => {
+          return Date.parse(a.introduced_on) - Date.parse(b.introduced_on)
+        });
       }
       this.setState({ bills });
       this.billData = this.state.bills.map((bill) => {
@@ -51,11 +65,8 @@ export default class Bills extends React.Component {
     })
   }
 
-  renderButtons() {
-    return endpoints.map(endpoint => this.renderButton(endpoint))
-  }
-
   render() {
+    const { showOnlyActive, sortByDateIntroduced } = this.state
     return (
       <View style={styles.container}>
         {this.tryEndpoint()}
@@ -65,7 +76,14 @@ export default class Bills extends React.Component {
           >
             Bills:
           </Text>
-          {this.state.showOnlyActive ? <Text>Only active bill(s) shown.</Text> : <Text />}
+          {showOnlyActive ? <Text>Only active bill(s) shown.</Text> : <Text />}
+          {showOnlyActive ? <Button
+            title="Show All Bills."
+            onPress={this.showAllBills}
+          /> : <Button
+            title="Show Only Active Bills."
+            onPress={this.showOnlyActiveBills}
+          />}
           {this.billData ? this.billData : <Text>Loading....</Text>}
         </ScrollView>
       </View>
@@ -75,4 +93,5 @@ export default class Bills extends React.Component {
 
 Bills.propTypes = {
   showOnlyActive: React.PropTypes.bool,
+  sortByDateIntroduced: React.PropTypes.bool,
 }
