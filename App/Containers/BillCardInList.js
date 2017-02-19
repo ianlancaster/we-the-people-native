@@ -40,7 +40,7 @@ export default class BillCardInList extends React.Component {
         Chamber: {bill.chamber}
         </Text>
         <Button
-          title="View Bill Details"
+          title='View Bill Details'
           onPress={this.viewBillDetails}
         />
       </View>
