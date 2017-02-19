@@ -38,7 +38,12 @@ const BillStatus = () => {
         stroke={black}
       />
       {TextBubble('HC')}
-      {TextBubble('P', 325)}
+      {TextBubble('HC', 1)}
+      {TextBubble('HC', 2)}
+      {TextBubble('HC', 3)}
+      {TextBubble('HC', 4)}
+      {TextBubble('HC', 5)}
+      {TextBubble('P', 6)}
     </Svg>
   )
 }
@@ -48,7 +53,8 @@ BillStatus.propTypes = {
   exampleProp2: PropTypes.number
 }
 
-const TextBubble = (text, x, y, color) => {
+const TextBubble = (text, xIndex, y, color) => {
+  const x = (xIndex * ((325 - 20) / 6)) + 20
   return (
     <G
       x={x || '20'}
@@ -67,7 +73,7 @@ const TextBubble = (text, x, y, color) => {
       />
       <Text
         y='-8'
-        x='2'
+        x={text.length > 1 ? '2' : '5'}
         fill={lightBlue}
         fontSize='12'
         fontWeight='bold'
