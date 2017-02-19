@@ -38,6 +38,7 @@ const BillStatus = () => {
         stroke={black}
       />
       {TextBubble('HC')}
+      {TextBubble('P', 325)}
     </Svg>
   )
 }
@@ -53,10 +54,12 @@ const TextBubble = (text, x, y, color) => {
       x={x || '20'}
       y={'30'}
     >
-      <Circle
-        r='10'
-        fill={green}
-      />
+      {text.length > 1 && (
+        <Circle
+          r='10'
+          fill={green}
+        />
+      )}
       <Circle
         cx='5'
         r='10'
