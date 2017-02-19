@@ -3,16 +3,13 @@ import { Text, View, Button } from 'react-native'
 import styles from './Styles/BillCardInListStyle'
 // import { Images } from '../Themes'
 // import DrawerButton from '../Components/DrawerButton'
-// import { Actions as NavigationActions } from 'react-native-router-flux'
+import { Actions as NavigationActions } from 'react-native-router-flux'
 
 // maybe make into a dumb component
 export default class BillCardInList extends React.Component {
 
-  viewBillDetails () {
-    // navigate to bill details page and pass down relevant info to it as props
-  }
-
   render () {
+    const { showDetailedBill } = this.props
     const bill = {
       id: this.props.bill_id,
       title: this.props.official_title,
@@ -41,7 +38,7 @@ export default class BillCardInList extends React.Component {
         </Text>
         <Button
           title='View Bill Details'
-          onPress={this.viewBillDetails}
+          onPress={() => { this.props.onChange(bill.title) }}
         />
       </View>
     )

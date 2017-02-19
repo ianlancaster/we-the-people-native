@@ -8,6 +8,12 @@ import styles from './Styles/BillDetailStyle'
 // import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class BillDetail extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+
+    }
+  }
 
   test () {
   }

@@ -5,6 +5,7 @@ import APIBills from '../Services/APIBills'
 import FJSON from 'format-json'
 import FullButton from '../Components/FullButton'
 import BillCardInList from './BillCardInList'
+import BillDetail from './BillDetail'
 import APIResult from './APIResult'
 // import { Images } from '../Themes'
 // import DrawerButton from '../Components/DrawerButton'
@@ -20,9 +21,11 @@ export default class Bills extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      list: true,
       bills: null,
       showOnlyActive: this.props.showOnlyActive || false,
-      sortByDateIntroduced: this.props.sortByDateIntroduced || false
+      sortByDateIntroduced: this.props.sortByDateIntroduced || false,
+      title: ''
     }
 
     this.api = APIBills.create()
@@ -36,7 +39,12 @@ export default class Bills extends React.Component {
     this.setState({ showOnlyActive: true })
   }
 
-  showResult (response, title = 'Response') {
+  showDetailedBill = (title) => {
+    this.setState({ title })
+    this.setState({ list: false })
+  }
+
+  showResult (response, title) {
     let bills = response.data
     if (response.ok) {
       if (this.state.showOnlyActive) {
@@ -51,7 +59,11 @@ export default class Bills extends React.Component {
       }
       this.setState({ bills })
       this.billData = this.state.bills.map((bill) => {
-        return <BillCardInList {...bill} key={bill.bill_id} />
+        return <BillCardInList
+          {...bill}
+          key={bill.bill_id}
+          onChange={this.showDetailedBill}
+          />
       })
     } else {
       throw new Error('There was a problem with the API call.')
@@ -66,28 +78,34 @@ export default class Bills extends React.Component {
   }
 
   render () {
-    const { showOnlyActive, sortByDateIntroduced } = this.state
-    return (
-      <View style={styles.container}>
-        {this.tryEndpoint()}
-        <ScrollView style={styles.scrollContainer} ref={() => 'container'}>
-          <Text
-            style={styles.text}
-          >
-            Bills:
-          </Text>
-          {showOnlyActive ? <Text>Only active bill(s) shown.</Text> : <Text />}
-          {showOnlyActive ? <Button
-            title='Show All Bills.'
-            onPress={this.showAllBills}
-          /> : <Button
-            title='Show Only Active Bills.'
-            onPress={this.showOnlyActiveBills}
-          />}
-          {this.billData ? this.billData : <Text>Loading....</Text>}
-        </ScrollView>
-      </View>
-    )
+    const { showOnlyActive, sortByDateIntroduced, title, list } = this.state
+    if (list) {
+      return (
+        <View style={styles.container}>
+          {this.tryEndpoint()}
+          <ScrollView style={styles.scrollContainer} ref={() => 'container'}>
+            <Text
+              style={styles.text}
+            >
+              Bills:
+            </Text>
+            {showOnlyActive ? <Text>Only active bill(s) shown.</Text> : <Text />}
+            {showOnlyActive ? <Button
+              title='Show All Bills.'
+              onPress={this.showAllBills}
+            /> : <Button
+              title='Show Only Active Bills.'
+              onPress={this.showOnlyActiveBills}
+            />}
+            {this.billData ? this.billData : <Text>Loading....</Text>}
+          </ScrollView>
+        </View>
+      )
+    } else {
+      return (
+        <BillDetail />
+      )
+    }
   }
 }
 
