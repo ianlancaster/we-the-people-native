@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 import { Text, View, Button, Image, TouchableHighlight } from 'react-native'
 import styles from './Styles/FooterStyle'

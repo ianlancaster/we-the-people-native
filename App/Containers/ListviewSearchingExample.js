@@ -27,7 +27,7 @@ class ListviewExample extends React.Component {
 
     // Datasource is always in state
     this.state = {
-      dataSource: ds.cloneWithRows(props.results)
+      dataSource: ds.cloneWithRows(props.results) // eslint-disable-line
     }
   }
 

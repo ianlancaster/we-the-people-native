@@ -3,12 +3,13 @@ import { Text, View, Button } from 'react-native'
 import styles from './Styles/BillCardInListStyle'
 // import { Images } from '../Themes'
 // import DrawerButton from '../Components/DrawerButton'
-// import { Actions as NavigationActions } from 'react-native-router-flux'
+import { Actions as NavigationActions } from 'react-native-router-flux'
 
 // maybe make into a dumb component
 export default class BillCardInList extends React.Component {
 
   render () {
+    const { showDetailedBill } = this.props
     const bill = {
       id: this.props.bill_id,
       title: this.props.official_title,
@@ -35,6 +36,17 @@ export default class BillCardInList extends React.Component {
         <Text>
         Chamber: {bill.chamber}
         </Text>
+        <Button
+          title='View Bill Details'
+          onPress={() => {
+            this.props.onChange(
+            bill.id,
+            bill.title,
+            bill.dateIntroduced,
+            bill.lastAction,
+            bill.chamber)
+          }}
+        />
       </View>
     )
   }
@@ -45,5 +57,7 @@ BillCardInList.propTypes = {
   official_title: React.PropTypes.string,
   introduced_on: React.PropTypes.string,
   last_action_at: React.PropTypes.string,
-  chamber: React.PropTypes.string
+  chamber: React.PropTypes.string,
+  onChange: React.PropTypes.func,
+  showDetailedBill: React.PropTypes.func
 }

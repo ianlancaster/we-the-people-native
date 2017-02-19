@@ -81,7 +81,7 @@ class MapviewExample extends React.Component {
     * Configure what will happen (if anything) when the user
     * presses your callout.
     *************************************************************/
-    console.tron.log(location)
+    console.tron.log(location) // eslint-disable-line
   }
 
   renderMapMarkers (location) {

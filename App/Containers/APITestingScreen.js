@@ -37,7 +37,7 @@ export default class APITestingScreen extends React.Component {
 
   showResult (response: Object, title: string = 'Response') {
     this.refs.container.scrollTo({x: 0, y: 0, animated: true})
-    console.log(response)
+    console.log(response) // eslint-disable-line
     if (response.ok) {
       this.refs.result.setState({message: FJSON.plain(response.data), title: title})
       // this.refs.result.setState({message: FJSON.plain(response.data), title: title})
@@ -107,7 +107,7 @@ class APIResult extends React.Component {
   }
 
   renderView () {
-    console.log(this.state.message)
+    console.log(this.state.message) // eslint-disable-line
     return (
       <ScrollView style={{ top: 0, bottom: 0, left: 0, right: 0, position: 'absolute' }} overflow='hidden'>
         <TouchableOpacity
