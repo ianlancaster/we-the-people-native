@@ -37,6 +37,14 @@ const BillStatus = () => {
         fill={white}
         stroke={black}
       />
+      <Line
+        x1='20'
+        y1='30'
+        x2={(4 * ((325 - 20) / 6)) + 20}
+        y2='30'
+        stroke={green}
+        strokeWidth='4'
+      />
       {TextBubble('HC')}
       {TextBubble('HF', 1)}
       {TextBubble('SC', 2)}
