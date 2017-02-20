@@ -1,7 +1,4 @@
 const styles = {
-  billsButton: {
-
-  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -11,10 +8,15 @@ const styles = {
   scrollContainer: {
     flex: 5
   },
-  showActiveButton: {
-    height: 100,
-    paddingTop: 70,
-    width: 100
+  showHideBills: {
+    backgroundColor: '#112E50',
+    borderWidth: 1,
+    color: '#FFF',
+    textAlign: 'center',
+    fontSize: 20,
+    marginBottom: 30,
+    marginTop: 30,
+    padding: 10
   },
   text: {
     color: 'black',
