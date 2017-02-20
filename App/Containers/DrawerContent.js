@@ -47,11 +47,12 @@ class DrawerContent extends Component {
         <DrawerButton
           text='See Only Active Bills' onPress={this.handleActiveBills}
         />
-      <View style={styles.separator} />
+        <View style={styles.separator} />
+        <Text style={styles.sectionTitle}>Sort By:</Text>
         <DrawerButton
-          text='Sort Bills by Date Introduced' onPress={this.handleDateIntroduced}
+          text='Date Introduced' onPress={this.handleDateIntroduced}
         />
-      <View style={styles.separator} />
+        <View style={styles.separator} />
       </ScrollView>
     )
   }
