@@ -6,7 +6,9 @@ const styles = {
 
   },
   billSummaryHeadline: {
-    fontSize: 22
+    fontSize: 22,
+    marginBottom: 20,
+    textAlign: 'center'
   },
   boldSpan: {
     fontWeight: '600'
@@ -39,6 +41,12 @@ const styles = {
   lastAction: {
     fontSize: standardLabelFontSize,
     paddingBottom: 30,
+    textAlign: 'center'
+  },
+  readFullBillSummary: {
+    fontSize: standardLabelFontSize,
+    marginBottom: 20,
+    marginTop: 20,
     textAlign: 'center'
   },
   scrollContainer: {
