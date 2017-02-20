@@ -1,30 +1,42 @@
 import React, { PropTypes } from 'react'
 import Svg, {
     Circle,
-    Ellipse,
     G,
-    LinearGradient,
-    RadialGradient,
     Line,
-    Path,
-    Polygon,
-    Polyline,
     Rect,
-    Symbol,
-    Text,
-    Use,
-    Defs,
-    Stop
+    Text
 } from 'react-native-svg'
 
 const white = '#ffffff'
 const black = '#000000'
 const green = '#B8E986'
-const yellow = '#FFF1BF'
+let yellow = '#FFF1BF'
 const red = '#FFD1D1'
 const lightBlue = '#50739C'
+const grey = '#D9D9D9'
 
-const BillStatus = () => {
+const BillStatus = (status, progress, chamber) => {
+  yellow = status === 'tabled' ? grey : yellow
+
+  const chartText = chamber === 'house'
+    ? { t1: 'HC', t2: 'HF', t3: 'SC', t4: 'SF' }
+    : { t1: 'SC', t2: 'SF', t3: 'HC', t4: 'HF' }
+
+  const chartColors = {
+    PC: green,
+    PF: green,
+    SC: green,
+    SF: green,
+    C: green,
+    H: green,
+    S: green,
+    P: green,
+    lQ1: green,
+    lQ2: green,
+    lQ3: green,
+    lQ4: green
+  }
+
   return (
     <Svg
       height='60'
@@ -42,7 +54,7 @@ const BillStatus = () => {
         y1='30'
         x2={(4 * ((325 - 20) / 6)) + 20}
         y2='30'
-        stroke={green}
+        stroke={chartColors.lQ2}
         strokeWidth='4'
       />
       <Line
@@ -50,7 +62,7 @@ const BillStatus = () => {
         y1='30'
         x2={(5 * ((325 - 20) / 6)) + 20}
         y2={30 + 15}
-        stroke={green}
+        stroke={chartColors.lQ3}
         strokeWidth='4'
       />
       <Line
@@ -58,7 +70,7 @@ const BillStatus = () => {
         y1='30'
         x2={(5 * ((325 - 20) / 6)) + 20}
         y2={30 - 15}
-        stroke={green}
+        stroke={chartColors.lQ1}
         strokeWidth='4'
       />
       <Line
@@ -66,7 +78,7 @@ const BillStatus = () => {
         y1={30 + 15}
         x2='325'
         y2='30'
-        stroke={green}
+        stroke={chartColors.lQ4}
         strokeWidth='4'
       />
       <Line
@@ -77,14 +89,14 @@ const BillStatus = () => {
         stroke={green}
         strokeWidth='4'
       />
-      {TextBubble('HC')}
-      {TextBubble('HF', 1)}
-      {TextBubble('SC', 2)}
-      {TextBubble('SF', 3)}
-      {TextBubble('C', 4)}
-      {TextBubble('H', 5, 15)}
-      {TextBubble('S', 5, -15)}
-      {TextBubble('P', 6)}
+      {TextBubble({ text: chartText.t1, color: chartColors.PC })}
+      {TextBubble({ text: chartText.t2, xIndex: 1, color: chartColors.PF })}
+      {TextBubble({ text: chartText.t3, xIndex: 2, color: chartColors.SC })}
+      {TextBubble({ text: chartText.t4, xIndex: 3, color: chartColors.PF })}
+      {TextBubble({ text: 'C', xIndex: 4, color: chartColors.C })}
+      {TextBubble({ text: 'H', xIndex: 5, yOffset: 15, color: chartColors.H })}
+      {TextBubble({ text: 'S', xIndex: 5, yOffset: -15, color: chartColors.S })}
+      {TextBubble({ text: 'P', xIndex: 6, color: chartColors.P })}
     </Svg>
   )
 }
@@ -94,7 +106,7 @@ BillStatus.propTypes = {
   exampleProp2: PropTypes.number
 }
 
-const TextBubble = (text, xIndex, yOffset, color) => {
+const TextBubble = ({ text, xIndex, yOffset, color }) => {
   const x = (xIndex * ((325 - 20) / 6)) + 20
   const y = yOffset + 30
   return (
@@ -105,13 +117,13 @@ const TextBubble = (text, xIndex, yOffset, color) => {
       {text.length > 1 && (
         <Circle
           r='10'
-          fill={green}
+          fill={color}
         />
       )}
       <Circle
         cx='5'
         r='10'
-        fill={green}
+        fill={color}
       />
       <Text
         y='-8'
