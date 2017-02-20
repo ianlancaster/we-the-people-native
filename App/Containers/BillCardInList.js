@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Button, TouchableOpacity } from 'react-native'
+import { Text, View, Button, TouchableOpacity, Image } from 'react-native'
 import styles from './Styles/BillCardInListStyle'
 import prettifyDate from '../Helpers/DatePrettifier'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -54,22 +54,28 @@ export default class BillCardInList extends React.Component {
         </Text>
         <Text style={{textAlign: 'center', marginTop: 10, marginBottom: 10, fontStyle: 'italic'}}>(Bill Status Info Goes Here)</Text>
         <View style={styles.separator} />
-        <TouchableOpacity
-          onPress={() => {
-            this.props.onChange(
-            id,
-            title,
-            dateIntroduced,
-            lastAction,
-            chamber)
-          }}
-        >
-          <Text
-            style={styles.viewBillDetails}
+        <View style={styles.lowerContainer}>
+          <Image
+            source={require('../Images/view-bill-details-icon.png')}
+            style={styles.icon}
+          />
+          <TouchableOpacity
+            onPress={() => {
+              this.props.onChange(
+              id,
+              title,
+              dateIntroduced,
+              lastAction,
+              chamber)
+            }}
           >
-            View Bill Details
-          </Text>
-        </TouchableOpacity>
+            <Text
+              style={styles.viewBillDetails}
+            >
+              View Bill Details
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }

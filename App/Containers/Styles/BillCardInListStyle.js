@@ -27,6 +27,9 @@ const styles = {
   dateIntroduced: {
     textAlign: centerLabels.textAlign
   },
+  icon: {
+    marginRight: 15
+  },
   id: {
     fontSize: 18,
     marginBottom: 15,
@@ -36,6 +39,12 @@ const styles = {
   lastAction: {
     marginTop: 5,
     textAlign: centerLabels.textAlign
+  },
+  lowerContainer: {
+    flex: 0,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   separator: {
     height: 1,
