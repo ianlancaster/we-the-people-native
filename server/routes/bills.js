@@ -134,23 +134,23 @@ const returnProgress = (h, c) => {
     return { index: 6, text: 'Failed in in cloture' }
   }
 
-  if (h === true) {
+  if (h[`${secondary}_passage_result`] === 'pass') {
     return { index: 5, text: 'Passed secondary chamber' }
   }
 
-  if (h === true) {
+  if (h[`${secondary}_passage_result`] === 'fail') {
     return { index: 4, text: 'Failed in in secondary chamber' }
   }
 
-  if (h === true) {
+  if (h[`${primary}_passage_result`] === 'pass') {
     return { index: 3, text: 'Passed primary chamber' }
   }
 
-  if (h === true) {
+  if (h[`${primary}_passage_result`] === 'fail') {
     return { index: 2, text: 'Failed in in primary chamber' }
   }
 
-  if (h === true) {
+  if (h.active === true) {
     return { index: 1, text: 'Primary chamber has taken action' }
   }
 
