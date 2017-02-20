@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, Button } from 'react-native'
 import styles from './Styles/BillDetailStyle'
-import moment from 'moment'
+import prettifyDate from '../Helpers/DatePrettifier'
 // import { Images } from '../Themes'
 // import DrawerButton from '../Components/DrawerButton'
 // import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -32,8 +32,8 @@ export default class BillDetail extends React.Component {
 
   render () {
     const { id, title, dateIntroduced, lastAction, chamber, isThereATitleButton } = this.state
-    const prettifiedDateIntroduced = moment(dateIntroduced).format('MMM Do YYYY')
-    const prettifiedLastAction = moment(lastAction).format('MMM Do YYYY')
+    const prettifiedDateIntroduced = prettifyDate(dateIntroduced)
+    const prettifiedLastAction = prettifyDate(lastAction)
     return (
       <View style={styles.container}>
         <Text style={styles.id}>

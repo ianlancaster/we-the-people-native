@@ -38,14 +38,20 @@ export default class BillCardInList extends React.Component {
             {truncTitle}
           </Text>
         </TouchableOpacity>
-        <Text style={styles.billId}>
-          {id}
+        <Text style={styles.id}>
+          {id.toUpperCase()}
         </Text>
-        <Text>
-        Date Introduced: {dateIntroduced}
+        <Text style={styles.dateIntroduced}>
+          <Text style={styles.boldSpan}>
+            Date Introduced:
+          </Text>
+          {dateIntroduced}
         </Text>
-        <Text>
-        Last Action: {lastAction}
+        <Text style={styles.lastAction}>
+          <Text style={styles.boldSpan}>
+            Last Action:
+          </Text>
+          {lastAction}
         </Text>
         <Text>
         Chamber: {chamber}

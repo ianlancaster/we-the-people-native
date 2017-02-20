@@ -1,9 +1,10 @@
+const centerLabels = {
+  textAlign: 'center'
+}
+
 const styles = {
-  billId: {
-    fontSize: 18,
-    marginBottom: 15,
-    marginTop: 15,
-    textAlign: 'center'
+  boldSpan: {
+    fontWeight: '600'
   },
   container: {
     backgroundColor: '#FFF',
@@ -15,6 +16,19 @@ const styles = {
     },
     shadowOpacity: 0.5,
     width: 300
+  },
+  dateIntroduced: {
+    textAlign: centerLabels.textAlign
+  },
+  id: {
+    fontSize: 18,
+    marginBottom: 15,
+    marginTop: 15,
+    textAlign: 'center'
+  },
+  lastAction: {
+    marginTop: 5,
+    textAlign: centerLabels.textAlign
   },
   title: {
     fontSize: 20,
