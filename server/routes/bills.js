@@ -55,6 +55,34 @@ const returnProgress = (h, c) => {
     secondary = 'house'
   }
 
+  // ------------------------------------
+  // Progress Structure
+  // ------------------------------------
+  // { index: 0, text: 'Introduced' }
+  // { index: 1, text: 'Primary chamber has taken action' }
+  // { index: 2, text: 'Failed in in primary chamber' }
+  // { index: 3, text: 'Passed primary chamber' }
+  // { index: 4, text: 'Failed in in secondary chamber' }
+  // { index: 5, text: 'Passed secondary chamber' }
+  // { index: 6, text: 'Failed in in cloture' }
+  // { index: 7, text: 'Passed cloture' }
+  // { index: 8, text: 'Passed primary after cloture' }
+  // { index: 9, text: 'Passed secondary after cloture' }
+  // { index: 10, text: 'Failed primary after cloture' }
+  // { index: 11, text: 'Failed secondary after cloture' }
+  // { index: 12, text: 'Passed primary, failed secondary after cloture' }
+  // { index: 13, text: 'Passed secondary, failed primary after cloture' }
+  // { index: 14, text: 'Passed both after cloture' }
+  // { index: 15, text: 'Vetoed' }
+  // { index: 16, text: 'Enacted' }
+  // { index: 17, text: 'Passed primary after veto' }
+  // { index: 18, text: 'Passed secondary after veto' }
+  // { index: 19, text: 'Failed primary after veto' }
+  // { index: 20, text: 'Failed secondary after veto' }
+  // { index: 21, text: 'Passed primary, failed secondary after veto' }
+  // { index: 22, text: 'Passed secondary, failed primary after veto' }
+  // { index: 23, text: 'Passed both after veto' }
+
   if (h.hasOwnProperty(`${primary}_override_result`) && h.hasOwnProperty(`${secondary}_override_result`)) {
     if (h[`${primary}_override_result`] === 'pass' && h[`${secondary}_override_result`] === 'pass') {
       return { index: 23, text: 'Passed both after veto' }
