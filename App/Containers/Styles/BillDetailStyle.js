@@ -2,6 +2,9 @@ const standardLabelFontSize = 18
 const standardLabelPaddingBottom = 10
 
 const styles = {
+  billSummary: {
+    fontSize: 22
+  },
   boldSpan: {
     fontWeight: '600'
   },
@@ -31,8 +34,12 @@ const styles = {
   },
   lastAction: {
     fontSize: standardLabelFontSize,
-    paddingBottom: standardLabelPaddingBottom,
+    paddingBottom: 30,
     textAlign: 'center'
+  },
+  separator: {
+    height: 1,
+    backgroundColor: '#dddddd'
   },
   sponsor: {
     fontSize: standardLabelFontSize,

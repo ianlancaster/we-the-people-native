@@ -57,7 +57,11 @@ export default class BillDetail extends React.Component {
           <Text style={styles.lastAction}>
             <Text style={styles.boldSpan}>Last Action:</Text> {prettifyDate(lastAction)}
           </Text>
+          <View style={styles.separator} />
         </View>
+        <Text style={styles.billSummary}>
+          Brief Bill Summary
+        </Text>
       </View>
     )
   }
