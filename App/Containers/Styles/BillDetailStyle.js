@@ -2,6 +2,9 @@ const standardLabelFontSize = 18
 const standardLabelPaddingBottom = 10
 
 const styles = {
+  boldSpan: {
+    fontWeight: '600'
+  },
   container: {
     alignItems: 'center',
     backgroundColor: '#FFF',

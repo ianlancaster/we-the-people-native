@@ -43,13 +43,13 @@ export default class BillDetail extends React.Component {
           onPress={this.showFullTitle}
           /> : <Text />}
         <Text style={styles.dateIntroduced}>
-          Proposed: {prettifyDate(dateIntroduced)}
+          <Text style={styles.boldSpan}>Proposed:</Text> {prettifyDate(dateIntroduced)}
         </Text>
         <Text style={styles.sponsor}>
-          Sponsor: {sponsor}
+          <Text style={styles.boldSpan}>Sponsor:</Text> {sponsor}
         </Text>
         <Text style={styles.lastAction}>
-          Last Action: {prettifyDate(lastAction)}
+          <Text style={styles.boldSpan}>Last Action:</Text> {prettifyDate(lastAction)}
         </Text>
       </View>
     )
