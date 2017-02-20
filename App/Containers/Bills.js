@@ -101,15 +101,15 @@ export default class Bills extends React.Component {
             >
               All Bills:
             </Text>}
-            {showOnlyActive ? <Button
-              title='Show All Bills.'
+            {showOnlyActive ? <TouchableOpacity
               onPress={this.showAllBills}
-              style={styles.billsButton}
-            /> : <Button
-              title='Show Only Active Bills.'
+              >
+              <Text>Show All Bills</Text>
+            </TouchableOpacity> : <TouchableOpacity
               onPress={this.showOnlyActiveBills}
-              style={styles.billsButton}
-            />}
+              >
+              <Text>Show Only Active Bills.</Text>
+            </TouchableOpacity>}
             {this.billData ? this.billData : <Text>Loading....</Text>}
           </ScrollView>
         </View>
