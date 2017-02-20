@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Image, BackAndroid, Text } from 'react-native'
+import { ScrollView, Image, BackAndroid, Text, View } from 'react-native'
 import styles from './Styles/DrawerContentStyle'
 import { Images } from '../Themes'
 import DrawerButton from '../Components/DrawerButton'
@@ -40,9 +40,18 @@ class DrawerContent extends Component {
     return (
       <ScrollView style={styles.container}>
         <Text style={styles.sectionTitle}>Main:</Text>
-        <DrawerButton text='See All Bills' onPress={this.handleBills} />
-        <DrawerButton text='See Only Active Bills' onPress={this.handleActiveBills} />
-        <DrawerButton text='Sort Bills by Date Introduced' onPress={this.handleDateIntroduced} />
+        <DrawerButton
+          text='See All Bills' onPress={this.handleBills}
+        />
+        <View style={styles.separator} />
+        <DrawerButton
+          text='See Only Active Bills' onPress={this.handleActiveBills}
+        />
+      <View style={styles.separator} />
+        <DrawerButton
+          text='Sort Bills by Date Introduced' onPress={this.handleDateIntroduced}
+        />
+      <View style={styles.separator} />
       </ScrollView>
     )
   }
