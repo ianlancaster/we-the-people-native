@@ -5,46 +5,49 @@ import styles from './Styles/BillCardInListStyle'
 // import DrawerButton from '../Components/DrawerButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
-// maybe make into a dumb component
 export default class BillCardInList extends React.Component {
-
-  render () {
-    const { showDetailedBill } = this.props
-    const bill = {
+  constructor (props) {
+    super(props)
+    this.state = {
       id: this.props.bill_id,
       title: this.props.official_title,
       dateIntroduced: this.props.introduced_on,
       lastAction: this.props.last_action_at,
       chamber: this.props.chamber
     }
-    const truncTitle = `${bill.title.split(' ').slice(0, 10).join(' ')}...`
+  }
+
+  render () {
+    const { showDetailedBill } = this.props
+    const { id, title, dateIntroduced, lastAction, chamber } = this.state
+    const truncTitle = `${title.split(' ').slice(0, 10).join(' ')}...`
 
     return (
       <View style={styles.container}>
         <Text style={styles.billId}>
-          {bill.id}
+          {id}
         </Text>
         <Text>
         Title: {truncTitle}
         </Text>
         <Text>
-        Introduced on: {bill.dateIntroduced}
+        Introduced on: {dateIntroduced}
         </Text>
         <Text>
-        Last Action: {bill.lastAction}
+        Last Action: {lastAction}
         </Text>
         <Text>
-        Chamber: {bill.chamber}
+        Chamber: {chamber}
         </Text>
         <Button
           title='View Bill Details'
           onPress={() => {
             this.props.onChange(
-            bill.id,
-            bill.title,
-            bill.dateIntroduced,
-            bill.lastAction,
-            bill.chamber)
+            id,
+            title,
+            dateIntroduced,
+            lastAction,
+            chamber)
           }}
         />
       </View>
