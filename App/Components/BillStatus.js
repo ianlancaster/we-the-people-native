@@ -37,8 +37,54 @@ const BillStatus = () => {
         fill={white}
         stroke={black}
       />
+      <Line
+        x1='20'
+        y1='30'
+        x2={(4 * ((325 - 20) / 6)) + 20}
+        y2='30'
+        stroke={green}
+        strokeWidth='4'
+      />
+      <Line
+        x1={(4 * ((325 - 20) / 6)) + 20}
+        y1='30'
+        x2={(5 * ((325 - 20) / 6)) + 20}
+        y2={30 + 15}
+        stroke={green}
+        strokeWidth='4'
+      />
+      <Line
+        x1={(4 * ((325 - 20) / 6)) + 20}
+        y1='30'
+        x2={(5 * ((325 - 20) / 6)) + 20}
+        y2={30 - 15}
+        stroke={green}
+        strokeWidth='4'
+      />
+      <Line
+        x1={(5 * ((325 - 20) / 6)) + 20}
+        y1={30 + 15}
+        x2='325'
+        y2='30'
+        stroke={green}
+        strokeWidth='4'
+      />
+      <Line
+        x1={(5 * ((325 - 20) / 6)) + 20}
+        y1={30 - 15}
+        x2='325'
+        y2='30'
+        stroke={green}
+        strokeWidth='4'
+      />
       {TextBubble('HC')}
-      {TextBubble('P', 325)}
+      {TextBubble('HF', 1)}
+      {TextBubble('SC', 2)}
+      {TextBubble('SF', 3)}
+      {TextBubble('C', 4)}
+      {TextBubble('H', 5, 15)}
+      {TextBubble('S', 5, -15)}
+      {TextBubble('P', 6)}
     </Svg>
   )
 }
@@ -48,11 +94,13 @@ BillStatus.propTypes = {
   exampleProp2: PropTypes.number
 }
 
-const TextBubble = (text, x, y, color) => {
+const TextBubble = (text, xIndex, yOffset, color) => {
+  const x = (xIndex * ((325 - 20) / 6)) + 20
+  const y = yOffset + 30
   return (
     <G
       x={x || '20'}
-      y={'30'}
+      y={y || '30'}
     >
       {text.length > 1 && (
         <Circle
@@ -67,7 +115,7 @@ const TextBubble = (text, x, y, color) => {
       />
       <Text
         y='-8'
-        x='2'
+        x={text.length > 1 ? '2' : '5'}
         fill={lightBlue}
         fontSize='12'
         fontWeight='bold'
