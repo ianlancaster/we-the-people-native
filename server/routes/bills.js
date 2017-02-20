@@ -45,9 +45,9 @@ const returnStatus = (history, lastAction) => {
   return 'tabled'
 }
 
-const returnProgress = (h, c) => {
+const returnProgress = (h, chamber) => {
   let primary, secondary, Primary, Secondary
-  if (c === 'house') {
+  if (chamber === 'house') {
     primary = 'house'
     secondary = 'senate'
     Primary = 'House'
@@ -189,6 +189,212 @@ const returnProgress = (h, c) => {
   return { index: 0, text: `Introduced in ${Primary}` }
 }
 
-const returnDetailedStatus = (status, progress, chamber) => {}
+const returnDetailedStatus = (status, progress, chamber) => {
+  let primary, secondary
+  if (chamber === 'house') {
+    primary = 'house'
+    secondary = 'senate'
+  } else {
+    primary = 'senate'
+    secondary = 'house'
+  }
+
+  switch (progress.index) {
+    case 0: // `Introduced in ${Primary}`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 1: // `${Primary} has taken action`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 2: // `Failed in ${Primary}`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 3: // `Passed in ${Primary}`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 4: // `Failed in ${Secondary}`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 5: // `Passed in ${Secondary}`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 6: // `Failed in cloture`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 7: // `Passed in cloture`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 8: // `Passed  in ${Primary} after cloture`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 9: // `Passed in ${Secondary} after cloture`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 10: // `Failed in ${Primary} after cloture`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 11: // `Failed in ${Secondary} after cloture`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 12: // `Passed in ${Primary}, failed in ${Secondary} after cloture`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 13: // `Passed in ${Secondary}, failed in ${Primary} after cloture`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 14: // `Passed both House and Senate after cloture`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 15: // `Vetoed`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 16: // `Enacted`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 17: // `Passed override in ${Primary} after veto`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 18: // `Passed override in ${Secondary} after veto`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 19: // `Failed override in ${Primary} after veto`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 20: // `Failed override in ${Secondary} after veto`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 21: // `Passed override in ${Primary}, failed override in ${Secondary} after veto`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 22: // `Passed override in ${Secondary}, failed override in ${Primary} after veto`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    case 23: // `Enacted, veto overridden by Congress`
+      if (status === 'active') return
+      if (status === 'tabled') return
+      if (status === 'enacted') return
+      if (status === 'failed') return
+      if (status === 'vetoed') return
+      break
+
+    default:
+        // default code block
+  }
+}
 
 module.exports = router
