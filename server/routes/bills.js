@@ -28,7 +28,7 @@ router.get('/api/bills/:page', (req, res) => {
 
 const additionalData = (history, chamber, lastAction) => {
   const status = returnStatus(history, lastAction)
-  const progress = returnProgress(history)
+  const progress = returnProgress(history, chamber)
 
   return {
     status,
@@ -45,7 +45,114 @@ const returnStatus = (history, lastAction) => {
   return 'tabled'
 }
 
-const returnProgress = (history) => {}
+const returnProgress = (h, c) => {
+  let primary, secondary
+  if (c === 'house') {
+    primary = 'house'
+    secondary = 'senate'
+  } else {
+    primary = 'senate'
+    secondary = 'house'
+  }
+
+  if (h[`${primary}_override_result`] === 'pass' && h[`${secondary}_override_result`] === 'pass') {
+    return { index: 23, text: 'Passed both after veto' }
+  }
+
+  if (h[`${primary}_override_result`] === 'fail' && h[`${secondary}_override_result`] === 'pass') {
+    return { index: 22, text: 'Passed secondary, failed primary after veto' }
+  }
+
+  if (h[`${primary}_override_result`] === 'pass' && h[`${secondary}_override_result`] === 'fail') {
+    return { index: 21, text: 'Passed primary, failed secondary after veto' }
+  }
+
+  if (!h[`${primary}_override_result`] && h[`${secondary}_override_result`] === 'fail') {
+    return { index: 20, text: 'Failed secondary after veto' }
+  }
+
+  if (h[`${primary}_override_result`] === 'fail' && !h[`${secondary}_override_result`]) {
+    return { index: 19, text: 'Failed primary after veto' }
+  }
+
+  if (!h[`${primary}_override_result`] && h[`${secondary}_override_result`] === 'pass') {
+    return { index: 18, text: 'Passed secondary after veto' }
+  }
+
+  if (h[`${primary}_override_result`] === 'pass' && !h[`${secondary}_override_result`]) {
+    return { index: 17, text: 'Passed primary after veto' }
+  }
+
+  if (h.enacted === true) return { index: 16, text: 'Enacted' }
+  if (h.vetoed === true) return { index: 15, text: 'Vetoed' }
+
+  if (h[`${secondary}_cloture_result`] === 'pass') {
+    if (Date(h[`${primary}_passage_result_at`]) > Date(h[`${secondary}_cloture_result_at`]) &&
+        Date(h[`${primary}_passage_result_at`]) > Date(h[`${secondary}_cloture_result_at`])) {
+      if (h === true) {
+        return { index: 14, text: 'Passed both after cloture' }
+      }
+
+      if (h === true) {
+        return { index: 13, text: 'Passed secondary, failed primary after cloture' }
+      }
+
+      if (h === true) {
+        return { index: 12, text: 'Passed primary, failed secondary after cloture' }
+      }
+    }
+
+    if (Date(h[`${primary}_passage_result_at`]) > Date(h[`${secondary}_cloture_result_at`])) {
+      if (h === true) {
+        return { index: 8, text: 'Passed primary after cloture' }
+      }
+
+      if (h === true) {
+        return { index: 10, text: 'Failed primary after cloture' }
+      }
+    }
+
+    if (Date(h[`${primary}_passage_result_at`]) > Date(h[`${secondary}_cloture_result_at`])) {
+      if (h === true) {
+        return { index: 11, text: 'Failed secondary after cloture' }
+      }
+
+      if (h === true) {
+        return { index: 9, text: 'Passed secondary after cloture' }
+      }
+    }
+  }
+
+  if (h === true) {
+    return { index: 7, text: 'Passed cloture' }
+  }
+
+  if (h === true) {
+    return { index: 6, text: 'Failed in in cloture' }
+  }
+
+  if (h === true) {
+    return { index: 5, text: 'Passed secondary chamber' }
+  }
+
+  if (h === true) {
+    return { index: 4, text: 'Failed in in secondary chamber' }
+  }
+
+  if (h === true) {
+    return { index: 3, text: 'Passed primary chamber' }
+  }
+
+  if (h === true) {
+    return { index: 2, text: 'Failed in in primary chamber' }
+  }
+
+  if (h === true) {
+    return { index: 1, text: 'Primary chamber has taken action' }
+  }
+
+  return { index: 0, text: 'Introduced' }
+}
 
 const returnDetailedStatus = (status, progress, chamber) => {}
 
