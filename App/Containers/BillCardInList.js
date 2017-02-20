@@ -24,14 +24,14 @@ export default class BillCardInList extends React.Component {
 
     return (
       <View style={styles.container}>
+        <Text style={styles.title}>
+          {truncTitle}
+        </Text>
         <Text style={styles.billId}>
           {id}
         </Text>
         <Text>
-        Title: {truncTitle}
-        </Text>
-        <Text>
-        Introduced on: {dateIntroduced}
+        Date Introduced: {dateIntroduced}
         </Text>
         <Text>
         Last Action: {lastAction}

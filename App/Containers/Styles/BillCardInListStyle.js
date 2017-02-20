@@ -1,7 +1,9 @@
 const styles = {
   billId: {
-    alignSelf: 'flex-end',
-    marginBottom: 10
+    fontSize: 18,
+    marginBottom: 15,
+    marginTop: 15,
+    textAlign: 'center'
   },
   container: {
     backgroundColor: '#FFF',
@@ -13,6 +15,11 @@ const styles = {
     },
     shadowOpacity: 0.5,
     width: 300
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: '600',
+    textAlign: 'center'
   }
 }
 
