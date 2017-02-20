@@ -46,9 +46,33 @@ const BillStatus = () => {
         strokeWidth='4'
       />
       <Line
-        x1='20'
+        x1={(4 * ((325 - 20) / 6)) + 20}
         y1='30'
-        x2={(4 * ((325 - 20) / 6)) + 20}
+        x2={(5 * ((325 - 20) / 6)) + 20}
+        y2={30 + 15}
+        stroke={green}
+        strokeWidth='4'
+      />
+      <Line
+        x1={(4 * ((325 - 20) / 6)) + 20}
+        y1='30'
+        x2={(5 * ((325 - 20) / 6)) + 20}
+        y2={30 - 15}
+        stroke={green}
+        strokeWidth='4'
+      />
+      <Line
+        x1={(5 * ((325 - 20) / 6)) + 20}
+        y1={30 + 15}
+        x2='325'
+        y2='30'
+        stroke={green}
+        strokeWidth='4'
+      />
+      <Line
+        x1={(5 * ((325 - 20) / 6)) + 20}
+        y1={30 - 15}
+        x2='325'
         y2='30'
         stroke={green}
         strokeWidth='4'
