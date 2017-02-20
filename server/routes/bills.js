@@ -2,6 +2,7 @@ const express = require('express')
 const fetch = require('isomorphic-fetch')
 const router = express.Router()
 const pick = require('lodash').pick
+const moment = require('moment')
 
 router.get('/api/bills/:page', (req, res) => {
   fetch(`https://congress.api.sunlightfoundation.com/bills`)
@@ -35,7 +36,13 @@ const additionalData = (history, chamber, lastAction) => {
   }
 }
 
-const returnStatus = (history, lastAction) => {}
+const returnStatus = (history, lastAction) => {
+  if (history.enacted) return 'enacted'
+  if (Object.values(history).find((result) => result === 'failed')) return 'failed'
+  if (history.vetoed) return 'vetoed'
+  if (moment(lastAction).add(4, 'months') > moment(Date.now())) return 'active'
+  return 'tabled'
+}
 
 const returnProgress = (history) => {}
 
