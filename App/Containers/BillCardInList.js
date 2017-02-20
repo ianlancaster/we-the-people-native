@@ -1,52 +1,84 @@
 import React from 'react'
-import { Text, View, Button } from 'react-native'
+import { Text, View, Button, TouchableOpacity, Image } from 'react-native'
 import styles from './Styles/BillCardInListStyle'
-// import { Images } from '../Themes'
-// import DrawerButton from '../Components/DrawerButton'
+import prettifyDate from '../Helpers/DatePrettifier'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
-// maybe make into a dumb component
 export default class BillCardInList extends React.Component {
-
-  render () {
-    const { showDetailedBill } = this.props
-    const bill = {
+  constructor (props) {
+    super(props)
+    this.state = {
       id: this.props.bill_id,
       title: this.props.official_title,
       dateIntroduced: this.props.introduced_on,
       lastAction: this.props.last_action_at,
-      chamber: this.props.chamber
+      chamber: this.props.chamber,
+      sponsor: `${this.props.sponsor.title}. ${this.props.sponsor.first_name} ${this.props.sponsor.last_name}` || 'Not Available.'
     }
-    const truncTitle = `${bill.title.split(' ').slice(0, 10).join(' ')}...`
+  }
+
+  render () {
+    const { showDetailedBill } = this.props
+    const { id, title, dateIntroduced, lastAction, chamber, sponsor } = this.state
+    const truncTitle = `${title.split(' ').slice(0, 10).join(' ')}...`
 
     return (
       <View style={styles.container}>
-        <Text style={styles.billId}>
-          {bill.id}
-        </Text>
-        <Text>
-        Title: {truncTitle}
-        </Text>
-        <Text>
-        Introduced on: {bill.dateIntroduced}
-        </Text>
-        <Text>
-        Last Action: {bill.lastAction}
-        </Text>
-        <Text>
-        Chamber: {bill.chamber}
-        </Text>
-        <Button
-          title='View Bill Details'
+        <TouchableOpacity
           onPress={() => {
             this.props.onChange(
-            bill.id,
-            bill.title,
-            bill.dateIntroduced,
-            bill.lastAction,
-            bill.chamber)
+            id,
+            title,
+            dateIntroduced,
+            lastAction,
+            chamber,
+            sponsor)
           }}
-        />
+          >
+          <Text style={styles.title}>
+            {truncTitle}
+          </Text>
+        </TouchableOpacity>
+        <Text style={styles.id}>
+          {id.toUpperCase()}
+        </Text>
+        <Text style={styles.dateIntroduced}>
+          <Text style={styles.boldSpan}>
+            Date Introduced:
+          </Text>
+          {prettifyDate(dateIntroduced)}
+        </Text>
+        <Text style={styles.lastAction}>
+          <Text style={styles.boldSpan}>
+            Last Action:
+          </Text>
+          {prettifyDate(lastAction)}
+        </Text>
+        <Text style={{textAlign: 'center', marginTop: 10, marginBottom: 10, fontStyle: 'italic'}}>(Bill Status Info Goes Here)</Text>
+        <View style={styles.separator} />
+        <View style={styles.lowerContainer}>
+          <Image
+            source={require('../Images/view-bill-details-icon.png')}
+            style={styles.icon}
+          />
+          <TouchableOpacity
+            onPress={() => {
+              this.props.onChange(
+              id,
+              title,
+              dateIntroduced,
+              lastAction,
+              chamber,
+              sponsor)
+            }}
+          >
+            <Text
+              style={styles.viewBillDetails}
+            >
+              View Bill Details
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -59,5 +91,6 @@ BillCardInList.propTypes = {
   last_action_at: React.PropTypes.string,
   chamber: React.PropTypes.string,
   onChange: React.PropTypes.func,
-  showDetailedBill: React.PropTypes.func
+  showDetailedBill: React.PropTypes.func,
+  sponsor: React.PropTypes.object
 }

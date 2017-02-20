@@ -3,20 +3,26 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgb(134, 148, 247)'
+    backgroundColor: '#D8D8D8'
   },
   scrollContainer: {
     flex: 5
   },
-  showActiveButton: {
-    height: 100,
-    paddingTop: 70,
-    width: 100
+  showHideBills: {
+    backgroundColor: '#112E50',
+    borderWidth: 1,
+    color: '#FFF',
+    textAlign: 'center',
+    fontSize: 20,
+    marginBottom: 30,
+    marginTop: 30,
+    padding: 10
   },
   text: {
     color: 'black',
     fontSize: 40,
-    paddingTop: 70
+    paddingTop: 70,
+    textAlign: 'center'
   }
 }
 

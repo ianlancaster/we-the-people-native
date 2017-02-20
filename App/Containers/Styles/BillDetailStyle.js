@@ -2,10 +2,6 @@ const standardLabelFontSize = 18
 const standardLabelPaddingBottom = 10
 
 const styles = {
-  chamber: {
-    fontSize: standardLabelFontSize,
-    paddingBottom: standardLabelPaddingBottom
-  },
   container: {
     alignItems: 'center',
     backgroundColor: '#FFF',
@@ -27,6 +23,10 @@ const styles = {
     paddingBottom: 20
   },
   lastAction: {
+    fontSize: standardLabelFontSize,
+    paddingBottom: standardLabelPaddingBottom
+  },
+  sponsor: {
     fontSize: standardLabelFontSize,
     paddingBottom: standardLabelPaddingBottom
   },
