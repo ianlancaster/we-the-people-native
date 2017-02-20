@@ -36,6 +36,10 @@ export default class Bills extends React.Component {
     this.api = APIBills.create()
   }
 
+  componentWillMount () {
+    this.tryEndpoint()
+  }
+
   showAllBills = () => {
     this.setState({ showOnlyActive: false })
   }
@@ -82,9 +86,11 @@ export default class Bills extends React.Component {
 
   tryEndpoint () {
     const endpoint = endpoints[0].endpoint
-    this.api[endpoint].apply(this).then((result) => {
-      this.showResult(result)
-    })
+    this.api[endpoint].apply(this)
+      .then((result) => {
+        this.showResult(result)
+      })
+      .then(() => this.showAllBills())
   }
 
   render () {
@@ -92,7 +98,6 @@ export default class Bills extends React.Component {
     if (list) {
       return (
         <View style={styles.container}>
-          {this.tryEndpoint()}
           <ScrollView style={styles.scrollContainer} ref={() => 'container'}>
             {showOnlyActive ? <Text
               style={styles.text}
