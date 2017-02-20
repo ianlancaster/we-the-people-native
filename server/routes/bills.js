@@ -9,6 +9,7 @@ router.get('/api/bills/:page', (req, res) => {
   .then(data => {
     let prunedBills = []
     data.results.forEach(bill => {
+      console.log(bill.official_title)
       prunedBills = [
         ...prunedBills,
         pick(bill, ['official_title', 'bill_id', 'introduced_on', 'last_action_at', 'chamber', 'history'])
