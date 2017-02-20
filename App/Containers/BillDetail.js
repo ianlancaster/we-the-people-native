@@ -12,6 +12,7 @@ export default class BillDetail extends React.Component {
       dateIntroduced: this.props.dateIntroduced,
       lastAction: this.props.lastAction,
       chamber: this.props.chamber,
+      sponsor: this.props.sponsor,
       isThereATitleButton: false
     }
   }
@@ -28,7 +29,7 @@ export default class BillDetail extends React.Component {
   }
 
   render () {
-    const { id, title, dateIntroduced, lastAction, chamber, isThereATitleButton } = this.state
+    const { id, title, dateIntroduced, lastAction, chamber, sponsor, isThereATitleButton } = this.state
     return (
       <View style={styles.container}>
         <Text style={styles.id}>
@@ -42,10 +43,13 @@ export default class BillDetail extends React.Component {
           onPress={this.showFullTitle}
           /> : <Text />}
         <Text style={styles.dateIntroduced}>
-          Proposed {prettifyDate(dateIntroduced)}
+          Proposed: {prettifyDate(dateIntroduced)}
+        </Text>
+        <Text style={styles.sponsor}>
+          Sponsor: {sponsor}
         </Text>
         <Text style={styles.lastAction}>
-          Last Action {prettifyDate(lastAction)}
+          Last Action: {prettifyDate(lastAction)}
         </Text>
         <Text style={styles.chamber}>
           Chamber {chamber}
@@ -60,5 +64,6 @@ BillDetail.propTypes = {
   title: React.PropTypes.string,
   dateIntroduced: React.PropTypes.string,
   lastAction: React.PropTypes.string,
-  chamber: React.PropTypes.string
+  chamber: React.PropTypes.string,
+  sponsor: React.PropTypes.string
 }

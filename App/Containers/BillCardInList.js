@@ -12,13 +12,14 @@ export default class BillCardInList extends React.Component {
       title: this.props.official_title,
       dateIntroduced: this.props.introduced_on,
       lastAction: this.props.last_action_at,
-      chamber: this.props.chamber
+      chamber: this.props.chamber,
+      sponsor: `${this.props.sponsor.title} ${this.props.sponsor.first_name} ${this.props.sponsor.last_name}` || 'Not Available.'
     }
   }
 
   render () {
     const { showDetailedBill } = this.props
-    const { id, title, dateIntroduced, lastAction, chamber } = this.state
+    const { id, title, dateIntroduced, lastAction, chamber, sponsor } = this.state
     const truncTitle = `${title.split(' ').slice(0, 10).join(' ')}...`
 
     return (
@@ -30,7 +31,8 @@ export default class BillCardInList extends React.Component {
             title,
             dateIntroduced,
             lastAction,
-            chamber)
+            chamber,
+            sponsor)
           }}
           >
           <Text style={styles.title}>
@@ -66,7 +68,8 @@ export default class BillCardInList extends React.Component {
               title,
               dateIntroduced,
               lastAction,
-              chamber)
+              chamber,
+              sponsor)
             }}
           >
             <Text
@@ -88,5 +91,6 @@ BillCardInList.propTypes = {
   last_action_at: React.PropTypes.string,
   chamber: React.PropTypes.string,
   onChange: React.PropTypes.func,
-  showDetailedBill: React.PropTypes.func
+  showDetailedBill: React.PropTypes.func,
+  sponsor: React.PropTypes.object
 }
