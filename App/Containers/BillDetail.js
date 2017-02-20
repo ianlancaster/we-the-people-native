@@ -70,6 +70,10 @@ export default class BillDetail extends React.Component {
             Read Full Bill Summary &raquo;
           </Text>
           <View style={styles.separator} />
+          <Text style={styles.billProgressHeadline}>
+            Bill Progress
+          </Text>
+          <Text style={{textAlign: 'center', marginTop: 10, marginBottom: 10, fontStyle: 'italic'}}>(Bill Status Info Goes Here)</Text>
         </ScrollView>
       </View>
     )

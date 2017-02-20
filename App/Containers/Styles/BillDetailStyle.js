@@ -5,6 +5,12 @@ const styles = {
   billSummaryDetailed: {
 
   },
+  billProgressHeadline: {
+    fontSize: 22,
+    marginBottom: 20,
+    marginTop: 20,
+    textAlign: 'center'
+  },
   billSummaryHeadline: {
     fontSize: 22,
     marginBottom: 20,
