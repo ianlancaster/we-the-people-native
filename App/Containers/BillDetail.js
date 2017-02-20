@@ -51,9 +51,6 @@ export default class BillDetail extends React.Component {
         <Text style={styles.lastAction}>
           Last Action: {prettifyDate(lastAction)}
         </Text>
-        <Text style={styles.chamber}>
-          Chamber {chamber}
-        </Text>
       </View>
     )
   }
