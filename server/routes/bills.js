@@ -55,32 +55,38 @@ const returnProgress = (h, c) => {
     secondary = 'house'
   }
 
-  if (h[`${primary}_override_result`] === 'pass' && h[`${secondary}_override_result`] === 'pass') {
-    return { index: 23, text: 'Passed both after veto' }
+  if (h.hasOwnProperty(`${primary}_override_result`) && h.hasOwnProperty(`${secondary}_override_result`)) {
+    if (h[`${primary}_override_result`] === 'pass' && h[`${secondary}_override_result`] === 'pass') {
+      return { index: 23, text: 'Passed both after veto' }
+    }
+
+    if (h[`${primary}_override_result`] === 'fail' && h[`${secondary}_override_result`] === 'pass') {
+      return { index: 22, text: 'Passed secondary, failed primary after veto' }
+    }
+
+    if (h[`${primary}_override_result`] === 'pass' && h[`${secondary}_override_result`] === 'fail') {
+      return { index: 21, text: 'Passed primary, failed secondary after veto' }
+    }
   }
 
-  if (h[`${primary}_override_result`] === 'fail' && h[`${secondary}_override_result`] === 'pass') {
-    return { index: 22, text: 'Passed secondary, failed primary after veto' }
+  if (h.hasOwnProperty(`${secondary}_override_result`)) {
+    if (h[`${secondary}_override_result`] === 'fail') {
+      return { index: 20, text: 'Failed secondary after veto' }
+    }
+
+    if (h[`${secondary}_override_result`] === 'pass') {
+      return { index: 18, text: 'Passed secondary after veto' }
+    }
   }
 
-  if (h[`${primary}_override_result`] === 'pass' && h[`${secondary}_override_result`] === 'fail') {
-    return { index: 21, text: 'Passed primary, failed secondary after veto' }
-  }
+  if (h.hasOwnProperty(`${primary}_override_result`)) {
+    if (h[`${primary}_override_result`] === 'fail') {
+      return { index: 19, text: 'Failed primary after veto' }
+    }
 
-  if (!h[`${primary}_override_result`] && h[`${secondary}_override_result`] === 'fail') {
-    return { index: 20, text: 'Failed secondary after veto' }
-  }
-
-  if (h[`${primary}_override_result`] === 'fail' && !h[`${secondary}_override_result`]) {
-    return { index: 19, text: 'Failed primary after veto' }
-  }
-
-  if (!h[`${primary}_override_result`] && h[`${secondary}_override_result`] === 'pass') {
-    return { index: 18, text: 'Passed secondary after veto' }
-  }
-
-  if (h[`${primary}_override_result`] === 'pass' && !h[`${secondary}_override_result`]) {
-    return { index: 17, text: 'Passed primary after veto' }
+    if (h[`${primary}_override_result`] === 'pass') {
+      return { index: 17, text: 'Passed primary after veto' }
+    }
   }
 
   if (h.enacted === true) return { index: 16, text: 'Enacted' }
@@ -89,45 +95,42 @@ const returnProgress = (h, c) => {
   if (h[`${secondary}_cloture_result`] === 'pass') {
     if (Date(h[`${primary}_passage_result_at`]) > Date(h[`${secondary}_cloture_result_at`]) &&
         Date(h[`${primary}_passage_result_at`]) > Date(h[`${secondary}_cloture_result_at`])) {
-      if (h === true) {
+      if (h[`${primary}_passage_result`] === 'pass' && h[`${secondary}_passage_result`] === 'pass') {
         return { index: 14, text: 'Passed both after cloture' }
       }
 
-      if (h === true) {
+      if (h[`${primary}_passage_result`] === 'fail' && h[`${secondary}_passage_result`] === 'pass') {
         return { index: 13, text: 'Passed secondary, failed primary after cloture' }
       }
 
-      if (h === true) {
+      if (h[`${primary}_passage_result`] === 'pass' && h[`${secondary}_passage_result`] === 'fail') {
         return { index: 12, text: 'Passed primary, failed secondary after cloture' }
       }
     }
 
     if (Date(h[`${primary}_passage_result_at`]) > Date(h[`${secondary}_cloture_result_at`])) {
-      if (h === true) {
+      if (h[`${primary}_passage_result`] === 'pass') {
         return { index: 8, text: 'Passed primary after cloture' }
       }
 
-      if (h === true) {
+      if (h[`${primary}_passage_result`] === 'fail') {
         return { index: 10, text: 'Failed primary after cloture' }
       }
     }
 
     if (Date(h[`${primary}_passage_result_at`]) > Date(h[`${secondary}_cloture_result_at`])) {
-      if (h === true) {
-        return { index: 11, text: 'Failed secondary after cloture' }
-      }
-
-      if (h === true) {
+      if (h[`${secondary}_passage_result`] === 'pass') {
         return { index: 9, text: 'Passed secondary after cloture' }
       }
-    }
-  }
 
-  if (h === true) {
+      if (h[`${secondary}_passage_result`] === 'fail') {
+        return { index: 11, text: 'Failed secondary after cloture' }
+      }
+    }
     return { index: 7, text: 'Passed cloture' }
   }
 
-  if (h === true) {
+  if (h[`${secondary}_cloture_result`] === 'fail') {
     return { index: 6, text: 'Failed in in cloture' }
   }
 
