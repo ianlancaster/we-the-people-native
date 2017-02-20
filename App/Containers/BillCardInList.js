@@ -52,6 +52,8 @@ export default class BillCardInList extends React.Component {
           </Text>
           {prettifyDate(lastAction)}
         </Text>
+        <Text style={{textAlign: 'center', marginTop: 10, marginBottom: 10, fontStyle: 'italic'}}>(Bill Status Info Goes Here)</Text>
+        <View style={styles.separator} />
         <TouchableOpacity
           onPress={() => {
             this.props.onChange(
@@ -62,7 +64,11 @@ export default class BillCardInList extends React.Component {
             chamber)
           }}
         >
-          <Text>View Bill Details</Text>
+          <Text
+            style={styles.viewBillDetails}
+          >
+            View Bill Details
+          </Text>
         </TouchableOpacity>
       </View>
     )
