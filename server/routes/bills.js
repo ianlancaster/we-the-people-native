@@ -38,7 +38,7 @@ const additionalData = (history, chamber, lastAction) => {
 
 const returnStatus = (history, lastAction) => {
   if (history.enacted) return 'enacted'
-  if (Object.values(history).find((result) => result === 'failed')) return 'failed'
+  if (Object.values(history).find((result) => result === 'fail')) return 'failed'
   if (history.vetoed) return 'vetoed'
   if (moment(lastAction).add(4, 'months') > moment(Date.now())) return 'active'
   return 'tabled'
