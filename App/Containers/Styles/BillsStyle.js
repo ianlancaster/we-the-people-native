@@ -1,4 +1,7 @@
 const styles = {
+  billsButton: {
+
+  },
   container: {
     flex: 1,
     justifyContent: 'center',

@@ -52,8 +52,7 @@ export default class BillCardInList extends React.Component {
           </Text>
           {prettifyDate(lastAction)}
         </Text>
-        <Button
-          title='View Bill Details'
+        <TouchableOpacity
           onPress={() => {
             this.props.onChange(
             id,
@@ -62,7 +61,9 @@ export default class BillCardInList extends React.Component {
             lastAction,
             chamber)
           }}
-        />
+        >
+          <Text>View Bill Details</Text>
+        </TouchableOpacity>
       </View>
     )
   }

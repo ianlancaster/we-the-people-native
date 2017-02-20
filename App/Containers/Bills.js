@@ -104,9 +104,11 @@ export default class Bills extends React.Component {
             {showOnlyActive ? <Button
               title='Show All Bills.'
               onPress={this.showAllBills}
+              style={styles.billsButton}
             /> : <Button
               title='Show Only Active Bills.'
               onPress={this.showOnlyActiveBills}
+              style={styles.billsButton}
             />}
             {this.billData ? this.billData : <Text>Loading....</Text>}
           </ScrollView>
