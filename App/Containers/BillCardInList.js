@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Button } from 'react-native'
+import { Text, View, Button, TouchableOpacity } from 'react-native'
 import styles from './Styles/BillCardInListStyle'
 // import { Images } from '../Themes'
 // import DrawerButton from '../Components/DrawerButton'
@@ -24,9 +24,20 @@ export default class BillCardInList extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>
-          {truncTitle}
-        </Text>
+        <TouchableOpacity
+          onPress={() => {
+            this.props.onChange(
+            id,
+            title,
+            dateIntroduced,
+            lastAction,
+            chamber)
+          }}
+          >
+          <Text style={styles.title}>
+            {truncTitle}
+          </Text>
+        </TouchableOpacity>
         <Text style={styles.billId}>
           {id}
         </Text>
