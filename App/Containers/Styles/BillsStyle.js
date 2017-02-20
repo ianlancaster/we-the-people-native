@@ -16,7 +16,8 @@ const styles = {
   text: {
     color: 'black',
     fontSize: 40,
-    paddingTop: 70
+    paddingTop: 70,
+    textAlign: 'center'
   }
 }
 

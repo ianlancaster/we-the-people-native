@@ -92,12 +92,15 @@ export default class Bills extends React.Component {
         <View style={styles.container}>
           {this.tryEndpoint()}
           <ScrollView style={styles.scrollContainer} ref={() => 'container'}>
-            <Text
+            {showOnlyActive ? <Text
               style={styles.text}
             >
-              Bills:
-            </Text>
-            {showOnlyActive ? <Text>Only active bill(s) shown.</Text> : <Text />}
+              Active Bills:
+            </Text> : <Text
+              style={styles.text}
+            >
+              All Bills:
+            </Text>}
             {showOnlyActive ? <Button
               title='Show All Bills.'
               onPress={this.showAllBills}
