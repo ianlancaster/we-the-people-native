@@ -13,7 +13,7 @@ export default class BillCardInList extends React.Component {
       dateIntroduced: this.props.introduced_on,
       lastAction: this.props.last_action_at,
       chamber: this.props.chamber,
-      sponsor: `${this.props.sponsor.title} ${this.props.sponsor.first_name} ${this.props.sponsor.last_name}` || 'Not Available.'
+      sponsor: `${this.props.sponsor.title}. ${this.props.sponsor.first_name} ${this.props.sponsor.last_name}` || 'Not Available.'
     }
   }
 
