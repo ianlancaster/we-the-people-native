@@ -16,7 +16,7 @@ router.get('/api/bills/:page', (req, res) => {
         'chamber',
         'history'
       ]),
-      additionalData()
+      additionalData(bill.history, bill.chamber, bill.last_action_at)
     ))
     return billsPruned
   }, []))
@@ -24,8 +24,21 @@ router.get('/api/bills/:page', (req, res) => {
   .catch(err => res.json(err))
 })
 
-const additionalData = () => ({
-  status: 'active'
-})
+const additionalData = (history, chamber, lastAction) => {
+  const status = returnStatus(history, lastAction)
+  const progress = returnProgress(history)
+
+  return {
+    status,
+    progress,
+    detailedStatus: returnDetailedStatus(status, progress, chamber)
+  }
+}
+
+const returnStatus = (history, lastAction) => {}
+
+const returnProgress = (history) => {}
+
+const returnDetailedStatus = (status, progress, chamber) => {}
 
 module.exports = router
