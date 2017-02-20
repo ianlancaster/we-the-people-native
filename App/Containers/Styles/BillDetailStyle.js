@@ -19,19 +19,30 @@ const styles = {
   },
   dateIntroduced: {
     fontSize: standardLabelFontSize,
-    paddingBottom: standardLabelPaddingBottom
+    paddingBottom: standardLabelPaddingBottom,
+    textAlign: 'center'
   },
   id: {
     fontSize: 30,
     paddingBottom: 20
   },
+  labelWrapper: {
+    marginBottom: 20
+  },
   lastAction: {
     fontSize: standardLabelFontSize,
-    paddingBottom: standardLabelPaddingBottom
+    paddingBottom: standardLabelPaddingBottom,
+    textAlign: 'center'
   },
   sponsor: {
     fontSize: standardLabelFontSize,
-    paddingBottom: standardLabelPaddingBottom
+    paddingBottom: standardLabelPaddingBottom,
+    textAlign: 'center'
+  },
+  status: {
+    fontSize: standardLabelFontSize,
+    paddingBottom: standardLabelPaddingBottom,
+    textAlign: 'center'
   },
   title: {
     fontSize: 22,

@@ -42,15 +42,22 @@ export default class BillDetail extends React.Component {
           title='Show Full Title'
           onPress={this.showFullTitle}
           /> : <Text />}
-        <Text style={styles.dateIntroduced}>
-          <Text style={styles.boldSpan}>Proposed:</Text> {prettifyDate(dateIntroduced)}
-        </Text>
-        <Text style={styles.sponsor}>
-          <Text style={styles.boldSpan}>Sponsor:</Text> {sponsor}
-        </Text>
-        <Text style={styles.lastAction}>
-          <Text style={styles.boldSpan}>Last Action:</Text> {prettifyDate(lastAction)}
-        </Text>
+        <View style={styles.labelWrapper}>
+          <Text style={styles.dateIntroduced}>
+            <Text style={styles.boldSpan}>Proposed:</Text> {prettifyDate(dateIntroduced)}
+          </Text>
+          <Text style={styles.sponsor}>
+            <Text style={styles.boldSpan}>Sponsor:</Text> {sponsor}
+          </Text>
+        </View>
+        <View style={styles.labelWrapper}>
+          <Text style={styles.status}>
+            <Text style={styles.boldSpan}>Status:</Text> (Status Goes Here)
+            </Text>
+            <Text style={styles.lastAction}>
+              <Text style={styles.boldSpan}>Last Action:</Text> {prettifyDate(lastAction)}
+              </Text>
+        </View>
       </View>
     )
   }
