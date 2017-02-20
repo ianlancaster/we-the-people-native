@@ -2,7 +2,10 @@ const standardLabelFontSize = 18
 const standardLabelPaddingBottom = 10
 
 const styles = {
-  billSummary: {
+  billSummaryDetailed: {
+
+  },
+  billSummaryHeadline: {
     fontSize: 22
   },
   boldSpan: {

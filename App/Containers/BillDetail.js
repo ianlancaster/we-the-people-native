@@ -59,8 +59,11 @@ export default class BillDetail extends React.Component {
           </Text>
           <View style={styles.separator} />
         </View>
-        <Text style={styles.billSummary}>
+        <Text style={styles.billSummaryHeadline}>
           Brief Bill Summary
+        </Text>
+        <Text style={styles.billSummaryDetailed}>
+          lone-wolf-g modulo to-posse-or-not-to-posse slack-attack dale's-pale-ale mod-1-beards mod-1-beards mod-1-beards mod-1-beards command-line command-line command-line merge-conflicts k's-horse daledalf champus champus bicycles epically-bad-gusto-coffee epically-bad-gusto-coffee chaz-isms chaz-isms carne-asada game-time yoga-instructor NaN kansas-raptor gusto retro retro gabitron
         </Text>
       </View>
     )
