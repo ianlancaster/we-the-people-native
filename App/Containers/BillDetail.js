@@ -1,10 +1,7 @@
 import React from 'react'
 import { Text, View, Button } from 'react-native'
 import styles from './Styles/BillDetailStyle'
-import moment from 'moment'
-// import { Images } from '../Themes'
-// import DrawerButton from '../Components/DrawerButton'
-// import { Actions as NavigationActions } from 'react-native-router-flux'
+import prettifyDate from '../Helpers/DatePrettifier'
 
 export default class BillDetail extends React.Component {
   constructor (props) {
@@ -15,6 +12,7 @@ export default class BillDetail extends React.Component {
       dateIntroduced: this.props.dateIntroduced,
       lastAction: this.props.lastAction,
       chamber: this.props.chamber,
+      sponsor: this.props.sponsor,
       isThereATitleButton: false
     }
   }
@@ -31,9 +29,7 @@ export default class BillDetail extends React.Component {
   }
 
   render () {
-    const { id, title, dateIntroduced, lastAction, chamber, isThereATitleButton } = this.state
-    const prettifiedDateIntroduced = moment(dateIntroduced).format('MMM Do YYYY')
-    const prettifiedLastAction = moment(lastAction).format('MMM Do YYYY')
+    const { id, title, dateIntroduced, lastAction, chamber, sponsor, isThereATitleButton } = this.state
     return (
       <View style={styles.container}>
         <Text style={styles.id}>
@@ -47,13 +43,13 @@ export default class BillDetail extends React.Component {
           onPress={this.showFullTitle}
           /> : <Text />}
         <Text style={styles.dateIntroduced}>
-          Proposed {prettifiedDateIntroduced}
+          Proposed: {prettifyDate(dateIntroduced)}
+        </Text>
+        <Text style={styles.sponsor}>
+          Sponsor: {sponsor}
         </Text>
         <Text style={styles.lastAction}>
-          Last Action {prettifiedLastAction}
-        </Text>
-        <Text style={styles.chamber}>
-          Chamber {chamber}
+          Last Action: {prettifyDate(lastAction)}
         </Text>
       </View>
     )
@@ -65,5 +61,6 @@ BillDetail.propTypes = {
   title: React.PropTypes.string,
   dateIntroduced: React.PropTypes.string,
   lastAction: React.PropTypes.string,
-  chamber: React.PropTypes.string
+  chamber: React.PropTypes.string,
+  sponsor: React.PropTypes.string
 }

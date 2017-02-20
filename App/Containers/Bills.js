@@ -29,7 +29,8 @@ export default class Bills extends React.Component {
       title: '',
       dateIntroduced: '',
       lastAction: '',
-      chamber: ''
+      chamber: '',
+      sponsor: ''
     }
 
     this.api = APIBills.create()
@@ -43,12 +44,13 @@ export default class Bills extends React.Component {
     this.setState({ showOnlyActive: true })
   }
 
-  showDetailedBill = (id, title, dateIntroduced, lastAction, chamber) => {
+  showDetailedBill = (id, title, dateIntroduced, lastAction, chamber, sponsor) => {
     this.setState({ id })
     this.setState({ title })
     this.setState({ dateIntroduced })
     this.setState({ lastAction })
     this.setState({ chamber })
+    this.setState({ sponsor })
     this.setState({ list: false })
   }
 
@@ -86,25 +88,30 @@ export default class Bills extends React.Component {
   }
 
   render () {
-    const { showOnlyActive, sortByDateIntroduced, title, id, dateIntroduced, lastAction, chamber, list } = this.state
+    const { showOnlyActive, sortByDateIntroduced, title, id, dateIntroduced, lastAction, chamber, sponsor, list } = this.state
     if (list) {
       return (
         <View style={styles.container}>
           {this.tryEndpoint()}
           <ScrollView style={styles.scrollContainer} ref={() => 'container'}>
-            <Text
+            {showOnlyActive ? <Text
               style={styles.text}
             >
-              Bills:
-            </Text>
-            {showOnlyActive ? <Text>Only active bill(s) shown.</Text> : <Text />}
-            {showOnlyActive ? <Button
-              title='Show All Bills.'
+              Active Bills:
+            </Text> : <Text
+              style={styles.text}
+            >
+              All Bills:
+            </Text>}
+            {showOnlyActive ? <TouchableOpacity
               onPress={this.showAllBills}
-            /> : <Button
-              title='Show Only Active Bills.'
+              >
+              <Text style={styles.showHideBills}>Show All Bills</Text>
+            </TouchableOpacity> : <TouchableOpacity
               onPress={this.showOnlyActiveBills}
-            />}
+              >
+              <Text style={styles.showHideBills}>Show Only Active Bills</Text>
+            </TouchableOpacity>}
             {this.billData ? this.billData : <Text>Loading....</Text>}
           </ScrollView>
         </View>
@@ -117,6 +124,7 @@ export default class Bills extends React.Component {
           dateIntroduced={dateIntroduced}
           lastAction={lastAction}
           chamber={chamber}
+          sponsor={sponsor}
         />
       )
     }
