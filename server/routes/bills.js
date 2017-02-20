@@ -7,14 +7,11 @@ router.get('/api/bills/:page', (req, res) => {
   fetch(`https://congress.api.sunlightfoundation.com/bills`)
   .then(response => response.json())
   .then(data => {
-    let prunedBills = []
+    let bills = []
     data.results.forEach(bill => {
-      prunedBills = [
-        ...prunedBills,
-        pick(bill, ['official_title', 'bill_id', 'introduced_on', 'last_action_at', 'chamber', 'history'])
-      ]
+      bills.push(bill)
     })
-    return prunedBills
+    return bills
   })
   .then(structuredData => (res.json(structuredData)))
   .catch(err => res.json(err))
