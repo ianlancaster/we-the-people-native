@@ -1,8 +1,7 @@
 import React from 'react'
 import { Text, View, Button, TouchableOpacity } from 'react-native'
 import styles from './Styles/BillCardInListStyle'
-// import { Images } from '../Themes'
-// import DrawerButton from '../Components/DrawerButton'
+import prettifyDate from '../Helpers/DatePrettifier'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class BillCardInList extends React.Component {
@@ -45,16 +44,13 @@ export default class BillCardInList extends React.Component {
           <Text style={styles.boldSpan}>
             Date Introduced:
           </Text>
-          {dateIntroduced}
+          {prettifyDate(dateIntroduced)}
         </Text>
         <Text style={styles.lastAction}>
           <Text style={styles.boldSpan}>
             Last Action:
           </Text>
-          {lastAction}
-        </Text>
-        <Text>
-        Chamber: {chamber}
+          {prettifyDate(lastAction)}
         </Text>
         <Button
           title='View Bill Details'
