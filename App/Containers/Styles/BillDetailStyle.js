@@ -30,7 +30,8 @@ const styles = {
   },
   id: {
     fontSize: 30,
-    paddingBottom: 20
+    paddingBottom: 20,
+    textAlign: 'center'
   },
   labelWrapper: {
     marginBottom: 20
@@ -39,6 +40,9 @@ const styles = {
     fontSize: standardLabelFontSize,
     paddingBottom: 30,
     textAlign: 'center'
+  },
+  scrollContainer: {
+    flex: 5
   },
   separator: {
     height: 1,

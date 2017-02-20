@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Button } from 'react-native'
+import { Text, View, Button, ScrollView } from 'react-native'
 import styles from './Styles/BillDetailStyle'
 import prettifyDate from '../Helpers/DatePrettifier'
 
@@ -32,39 +32,42 @@ export default class BillDetail extends React.Component {
     const { id, title, dateIntroduced, lastAction, chamber, sponsor, isThereATitleButton } = this.state
     return (
       <View style={styles.container}>
-        <Text style={styles.id}>
-          {id.toUpperCase()}
-        </Text>
-        <Text style={styles.title}>
-          {this.state.title}
-        </Text>
-        {isThereATitleButton ? <Button
-          title='Show Full Title'
-          onPress={this.showFullTitle}
-          /> : <Text />}
-        <View style={styles.labelWrapper}>
-          <Text style={styles.dateIntroduced}>
-            <Text style={styles.boldSpan}>Proposed:</Text> {prettifyDate(dateIntroduced)}
+        <ScrollView style={styles.scrollContainer}>
+          <Text style={styles.id}>
+            {id.toUpperCase()}
           </Text>
-          <Text style={styles.sponsor}>
-            <Text style={styles.boldSpan}>Sponsor:</Text> {sponsor}
+          <Text style={styles.title}>
+            {this.state.title}
           </Text>
-        </View>
-        <View style={styles.labelWrapper}>
-          <Text style={styles.status}>
-            <Text style={styles.boldSpan}>Status:</Text> (Status Goes Here)
+          {isThereATitleButton ? <Button
+            title='Show Full Title'
+            onPress={this.showFullTitle}
+            /> : <Text />}
+          <View style={styles.labelWrapper}>
+            <Text style={styles.dateIntroduced}>
+              <Text style={styles.boldSpan}>Proposed:</Text> {prettifyDate(dateIntroduced)}
             </Text>
-          <Text style={styles.lastAction}>
-            <Text style={styles.boldSpan}>Last Action:</Text> {prettifyDate(lastAction)}
+            <Text style={styles.sponsor}>
+              <Text style={styles.boldSpan}>Sponsor:</Text> {sponsor}
+            </Text>
+          </View>
+          <View style={styles.labelWrapper}>
+            <Text style={styles.status}>
+              <Text style={styles.boldSpan}>Status:</Text> (Status Goes Here)
+              </Text>
+            <Text style={styles.lastAction}>
+              <Text style={styles.boldSpan}>Last Action:</Text> {prettifyDate(lastAction)}
+            </Text>
+            <View style={styles.separator} />
+          </View>
+          <Text style={styles.billSummaryHeadline}>
+            Brief Bill Summary
           </Text>
-          <View style={styles.separator} />
-        </View>
-        <Text style={styles.billSummaryHeadline}>
-          Brief Bill Summary
-        </Text>
-        <Text style={styles.billSummaryDetailed}>
-          lone-wolf-g modulo to-posse-or-not-to-posse slack-attack dale's-pale-ale mod-1-beards mod-1-beards mod-1-beards mod-1-beards command-line command-line command-line merge-conflicts k's-horse daledalf champus champus bicycles epically-bad-gusto-coffee epically-bad-gusto-coffee chaz-isms chaz-isms carne-asada game-time yoga-instructor NaN kansas-raptor gusto retro retro gabitron
-        </Text>
+          <Text style={styles.billSummaryDetailed}>
+            lone-wolf-g modulo to-posse-or-not-to-posse slack-attack dale's-pale-ale mod-1-beards mod-1-beards mod-1-beards mod-1-beards command-line command-line command-line merge-conflicts k's-horse daledalf champus champus bicycles epically-bad-gusto-coffee epically-bad-gusto-coffee chaz-isms chaz-isms carne-asada game-time yoga-instructor NaN kansas-raptor gusto retro retro gabitron
+          </Text>
+        </ScrollView>
+
       </View>
     )
   }
