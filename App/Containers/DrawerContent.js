@@ -60,7 +60,7 @@ class DrawerContent extends Component {
         <DrawerButton
           text='Date Introduced' onPress={this.handleDateIntroduced}
         />
-        <View style={styles.separator} />
+        <Text style={styles.sectionTitle}>Filter By Issue:</Text>
       </ScrollView>
     )
   }
