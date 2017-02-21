@@ -396,13 +396,6 @@ const BillStatus = ({ status, progress, chamber }) => {
       height='60'
       width='350'
     >
-      <Rect
-        height='60'
-        width='350'
-        strokeWidth='3'
-        fill={white}
-        stroke={black}
-      />
       <Line
         className='lS1'
         x1='20'

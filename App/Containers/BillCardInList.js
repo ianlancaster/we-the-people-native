@@ -4,6 +4,7 @@ import styles from './Styles/BillCardInListStyle'
 import prettifyDate from '../Helpers/DatePrettifier'
 import Separator from '../Components/Separator'
 import { Actions as NavigationActions } from 'react-native-router-flux'
+import BillStatusSvg from '../Components/BillStatus'
 
 export default class BillCardInList extends React.Component {
   constructor (props) {
@@ -55,7 +56,29 @@ export default class BillCardInList extends React.Component {
           </Text>
           {prettifyDate(lastAction)}
         </Text>
-        <Text style={{textAlign: 'center', marginTop: 10, marginBottom: 10, fontStyle: 'italic'}}>(Bill Status Info Goes Here)</Text>
+        <Text style={styles.lastAction}>
+          <Text style={styles.boldSpan}>
+            Status:
+          </Text>
+          {this.props.status}
+        </Text>
+        <Text style={styles.lastAction}>
+          <Text style={styles.boldSpan}>
+            Progress:
+          </Text>
+          {this.props.progress.text}
+        </Text>
+        <Text style={styles.lastAction}>
+          <Text style={styles.boldSpan}>
+            Detailed Status:
+          </Text>
+          {this.props.detailedStatus}
+        </Text>
+        <BillStatusSvg
+          status={this.props.status}
+          progress={this.props.progress}
+          chamber={this.props.chamber}
+        />
         <Separator backgroundColor={'#dddddd'} />
         <View style={styles.lowerContainer}>
           <Image

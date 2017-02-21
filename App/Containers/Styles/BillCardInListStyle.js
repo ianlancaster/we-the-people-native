@@ -22,7 +22,8 @@ const styles = {
       height: 5
     },
     shadowOpacity: 0.5,
-    width: 300
+    width: 350,
+    paddingTop: 20
   },
   dateIntroduced: {
     textAlign: centerLabels.textAlign
