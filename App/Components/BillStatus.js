@@ -16,7 +16,7 @@ const lightBlue = '#50739C'
 const grey = '#D9D9D9'
 
 const BillStatus = ({ status, progress, chamber }) => {
-  yellow = status === 'tabled' ? grey : yellow
+  if (status === 'tabled') yellow = grey
 
   const chartText = chamber === 'house'
     ? { t1: 'HC', t2: 'HF', t3: 'SC', t4: 'SF', primary: 'H', secondary: 'S' }
