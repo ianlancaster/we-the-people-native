@@ -37,9 +37,15 @@ const additionalData = (history, chamber, lastAction) => {
   }
 }
 
+const objValues = (obj) => {
+  return Object.keys(obj).map((key) => {
+    return obj[key]
+  })
+}
+
 const returnStatus = (history, lastAction) => {
   if (history.enacted) return 'enacted'
-  if (Object.values(history).find((result) => result === 'fail')) return 'failed'
+  if (objValues(history).find((result) => result === 'fail')) return 'failed'
   if (moment(lastAction).add(4, 'months') > moment(Date.now())) return 'active'
   return 'tabled'
 }
