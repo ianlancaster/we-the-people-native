@@ -2,6 +2,7 @@ import React from 'react'
 import { Text, View, Button, TouchableOpacity, Image } from 'react-native'
 import styles from './Styles/BillCardInListStyle'
 import prettifyDate from '../Helpers/DatePrettifier'
+import Separator from '../Components/Separator'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class BillCardInList extends React.Component {
@@ -55,7 +56,7 @@ export default class BillCardInList extends React.Component {
           {prettifyDate(lastAction)}
         </Text>
         <Text style={{textAlign: 'center', marginTop: 10, marginBottom: 10, fontStyle: 'italic'}}>(Bill Status Info Goes Here)</Text>
-        <View style={styles.separator} />
+        <Separator backgroundColor={'#dddddd'} />
         <View style={styles.lowerContainer}>
           <Image
             source={require('../Images/view-bill-details-icon.png')}

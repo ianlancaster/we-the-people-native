@@ -46,10 +46,6 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'center'
   },
-  separator: {
-    height: 1,
-    backgroundColor: colors.lightGray
-  },
   title: {
     fontSize: 20,
     fontWeight: '600',

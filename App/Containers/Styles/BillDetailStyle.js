@@ -2,6 +2,23 @@ const standardLabelFontSize = 18
 const standardLabelPaddingBottom = 10
 
 const styles = {
+  billSummaryDetailed: {
+
+  },
+  billProgressHeadline: {
+    fontSize: 22,
+    marginBottom: 20,
+    marginTop: 20,
+    textAlign: 'center'
+  },
+  billSummaryHeadline: {
+    fontSize: 22,
+    marginBottom: 20,
+    textAlign: 'center'
+  },
+  boldSpan: {
+    fontWeight: '600'
+  },
   container: {
     alignItems: 'center',
     backgroundColor: '#FFF',
@@ -16,19 +33,40 @@ const styles = {
   },
   dateIntroduced: {
     fontSize: standardLabelFontSize,
-    paddingBottom: standardLabelPaddingBottom
+    paddingBottom: standardLabelPaddingBottom,
+    textAlign: 'center'
   },
   id: {
     fontSize: 30,
-    paddingBottom: 20
+    paddingBottom: 20,
+    textAlign: 'center'
+  },
+  labelWrapper: {
+    marginBottom: 20
   },
   lastAction: {
     fontSize: standardLabelFontSize,
-    paddingBottom: standardLabelPaddingBottom
+    paddingBottom: 30,
+    textAlign: 'center'
+  },
+  readFullBillSummary: {
+    fontSize: standardLabelFontSize,
+    marginBottom: 20,
+    marginTop: 20,
+    textAlign: 'center'
+  },
+  scrollContainer: {
+    flex: 5
   },
   sponsor: {
     fontSize: standardLabelFontSize,
-    paddingBottom: standardLabelPaddingBottom
+    paddingBottom: standardLabelPaddingBottom,
+    textAlign: 'center'
+  },
+  status: {
+    fontSize: standardLabelFontSize,
+    paddingBottom: standardLabelPaddingBottom,
+    textAlign: 'center'
   },
   title: {
     fontSize: 22,
