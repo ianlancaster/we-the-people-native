@@ -1,10 +1,9 @@
-// @flow
-
 import React, { Component } from 'react'
-import { ScrollView, Image, BackAndroid } from 'react-native'
+import { ScrollView, Image, BackAndroid, Text, View } from 'react-native'
 import styles from './Styles/DrawerContentStyle'
 import { Images } from '../Themes'
 import DrawerButton from '../Components/DrawerButton'
+import Separator from '../Components/Separator'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 class DrawerContent extends Component {
@@ -33,49 +32,36 @@ class DrawerContent extends Component {
     NavigationActions.bills()
   }
 
+  handleClosestToBecomingLaw = () => {
+    this.toggleDrawer()
+    // need to fill this out
+  }
+
   handleDateIntroduced = () => {
     this.toggleDrawer()
     NavigationActions.billsSortByDateIntroduced()
   }
 
-  handlePressComponents = () => {
-    this.toggleDrawer()
-    NavigationActions.componentExamples()
-  }
-
-  handlePressUsage = () => {
-    this.toggleDrawer()
-    NavigationActions.usageExamples()
-  }
-
-  handlePressAPI = () => {
-    this.toggleDrawer()
-    NavigationActions.apiTesting()
-  }
-
-  handlePressTheme = () => {
-    this.toggleDrawer()
-    NavigationActions.theme()
-  }
-
-  handlePressDevice = () => {
-    this.toggleDrawer()
-    NavigationActions.deviceInfo()
-  }
-
   render () {
     return (
       <ScrollView style={styles.container}>
-        <Image source={Images.logo} style={styles.logo} />
-        <DrawerButton text='Bills' onPress={this.handleBills} />
-        <DrawerButton text='Show Only Active Bills' onPress={this.handleActiveBills} />
-        <DrawerButton text='Sort Bills by Date Introduced' onPress={this.handleDateIntroduced} />
-
-        <DrawerButton text='Component Examples' onPress={this.handlePressComponents} />
-        <DrawerButton text='Usage Examples' onPress={this.handlePressUsage} />
-        <DrawerButton text='API Testing' onPress={this.handlePressAPI} />
-        <DrawerButton text='Themes' onPress={this.handlePressTheme} />
-        <DrawerButton text='Device Info' onPress={this.handlePressDevice} />
+        <Text style={styles.sectionTitle}>Main:</Text>
+        <DrawerButton
+          text='See All Bills' onPress={this.handleBills}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='See Only Active Bills' onPress={this.handleActiveBills}
+        />
+        <Text style={styles.sectionTitle}>Sort By:</Text>
+        <DrawerButton
+          text='Closest to Becoming Law' onPress={this.handleClosestToBecomingLaw}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Date Introduced' onPress={this.handleDateIntroduced}
+        />
+        <Text style={styles.sectionTitle}>Filter By Issue:</Text>
       </ScrollView>
     )
   }
