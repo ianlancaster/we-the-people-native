@@ -22,7 +22,7 @@
     "react/prefer-stateless-function": "off",
     "react/require-default-props": "off",
     "no-return-assign": "off",
-    "react/prop-types": "error",
+    "react/prop-types": "off",
     "no-fallthrough": "off"
   },
   "globals": {

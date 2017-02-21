@@ -29,15 +29,6 @@ export default class Landing extends React.Component {
           title='I am a button.'
           onPress={this.test}
         />
-        <ScrollView>
-          <BillStatus />
-          <BillStatus />
-          <BillStatus />
-          <BillStatus />
-          <BillStatus />
-          <BillStatus />
-          <BillStatus />
-        </ScrollView>
       </View>
     )
   }

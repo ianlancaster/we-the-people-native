@@ -58,6 +58,25 @@ const returnProgress = (h, chamber) => {
     Secondary = 'House'
   }
 
+  // const chartColors = {
+  //   PC: grey,
+  //   lS1: grey,
+  //   PF: grey,
+  //   lS2: grey,
+  //   SC: grey,
+  //   lS3: grey,
+  //   SF: grey,
+  //   lS4: grey,
+  //   C: grey,
+  //   secondaryLeft: grey,
+  //   primaryLeft: grey,
+  //   secondary: grey,
+  //   primary: grey,
+  //   secondaryRight: grey,
+  //   primaryRight: grey,
+  //   P: grey
+  // }
+
   // ------------------------------------
   // Progress Structure
   // ------------------------------------
