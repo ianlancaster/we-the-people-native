@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, Button, ScrollView } from 'react-native'
 import styles from './Styles/BillDetailStyle'
+import Separator from '../Components/Separator'
 import prettifyDate from '../Helpers/DatePrettifier'
 
 export default class BillDetail extends React.Component {
@@ -58,7 +59,7 @@ export default class BillDetail extends React.Component {
             <Text style={styles.lastAction}>
               <Text style={styles.boldSpan}>Last Action:</Text> {prettifyDate(lastAction)}
             </Text>
-            <View style={styles.separator} />
+            <Separator backgroundColor={'#dddddd'} />
           </View>
           <Text style={styles.billSummaryHeadline}>
             Brief Bill Summary
@@ -69,7 +70,7 @@ export default class BillDetail extends React.Component {
           <Text style={styles.readFullBillSummary}>
             Read Full Bill Summary &raquo;
           </Text>
-          <View style={styles.separator} />
+          <Separator backgroundColor={'#dddddd'} />
           <Text style={styles.billProgressHeadline}>
             Bill Progress
           </Text>

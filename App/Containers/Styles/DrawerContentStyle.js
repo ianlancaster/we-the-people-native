@@ -12,9 +12,5 @@ export default {
     color: '#FFF',
     fontSize: 20,
     padding: 10
-  },
-  separator: {
-    height: 1,
-    backgroundColor: '#000'
   }
 }

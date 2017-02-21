@@ -58,10 +58,6 @@ const styles = {
   scrollContainer: {
     flex: 5
   },
-  separator: {
-    height: 1,
-    backgroundColor: '#dddddd'
-  },
   sponsor: {
     fontSize: standardLabelFontSize,
     paddingBottom: standardLabelPaddingBottom,

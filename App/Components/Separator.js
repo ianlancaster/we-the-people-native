@@ -11,5 +11,5 @@ const Separator = ({backgroundColor}) => {
 export default Separator
 
 Separator.propTypes = {
-  backgroundColor: React.PropTypes.string
+  backgroundColor: React.PropTypes.string.isRequired
 }

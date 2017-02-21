@@ -49,7 +49,7 @@ class DrawerContent extends Component {
         <DrawerButton
           text='See All Bills' onPress={this.handleBills}
         />
-        <Separator backgroundColor={'blue'} />
+        <Separator backgroundColor={'#000'} />
         <DrawerButton
           text='See Only Active Bills' onPress={this.handleActiveBills}
         />
@@ -57,7 +57,7 @@ class DrawerContent extends Component {
         <DrawerButton
           text='Closest to Becoming Law' onPress={this.handleClosestToBecomingLaw}
         />
-        <View style={styles.separator} />
+        <Separator backgroundColor={'#000'} />
         <DrawerButton
           text='Date Introduced' onPress={this.handleDateIntroduced}
         />
