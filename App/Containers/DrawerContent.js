@@ -31,6 +31,11 @@ class DrawerContent extends Component {
     NavigationActions.bills()
   }
 
+  handleClosestToBecomingLaw = () => {
+    this.toggleDrawer()
+    // need to fill this out
+  }
+
   handleDateIntroduced = () => {
     this.toggleDrawer()
     NavigationActions.billsSortByDateIntroduced()
@@ -47,8 +52,11 @@ class DrawerContent extends Component {
         <DrawerButton
           text='See Only Active Bills' onPress={this.handleActiveBills}
         />
-        <View style={styles.separator} />
         <Text style={styles.sectionTitle}>Sort By:</Text>
+        <DrawerButton
+          text='Closest to Becoming Law' onPress={this.handleClosestToBecomingLaw}
+        />
+        <View style={styles.separator} />
         <DrawerButton
           text='Date Introduced' onPress={this.handleDateIntroduced}
         />
