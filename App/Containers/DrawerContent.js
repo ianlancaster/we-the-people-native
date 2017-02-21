@@ -3,6 +3,7 @@ import { ScrollView, Image, BackAndroid, Text, View } from 'react-native'
 import styles from './Styles/DrawerContentStyle'
 import { Images } from '../Themes'
 import DrawerButton from '../Components/DrawerButton'
+import Separator from '../Components/Separator'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 class DrawerContent extends Component {
@@ -48,7 +49,7 @@ class DrawerContent extends Component {
         <DrawerButton
           text='See All Bills' onPress={this.handleBills}
         />
-        <View style={styles.separator} />
+        <Separator backgroundColor={'blue'} />
         <DrawerButton
           text='See Only Active Bills' onPress={this.handleActiveBills}
         />
