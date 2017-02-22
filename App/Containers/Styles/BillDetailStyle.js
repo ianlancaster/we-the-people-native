@@ -3,7 +3,7 @@ const standardLabelPaddingBottom = 10
 
 const styles = {
   billSummaryDetailed: {
-
+    textAlign: 'center'
   },
   billProgressHeadline: {
     fontSize: 22,
