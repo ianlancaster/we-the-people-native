@@ -5,10 +5,7 @@ import APIBills from '../Services/APIBills'
 import FJSON from 'format-json'
 import FullButton from '../Components/FullButton'
 import BillCardInList from './BillCardInList'
-import BillDetail from './BillDetail'
 import APIResult from './APIResult'
-// import { Images } from '../Themes'
-// import DrawerButton from '../Components/DrawerButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 const endpoints = [
@@ -21,19 +18,9 @@ export default class Bills extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      list: true,
       bills: null,
       showOnlyActive: this.props.showOnlyActive || false,
-      sortByDateIntroduced: this.props.sortByDateIntroduced || false,
-      id: '',
-      title: '',
-      dateIntroduced: '',
-      lastAction: '',
-      chamber: '',
-      sponsor: '',
-      status: '',
-      progress: {},
-      detailedStatus: ''
+      sortByDateIntroduced: this.props.sortByDateIntroduced || false
     }
 
     this.api = APIBills.create()
@@ -51,15 +38,14 @@ export default class Bills extends React.Component {
     this.setState({ showOnlyActive: true })
   }
 
-  showDetailedBill = (id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus) => {
-    this.setState({
+  showDetailedBill = (id, billTitle, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus) => {
+    NavigationActions.billDetail({
       id,
-      title,
+      billTitle,
       dateIntroduced,
       lastAction,
       chamber,
       sponsor,
-      list: false,
       status,
       progress,
       detailedStatus
@@ -103,44 +89,31 @@ export default class Bills extends React.Component {
 
   render () {
     const { showOnlyActive, sortByDateIntroduced, title, id, dateIntroduced, lastAction, chamber, sponsor, list } = this.state
-    if (list) {
-      return (
-        <View style={styles.container}>
-          <ScrollView style={styles.scrollContainer} ref={() => 'container'}>
-            {showOnlyActive ? <Text
-              style={styles.text}
+    return (
+      <View style={styles.container}>
+        <ScrollView style={styles.scrollContainer} ref={() => 'container'}>
+          {showOnlyActive ? <Text
+            style={styles.text}
+          >
+            Active Bills:
+          </Text> : <Text
+            style={styles.text}
+          >
+            All Bills:
+          </Text>}
+          {showOnlyActive ? <TouchableOpacity
+            onPress={this.showAllBills}
             >
-              Active Bills:
-            </Text> : <Text
-              style={styles.text}
+            <Text style={styles.showHideBills}>Show All Bills</Text>
+          </TouchableOpacity> : <TouchableOpacity
+            onPress={this.showOnlyActiveBills}
             >
-              All Bills:
-            </Text>}
-            {showOnlyActive ? <TouchableOpacity
-              onPress={this.showAllBills}
-              >
-              <Text style={styles.showHideBills}>Show All Bills</Text>
-            </TouchableOpacity> : <TouchableOpacity
-              onPress={this.showOnlyActiveBills}
-              >
-              <Text style={styles.showHideBills}>Show Only Active Bills</Text>
-            </TouchableOpacity>}
-            {this.billData ? this.billData : <Text>Loading....</Text>}
-          </ScrollView>
-        </View>
-      )
-    } else {
-      return (
-        <BillDetail
-          id={id}
-          title={title}
-          dateIntroduced={dateIntroduced}
-          lastAction={lastAction}
-          chamber={chamber}
-          sponsor={sponsor}
-        />
-      )
-    }
+            <Text style={styles.showHideBills}>Show Only Active Bills</Text>
+          </TouchableOpacity>}
+          {this.billData ? this.billData : <Text>Loading....</Text>}
+        </ScrollView>
+      </View>
+    )
   }
 }
 

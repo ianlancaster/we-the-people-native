@@ -15,26 +15,47 @@ export default class BillCardInList extends React.Component {
       dateIntroduced: this.props.introduced_on,
       lastAction: this.props.last_action_at,
       chamber: this.props.chamber,
-      sponsor: `${this.props.sponsor.title}. ${this.props.sponsor.first_name} ${this.props.sponsor.last_name}` || 'Not Available.'
+      sponsor: `${this.props.sponsor.title}. ${this.props.sponsor.first_name} ${this.props.sponsor.last_name}` || 'Not Available.',
+      status: this.props.status,
+      progress: this.props.progress,
+      detailedStatus: this.props.detailedStatus
     }
+  }
+
+  sendDataUpToBills (id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus) {
+    this.props.onChange(
+      id,
+      title,
+      dateIntroduced,
+      lastAction,
+      chamber,
+      sponsor,
+      status,
+      progress,
+      detailedStatus
+    )
   }
 
   render () {
     const { showDetailedBill } = this.props
-    const { id, title, dateIntroduced, lastAction, chamber, sponsor } = this.state
+    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus } = this.state
     const truncTitle = `${title.split(' ').slice(0, 10).join(' ')}...`
 
     return (
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() => {
-            this.props.onChange(
-            id,
-            title,
-            dateIntroduced,
-            lastAction,
-            chamber,
-            sponsor)
+            this.sendDataUpToBills(
+              id,
+              title,
+              dateIntroduced,
+              lastAction,
+              chamber,
+              sponsor,
+              status,
+              progress,
+              detailedStatus
+            )
           }}
           >
           <Text style={styles.title}>
@@ -87,13 +108,17 @@ export default class BillCardInList extends React.Component {
           />
           <TouchableOpacity
             onPress={() => {
-              this.props.onChange(
-              id,
-              title,
-              dateIntroduced,
-              lastAction,
-              chamber,
-              sponsor)
+              this.sendDataUpToBills(
+                id,
+                title,
+                dateIntroduced,
+                lastAction,
+                chamber,
+                sponsor,
+                status,
+                progress,
+                detailedStatus
+              )
             }}
           >
             <Text
@@ -116,5 +141,8 @@ BillCardInList.propTypes = {
   chamber: React.PropTypes.string,
   onChange: React.PropTypes.func,
   showDetailedBill: React.PropTypes.func,
-  sponsor: React.PropTypes.object
+  sponsor: React.PropTypes.object,
+  status: React.PropTypes.string,
+  progress: React.PropTypes.object,
+  detailedStatus: React.PropTypes.string
 }
