@@ -9,11 +9,14 @@ export default class BillDetail extends React.Component {
     super(props)
     this.state = {
       id: this.props.id,
-      title: this.props.title,
+      title: this.props.billTitle,
       dateIntroduced: this.props.dateIntroduced,
       lastAction: this.props.lastAction,
       chamber: this.props.chamber,
       sponsor: this.props.sponsor,
+      status: this.props.status,
+      progress: this.props.progress,
+      detailedStatus: this.props.detailedStatus,
       isThereATitleButton: false
     }
   }
@@ -30,7 +33,7 @@ export default class BillDetail extends React.Component {
   }
 
   render () {
-    const { id, title, dateIntroduced, lastAction, chamber, sponsor, isThereATitleButton } = this.state
+    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, isThereATitleButton } = this.state
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollContainer}>
@@ -54,8 +57,8 @@ export default class BillDetail extends React.Component {
           </View>
           <View style={styles.labelWrapper}>
             <Text style={styles.status}>
-              <Text style={styles.boldSpan}>Status:</Text> (Status Goes Here)
-              </Text>
+              <Text style={styles.boldSpan}>Status:</Text> {status}
+            </Text>
             <Text style={styles.lastAction}>
               <Text style={styles.boldSpan}>Last Action:</Text> {prettifyDate(lastAction)}
             </Text>
@@ -74,7 +77,9 @@ export default class BillDetail extends React.Component {
           <Text style={styles.billProgressHeadline}>
             Bill Progress
           </Text>
-          <Text style={{textAlign: 'center', marginTop: 10, marginBottom: 10, fontStyle: 'italic'}}>(Bill Status Info Goes Here)</Text>
+          <Text style={styles.detailedStatus}>
+            {detailedStatus}
+          </Text>
         </ScrollView>
       </View>
     )
@@ -87,5 +92,9 @@ BillDetail.propTypes = {
   dateIntroduced: React.PropTypes.string,
   lastAction: React.PropTypes.string,
   chamber: React.PropTypes.string,
-  sponsor: React.PropTypes.string
+  sponsor: React.PropTypes.string,
+  billTitle: React.PropTypes.string,
+  status: React.PropTypes.string,
+  progress: React.PropTypes.object,
+  detailedStatus: React.PropTypes.string
 }
