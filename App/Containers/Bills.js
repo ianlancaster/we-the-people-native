@@ -13,7 +13,8 @@ export default class Bills extends React.Component {
       sortByDateIntroduced: this.props.sortByDateIntroduced || false,
       showOnlyEnacted: this.props.showOnlyEnacted || false,
       showOnlyFailed: this.props.showOnlyFailed || false,
-      showOnlyTabled: this.props.showOnlyTabled || false
+      showOnlyTabled: this.props.showOnlyTabled || false,
+      sortByClosestToBecomingLaw: this.props.sortByClosestToBecomingLaw || false
     }
   }
 
@@ -48,7 +49,12 @@ export default class Bills extends React.Component {
     }
     if (this.state.sortByDateIntroduced) {
       bills = bills.sort((a, b) => {
-        return Date.parse(a.introduced_on) - Date.parse(b.introduced_on)
+        return Date.parse(b.introduced_on) - Date.parse(a.introduced_on)
+      })
+    }
+    if (this.state.sortByClosestToBecomingLaw) {
+      bills = bills.sort((a, b) => {
+        return b.progress.index - a.progress.index
       })
     }
     this.setState({ bills: bills.map((bill) => {
@@ -119,5 +125,6 @@ Bills.propTypes = {
   sortByDateIntroduced: React.PropTypes.bool,
   showOnlyEnacted: React.PropTypes.bool,
   showOnlyFailed: React.PropTypes.bool,
-  showOnlyTabled: React.PropTypes.bool
+  showOnlyTabled: React.PropTypes.bool,
+  sortByClosestToBecomingLaw: React.PropTypes.bool
 }

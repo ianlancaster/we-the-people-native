@@ -34,7 +34,7 @@ class DrawerContent extends Component {
 
   handleClosestToBecomingLaw = () => {
     this.toggleDrawer()
-    // need to fill this out
+    NavigationActions.billsSortByClosestToBecomingLaw()
   }
 
   handleDateIntroduced = () => {
@@ -70,7 +70,7 @@ class DrawerContent extends Component {
         />
         <Separator backgroundColor={'#000'} />
         <DrawerButton
-          text='Date Introduced' onPress={this.handleDateIntroduced}
+          text='Date Introduced (Most Recent First)' onPress={this.handleDateIntroduced}
         />
         <Separator backgroundColor={'#000'} />
         <DrawerButton
