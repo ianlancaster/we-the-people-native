@@ -94,9 +94,9 @@ class DrawerContent extends Component {
           text='Status: Tabled' onPress={this.handleTabledBills}
         />
         <Text style={styles.sectionTitle}>Filter By Issue:</Text>
-          <DrawerButton
-            text='Education' onPress={this.handleEducation}
-          />
+        <DrawerButton
+          text='Education' onPress={this.handleEducation}
+        />
       </ScrollView>
     )
   }
