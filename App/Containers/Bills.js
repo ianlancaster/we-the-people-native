@@ -108,7 +108,7 @@ export default class Bills extends React.Component {
             </Text> : <Text
               style={styles.text}
             >
-            All Bills:
+            Bills:
           </Text>}
             {showOnlyActive ? <TouchableOpacity
               onPress={this.showAllBills}
@@ -144,5 +144,7 @@ Bills.propTypes = {
   showOnlyFailed: React.PropTypes.bool,
   showOnlyTabled: React.PropTypes.bool,
   sortByClosestToBecomingLaw: React.PropTypes.bool,
-  status: React.PropTypes.string
+  status: React.PropTypes.string,
+  sortByTopic: React.PropTypes.bool,
+  topic: React.PropTypes.string
 }

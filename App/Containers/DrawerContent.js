@@ -52,9 +52,24 @@ class DrawerContent extends Component {
     NavigationActions.billsEnacted({status: 'enacted'})
   }
 
+  handleEnergy = () => {
+    this.toggleDrawer()
+    NavigationActions.billsEnergy()
+  }
+
+  handleEnvironment = () => {
+    this.toggleDrawer()
+    NavigationActions.billsEnvironment()
+  }
+
   handleFailedBills = () => {
     this.toggleDrawer()
     NavigationActions.billsFailed({status: 'failed'})
+  }
+
+  handleHealthCare = () => {
+    this.toggleDrawer()
+    NavigationActions.billsHealthCare()
   }
 
   handleTabledBills = () => {
@@ -97,6 +112,19 @@ class DrawerContent extends Component {
         <DrawerButton
           text='Education' onPress={this.handleEducation}
         />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Energy' onPress={this.handleEnergy}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Environment' onPress={this.handleEnvironment}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Health Care' onPress={this.handleHealthCare}
+        />
+        <Separator backgroundColor={'#000'} />
       </ScrollView>
     )
   }
