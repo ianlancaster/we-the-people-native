@@ -2,7 +2,6 @@ const express = require('express')
 const fetch = require('isomorphic-fetch')
 const router = express.Router()
 const cheerio = require('cheerio')
-const request = require('request')
 
 router.get('/api/bill/', (req, res) => {
   fetch(req.headers.url)
