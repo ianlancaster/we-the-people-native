@@ -24,7 +24,7 @@ class DrawerContent extends Component {
 
   handleActiveBills = () => {
     this.toggleDrawer()
-    NavigationActions.billsActive()
+    NavigationActions.billsActive({status: 'active'})
   }
 
   handleBills = () => {
@@ -44,17 +44,17 @@ class DrawerContent extends Component {
 
   handleEnactedBills = () => {
     this.toggleDrawer()
-    NavigationActions.billsEnacted()
+    NavigationActions.billsEnacted({status: 'enacted'})
   }
 
   handleFailedBills = () => {
     this.toggleDrawer()
-    NavigationActions.billsFailed()
+    NavigationActions.billsFailed({status: 'failed'})
   }
 
   handleTabledBills = () => {
     this.toggleDrawer()
-    NavigationActions.billsTabled()
+    NavigationActions.billsTabled({status: 'tabled'})
   }
 
   render () {

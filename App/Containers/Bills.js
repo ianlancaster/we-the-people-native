@@ -14,7 +14,8 @@ export default class Bills extends React.Component {
       showOnlyEnacted: this.props.showOnlyEnacted || false,
       showOnlyFailed: this.props.showOnlyFailed || false,
       showOnlyTabled: this.props.showOnlyTabled || false,
-      sortByClosestToBecomingLaw: this.props.sortByClosestToBecomingLaw || false
+      sortByClosestToBecomingLaw: this.props.sortByClosestToBecomingLaw || false,
+      status: this.props.status || ''
     }
   }
 
@@ -31,25 +32,8 @@ export default class Bills extends React.Component {
   }
 
   mapBills (bills) {
-    if (this.state.showOnlyActive) {
-      bills = bills.filter((bill) => {
-        return bill.status === 'active'
-      })
-    }
-    if (this.state.showOnlyEnacted) {
-      bills = bills.filter((bill) => {
-        return bill.status === 'enacted'
-      })
-    }
-    if (this.state.showOnlyFailed) {
-      bills = bills.filter((bill) => {
-        return bill.status === 'failed'
-      })
-    }
-    if (this.state.showOnlyTabled) {
-      bills = bills.filter((bill) => {
-        return bill.status === 'tabled'
-      })
+    if (this.state.showOnlyActive || this.state.showOnlyEnacted || this.state.showOnlyTabled || this.state.showOnlyFailed) {
+      bills = this.filterBillsByStatus(bills, this.state.status)
     }
     if (this.state.sortByDateIntroduced) {
       bills = bills.sort((a, b) => {
@@ -68,6 +52,12 @@ export default class Bills extends React.Component {
         onChange={this.showDetailedBill}
         />
     })
+    })
+  }
+
+  filterBillsByStatus (bills, status) {
+    return bills.filter((bill) => {
+      return bill.status === status
     })
   }
 
@@ -142,5 +132,6 @@ Bills.propTypes = {
   showOnlyEnacted: React.PropTypes.bool,
   showOnlyFailed: React.PropTypes.bool,
   showOnlyTabled: React.PropTypes.bool,
-  sortByClosestToBecomingLaw: React.PropTypes.bool
+  sortByClosestToBecomingLaw: React.PropTypes.bool,
+  status: React.PropTypes.string
 }
