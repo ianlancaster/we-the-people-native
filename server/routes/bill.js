@@ -1,0 +1,25 @@
+const express = require('express')
+const fetch = require('isomorphic-fetch')
+const router = express.Router()
+const cheerio = require('cheerio')
+const request = require('request')
+
+router.get('/api/bill/', (req, res) => {
+  fetch(req.headers.url)
+    .then(res => res.text())
+    .then(html => cheerio.load(html))
+    .then($ => {
+      let summary = ''
+      $('#bill-summary > p').each((i, pTag) => {
+        summary += $(pTag).text()
+      })
+      return summary
+    })
+    .then(summary => res.json(summary))
+    .catch(err => {
+      console.log(err)
+      res.json(err)
+    })
+})
+
+module.exports = router
