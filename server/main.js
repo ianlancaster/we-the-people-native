@@ -8,6 +8,7 @@ app.use(function (req, res, next) {
 })
 
 app.use(require('./routes/bills'))
+app.use(require('./routes/bill'))
 
 const server = app.listen(3000, () => { // eslint-disable-line
   console.log('express server listening on port 3000')
