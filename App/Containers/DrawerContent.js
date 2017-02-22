@@ -42,16 +42,27 @@ class DrawerContent extends Component {
     NavigationActions.billsSortByDateIntroduced()
   }
 
+  handleEnactedBills = () => {
+    this.toggleDrawer()
+    NavigationActions.billsEnacted()
+  }
+
+  handleFailedBills = () => {
+    this.toggleDrawer()
+    NavigationActions.billsFailed()
+  }
+
+  handleTabledBills = () => {
+    this.toggleDrawer()
+    NavigationActions.billsTabled()
+  }
+
   render () {
     return (
       <ScrollView style={styles.container}>
         <Text style={styles.sectionTitle}>Main:</Text>
         <DrawerButton
           text='See All Bills' onPress={this.handleBills}
-        />
-        <Separator backgroundColor={'#000'} />
-        <DrawerButton
-          text='See Only Active Bills' onPress={this.handleActiveBills}
         />
         <Text style={styles.sectionTitle}>Sort By:</Text>
         <DrawerButton
@@ -61,7 +72,24 @@ class DrawerContent extends Component {
         <DrawerButton
           text='Date Introduced' onPress={this.handleDateIntroduced}
         />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Status: Active' onPress={this.handleActiveBills}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Status: Enacted' onPress={this.handleEnactedBills}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Status: Failed' onPress={this.handleFailedBills}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Status: Tabled' onPress={this.handleTabledBills}
+        />
         <Text style={styles.sectionTitle}>Filter By Issue:</Text>
+        <Separator backgroundColor={'#000'} />
       </ScrollView>
     )
   }

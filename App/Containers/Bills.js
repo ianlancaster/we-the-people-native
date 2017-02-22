@@ -10,7 +10,10 @@ export default class Bills extends React.Component {
     this.state = {
       bills: null,
       showOnlyActive: this.props.showOnlyActive || false,
-      sortByDateIntroduced: this.props.sortByDateIntroduced || false
+      sortByDateIntroduced: this.props.sortByDateIntroduced || false,
+      showOnlyEnacted: this.props.showOnlyEnacted || false,
+      showOnlyFailed: this.props.showOnlyFailed || false,
+      showOnlyTabled: this.props.showOnlyTabled || false
     }
   }
 
@@ -26,6 +29,21 @@ export default class Bills extends React.Component {
     if (this.state.showOnlyActive) {
       bills = bills.filter((bill) => {
         return bill.status === 'active'
+      })
+    }
+    if (this.state.showOnlyEnacted) {
+      bills = bills.filter((bill) => {
+        return bill.status === 'enacted'
+      })
+    }
+    if (this.state.showOnlyFailed) {
+      bills = bills.filter((bill) => {
+        return bill.status === 'failed'
+      })
+    }
+    if (this.state.showOnlyTabled) {
+      bills = bills.filter((bill) => {
+        return bill.status === 'tabled'
       })
     }
     if (this.state.sortByDateIntroduced) {
@@ -98,5 +116,8 @@ export default class Bills extends React.Component {
 
 Bills.propTypes = {
   showOnlyActive: React.PropTypes.bool,
-  sortByDateIntroduced: React.PropTypes.bool
+  sortByDateIntroduced: React.PropTypes.bool,
+  showOnlyEnacted: React.PropTypes.bool,
+  showOnlyFailed: React.PropTypes.bool,
+  showOnlyTabled: React.PropTypes.bool
 }
