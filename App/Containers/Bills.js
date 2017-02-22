@@ -38,7 +38,7 @@ export default class Bills extends React.Component {
     this.setState({ showOnlyActive: true })
   }
 
-  showDetailedBill = (id, billTitle, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus) => {
+  showDetailedBill = (id, billTitle, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, urls) => {
     NavigationActions.billDetail({
       id,
       billTitle,
@@ -48,7 +48,8 @@ export default class Bills extends React.Component {
       sponsor,
       status,
       progress,
-      detailedStatus
+      detailedStatus,
+      urls
     })
   }
 

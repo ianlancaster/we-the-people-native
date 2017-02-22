@@ -3,6 +3,7 @@ import { Text, View, Button, ScrollView } from 'react-native'
 import styles from './Styles/BillDetailStyle'
 import Separator from '../Components/Separator'
 import prettifyDate from '../Helpers/DatePrettifier'
+import BillStatusSvg from '../Components/BillStatus'
 
 export default class BillDetail extends React.Component {
   constructor (props) {
@@ -17,7 +18,9 @@ export default class BillDetail extends React.Component {
       status: this.props.status,
       progress: this.props.progress,
       detailedStatus: this.props.detailedStatus,
-      isThereATitleButton: false
+      isThereATitleButton: false,
+      urls: this.props.urls,
+      summary: 'loading'
     }
   }
 
@@ -26,6 +29,11 @@ export default class BillDetail extends React.Component {
       this.setState({ title: `${this.state.title.split(' ').slice(0, 50).join(' ')}...` })
       this.setState({ isThereATitleButton: true })
     }
+
+    fetch('http://localhost:3000/api/bill', {
+      headers: { url: this.state.urls.congress }
+    }).then(res => res.json())
+      .then(summary => this.setState({ summary }))
   }
 
   showFullTitle = () => {
@@ -33,7 +41,7 @@ export default class BillDetail extends React.Component {
   }
 
   render () {
-    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, isThereATitleButton } = this.state
+    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, isThereATitleButton, summary } = this.state
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollContainer}>
@@ -59,8 +67,14 @@ export default class BillDetail extends React.Component {
             <Text style={styles.status}>
               <Text style={styles.boldSpan}>Status:</Text> {status}
             </Text>
+            <Text style={styles.status}>
+              <Text style={styles.boldSpan}>Progress:</Text> {progress.text}
+            </Text>
+            <Text style={styles.status}>
+              <Text style={styles.boldSpan}>Next Action:</Text> {detailedStatus}
+            </Text>
             <Text style={styles.lastAction}>
-              <Text style={styles.boldSpan}>Last Action:</Text> {prettifyDate(lastAction)}
+              <Text style={styles.boldSpan}>Last Action On:</Text> {prettifyDate(lastAction)}
             </Text>
             <Separator backgroundColor={'#dddddd'} />
           </View>
@@ -68,7 +82,7 @@ export default class BillDetail extends React.Component {
             Brief Bill Summary
           </Text>
           <Text style={styles.billSummaryDetailed}>
-            lone-wolf-g modulo to-posse-or-not-to-posse slack-attack dale's-pale-ale mod-1-beards mod-1-beards mod-1-beards mod-1-beards command-line command-line command-line merge-conflicts k's-horse daledalf champus champus bicycles epically-bad-gusto-coffee epically-bad-gusto-coffee chaz-isms chaz-isms carne-asada game-time yoga-instructor NaN kansas-raptor gusto retro retro gabitron
+            {summary}
           </Text>
           <Text style={styles.readFullBillSummary}>
             Read Full Bill Summary &raquo;
@@ -77,9 +91,11 @@ export default class BillDetail extends React.Component {
           <Text style={styles.billProgressHeadline}>
             Bill Progress
           </Text>
-          <Text style={styles.detailedStatus}>
-            {detailedStatus}
-          </Text>
+          <BillStatusSvg
+            status={this.state.status}
+            progress={this.state.progress}
+            chamber={this.state.chamber}
+          />
         </ScrollView>
       </View>
     )
@@ -96,5 +112,6 @@ BillDetail.propTypes = {
   billTitle: React.PropTypes.string,
   status: React.PropTypes.string,
   progress: React.PropTypes.object,
-  detailedStatus: React.PropTypes.string
+  detailedStatus: React.PropTypes.string,
+  urls: React.PropTypes.object
 }

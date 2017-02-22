@@ -18,11 +18,12 @@ export default class BillCardInList extends React.Component {
       sponsor: `${this.props.sponsor.title}. ${this.props.sponsor.first_name} ${this.props.sponsor.last_name}` || 'Not Available.',
       status: this.props.status,
       progress: this.props.progress,
-      detailedStatus: this.props.detailedStatus
+      detailedStatus: this.props.detailedStatus,
+      urls: this.props.urls
     }
   }
 
-  sendDataUpToBills (id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus) {
+  sendDataUpToBills (id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, urls) {
     this.props.onChange(
       id,
       title,
@@ -32,13 +33,14 @@ export default class BillCardInList extends React.Component {
       sponsor,
       status,
       progress,
-      detailedStatus
+      detailedStatus,
+      urls
     )
   }
 
   render () {
     const { showDetailedBill } = this.props
-    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus } = this.state
+    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, urls } = this.state
     const truncTitle = `${title.split(' ').slice(0, 10).join(' ')}...`
 
     return (
@@ -54,7 +56,8 @@ export default class BillCardInList extends React.Component {
               sponsor,
               status,
               progress,
-              detailedStatus
+              detailedStatus,
+              urls
             )
           }}
           >
@@ -95,11 +98,7 @@ export default class BillCardInList extends React.Component {
           </Text>
           {this.props.detailedStatus}
         </Text>
-        <BillStatusSvg
-          status={this.props.status}
-          progress={this.props.progress}
-          chamber={this.props.chamber}
-        />
+        <BillStatusSvg {...this.state} />
         <Separator backgroundColor={'#dddddd'} />
         <View style={styles.lowerContainer}>
           <Image
@@ -117,7 +116,8 @@ export default class BillCardInList extends React.Component {
                 sponsor,
                 status,
                 progress,
-                detailedStatus
+                detailedStatus,
+                urls
               )
             }}
           >
@@ -144,5 +144,6 @@ BillCardInList.propTypes = {
   sponsor: React.PropTypes.object,
   status: React.PropTypes.string,
   progress: React.PropTypes.object,
-  detailedStatus: React.PropTypes.string
+  detailedStatus: React.PropTypes.string,
+  urls: React.PropTypes.object
 }

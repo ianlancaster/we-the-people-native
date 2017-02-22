@@ -15,7 +15,12 @@ router.get('/api/bill/', (req, res) => {
       })
       return summary
     })
-    .then(summary => res.json(summary))
+    .then(summary => {
+      if (summary) {
+        res.json(summary)
+      }
+      res.json('A summary is in progress.')
+    })
     .catch(err => {
       console.log(err)
       res.json(err)
