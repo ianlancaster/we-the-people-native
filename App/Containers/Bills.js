@@ -125,7 +125,11 @@ export default class Bills extends React.Component {
     } else {
       return (
         <View style={styles.container}>
-          <Text>No bills match this search. Please try another search.</Text>
+          <Text style={styles.failureMessage}>No bills match this search. Please try another search.</Text>
+          <Button
+            title='See All Bills'
+            onPress={NavigationActions.bills}
+          />
         </View>
       )
     }

@@ -5,6 +5,11 @@ const styles = {
     alignItems: 'center',
     backgroundColor: '#D8D8D8'
   },
+  failureMessage: {
+    fontSize: 30,
+    margin: 20,
+    textAlign: 'center'
+  },
   scrollContainer: {
     flex: 5
   },
