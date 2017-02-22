@@ -36,6 +36,9 @@ const styles = {
     paddingBottom: standardLabelPaddingBottom,
     textAlign: 'center'
   },
+  detailedStatus: {
+
+  },
   id: {
     fontSize: 30,
     paddingBottom: 20,

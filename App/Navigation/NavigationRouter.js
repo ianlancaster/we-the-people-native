@@ -46,7 +46,7 @@ class NavigationRouter extends Component {
             <Scene key='header' component={Header} title='Header' />
             <Scene key='bill-card-in-list' component={BillCardInList} title='BillCardInList' />
             <Scene key='nav-side-menu' component={NavSideMenu} title='NavSideMenu' />
-            <Scene key='billDetail' component={BillDetail} title='Bill Detail' />
+            <Scene key='billDetail' component={BillDetail} title='Bill Detail' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
           </Scene>
         </Scene>
         <Scene key='footer' component={Footer} title='Footer' />

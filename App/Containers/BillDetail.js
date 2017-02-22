@@ -77,7 +77,9 @@ export default class BillDetail extends React.Component {
           <Text style={styles.billProgressHeadline}>
             Bill Progress
           </Text>
-          <Text style={{textAlign: 'center', marginTop: 10, marginBottom: 10, fontStyle: 'italic'}}>(Bill Status Info Goes Here)</Text>
+          <Text style={styles.detailedStatus}>
+            {detailedStatus}
+          </Text>
         </ScrollView>
       </View>
     )
@@ -90,5 +92,9 @@ BillDetail.propTypes = {
   dateIntroduced: React.PropTypes.string,
   lastAction: React.PropTypes.string,
   chamber: React.PropTypes.string,
-  sponsor: React.PropTypes.string
+  sponsor: React.PropTypes.string,
+  billTitle: React.PropTypes.string,
+  status: React.PropTypes.string,
+  progress: React.PropTypes.string,
+  detailedStatus: React.PropTypes.string
 }
