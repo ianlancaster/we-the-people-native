@@ -17,7 +17,9 @@ export default class BillDetail extends React.Component {
       status: this.props.status,
       progress: this.props.progress,
       detailedStatus: this.props.detailedStatus,
-      isThereATitleButton: false
+      isThereATitleButton: false,
+      urls: this.props.urls,
+      summary: 'loading'
     }
   }
 
@@ -26,6 +28,11 @@ export default class BillDetail extends React.Component {
       this.setState({ title: `${this.state.title.split(' ').slice(0, 50).join(' ')}...` })
       this.setState({ isThereATitleButton: true })
     }
+
+    fetch('http://localhost:3000/api/bill', {
+      headers: { url: this.state.urls.congress }
+    }).then(res => res.json())
+      .then(summary => this.setState({ summary }))
   }
 
   showFullTitle = () => {
@@ -33,7 +40,7 @@ export default class BillDetail extends React.Component {
   }
 
   render () {
-    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, isThereATitleButton } = this.state
+    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, isThereATitleButton, summary } = this.state
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollContainer}>
@@ -68,7 +75,7 @@ export default class BillDetail extends React.Component {
             Brief Bill Summary
           </Text>
           <Text style={styles.billSummaryDetailed}>
-            lone-wolf-g modulo to-posse-or-not-to-posse slack-attack dale's-pale-ale mod-1-beards mod-1-beards mod-1-beards mod-1-beards command-line command-line command-line merge-conflicts k's-horse daledalf champus champus bicycles epically-bad-gusto-coffee epically-bad-gusto-coffee chaz-isms chaz-isms carne-asada game-time yoga-instructor NaN kansas-raptor gusto retro retro gabitron
+            {summary}
           </Text>
           <Text style={styles.readFullBillSummary}>
             Read Full Bill Summary &raquo;
@@ -96,5 +103,6 @@ BillDetail.propTypes = {
   billTitle: React.PropTypes.string,
   status: React.PropTypes.string,
   progress: React.PropTypes.object,
-  detailedStatus: React.PropTypes.string
+  detailedStatus: React.PropTypes.string,
+  urls: React.PropTypes.object
 }

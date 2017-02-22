@@ -18,7 +18,8 @@ router.get('/api/bills/:page', (req, res) => {
         'last_action_at',
         'chamber',
         'history',
-        'sponsor'
+        'sponsor',
+        'urls'
       ]),
       additionalData(bill.history, bill.chamber, bill.last_action_at)
     ))
