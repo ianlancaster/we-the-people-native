@@ -15,7 +15,9 @@ export default class Bills extends React.Component {
       showOnlyFailed: this.props.showOnlyFailed || false,
       showOnlyTabled: this.props.showOnlyTabled || false,
       sortByClosestToBecomingLaw: this.props.sortByClosestToBecomingLaw || false,
-      status: this.props.status || ''
+      sortByTopic: this.props.sortByTopic || false,
+      status: this.props.status || '',
+      topic: this.props.topic || ''
     }
   }
 
@@ -45,6 +47,9 @@ export default class Bills extends React.Component {
         return b.progress.index - a.progress.index
       })
     }
+    if (this.state.sortByTopic) {
+      bills = this.filterBillsByTopic(bills, this.state.topic)
+    }
     this.setState({ bills: bills.map((bill) => {
       return <BillCardInList
         {...bill}
@@ -52,6 +57,12 @@ export default class Bills extends React.Component {
         onChange={this.showDetailedBill}
         />
     })
+    })
+  }
+
+  filterBillsByTopic (bills, topic) {
+    return bills.filter((bill) => {
+      return bill.official_title.toLowerCase().includes(topic)
     })
   }
 

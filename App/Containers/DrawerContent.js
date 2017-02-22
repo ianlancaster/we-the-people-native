@@ -42,6 +42,11 @@ class DrawerContent extends Component {
     NavigationActions.billsSortByDateIntroduced()
   }
 
+  handleEducation = () => {
+    this.toggleDrawer()
+    NavigationActions.billsEducation()
+  }
+
   handleEnactedBills = () => {
     this.toggleDrawer()
     NavigationActions.billsEnacted({status: 'enacted'})
@@ -89,7 +94,9 @@ class DrawerContent extends Component {
           text='Status: Tabled' onPress={this.handleTabledBills}
         />
         <Text style={styles.sectionTitle}>Filter By Issue:</Text>
-        <Separator backgroundColor={'#000'} />
+          <DrawerButton
+            text='Education' onPress={this.handleEducation}
+          />
       </ScrollView>
     )
   }
