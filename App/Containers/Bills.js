@@ -19,11 +19,15 @@ export default class Bills extends React.Component {
   }
 
   componentWillMount () {
+    this.makeAPICall()
+  }
+
+  makeAPICall () {
     fetch('http://localhost:3000/api/bills/1', {
     }).then(res => res.json())
-      .then(bills => {
-        this.mapBills(bills)
-      }).catch(err => { throw new Error(err) })
+    .then(bills => {
+      this.mapBills(bills)
+    }).catch(err => { throw new Error(err) })
   }
 
   mapBills (bills) {
@@ -92,31 +96,39 @@ export default class Bills extends React.Component {
 
   render () {
     const { bills, showOnlyActive, sortByDateIntroduced } = this.state
-    return (
-      <View style={styles.container}>
-        <ScrollView style={styles.scrollContainer} ref={() => 'container'}>
-          {showOnlyActive ? <Text
-            style={styles.text}
-          >
-            Active Bills:
-          </Text> : <Text
-            style={styles.text}
-          >
+    if (bills && bills.length) {
+      return (
+        <View style={styles.container}>
+          <ScrollView style={styles.scrollContainer} ref={() => 'container'}>
+            {showOnlyActive ? <Text
+              style={styles.text}
+              >
+              Active Bills:
+            </Text> : <Text
+              style={styles.text}
+            >
             All Bills:
           </Text>}
-          {showOnlyActive ? <TouchableOpacity
-            onPress={this.showAllBills}
+            {showOnlyActive ? <TouchableOpacity
+              onPress={this.showAllBills}
             >
-            <Text style={styles.showHideBills}>Show All Bills</Text>
-          </TouchableOpacity> : <TouchableOpacity
-            onPress={this.showOnlyActiveBills}
+              <Text style={styles.showHideBills}>Show All Bills</Text>
+            </TouchableOpacity> : <TouchableOpacity
+              onPress={this.showOnlyActiveBills}
             >
-            <Text style={styles.showHideBills}>Show Only Active Bills</Text>
-          </TouchableOpacity>}
-          {bills || <Text>Loading....</Text>}
-        </ScrollView>
-      </View>
-    )
+              <Text style={styles.showHideBills}>Show Only Active Bills</Text>
+            </TouchableOpacity>}
+            {bills || <Text>Loading....</Text>}
+          </ScrollView>
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.container}>
+          <Text>No bills match this search. Please try another search.</Text>
+        </View>
+      )
+    }
   }
 }
 
