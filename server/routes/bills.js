@@ -3,30 +3,41 @@ const fetch = require('isomorphic-fetch')
 const router = express.Router()
 const pick = require('lodash').pick
 const moment = require('moment')
+const cheerio = require('cheerio')
+const request = require('request')
 
 router.get('/api/bills/:page', (req, res) => {
-  fetch(`https://congress.api.sunlightfoundation.com/bills`)
-  .then(response => response.json())
-  .then(billsAll => billsAll.results.reduce((billsPruned, bill) => {
-    billsPruned.push(Object.assign({},
-      pick(bill, [
-        'official_title',
-        'bill_id',
-        'introduced_on',
-        'last_action_at',
-        'chamber',
-        'history',
-        'sponsor'
-      ]),
-      additionalData(bill.history, bill.chamber, bill.last_action_at)
-    ))
-    return billsPruned
-  }, []))
-  .then(billsPruned => (res.json(billsPruned)))
-  .catch(err => res.json(err))
+  fetch(`https://congress.api.sunlightfoundation.com/bills?page=${req.params.page}`)
+    .then(response => response.json())
+    .then(billsAll => billsAll.results.reduce((billsPruned, bill) => {
+      billsPruned.push(Object.assign({},
+        pick(bill, [
+          'official_title',
+          'bill_id',
+          'introduced_on',
+          'last_action_at',
+          'chamber',
+          'history',
+          'sponsor',
+          'urls'
+        ]),
+        additionalData(bill.history, bill.chamber, bill.last_action_at, bill.urls.congress)
+      ))
+      return billsPruned
+    }, []))
+    .then(billsPruned => {
+      let summaries = []
+      billsPruned.forEach(bill => {
+        summaries.push(returnSummary(bill.urls.congress))
+      })
+      return Promise.all(summaries)
+    })
+    .then(summaries => console.log(summaries))
+    .then(billsPruned => (res.json(billsPruned)))
+    .catch(err => res.json(err))
 })
 
-const additionalData = (history, chamber, lastAction) => {
+const additionalData = (history, chamber, lastAction, congressUrl) => {
   const status = returnStatus(history, lastAction)
   const progress = returnProgress(history, chamber)
 
@@ -35,6 +46,21 @@ const additionalData = (history, chamber, lastAction) => {
     progress,
     detailedStatus: returnDetailedStatus(status, progress, chamber)
   }
+}
+
+const returnSummary = (congressUrl) => {
+  return fetch(congressUrl)
+    .then(res => res.text())
+    .then(html => cheerio.load(html))
+    .then($ => {
+      let summary = ''
+      $('#bill-summary > p').each((i, pTag) => {
+        summary += $(pTag).text()
+      })
+      return summary
+    })
+    .then(summary => summary)
+    .catch(err => console.log(err))
 }
 
 const objValues = (obj) => {
@@ -63,25 +89,6 @@ const returnProgress = (h, chamber) => {
     Primary = 'Senate'
     Secondary = 'House'
   }
-
-  // const chartColors = {
-  //   PC: grey,
-  //   lS1: grey,
-  //   PF: grey,
-  //   lS2: grey,
-  //   SC: grey,
-  //   lS3: grey,
-  //   SF: grey,
-  //   lS4: grey,
-  //   C: grey,
-  //   secondaryLeft: grey,
-  //   primaryLeft: grey,
-  //   secondary: grey,
-  //   primary: grey,
-  //   secondaryRight: grey,
-  //   primaryRight: grey,
-  //   P: grey
-  // }
 
   // ------------------------------------
   // Progress Structure

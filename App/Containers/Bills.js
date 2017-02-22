@@ -52,6 +52,7 @@ export default class Bills extends React.Component {
   }
 
   showDetailedBill = (id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus) => {
+    
     this.setState({
       id,
       title,
