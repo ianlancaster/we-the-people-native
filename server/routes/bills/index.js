@@ -49,7 +49,7 @@ const objValues = (obj) => {
 const returnStatus = (history, lastAction) => {
   if (history.enacted) return 'enacted'
   if (objValues(history).find((result) => result === 'fail')) return 'failed'
-  if (moment(lastAction).add(4, 'months') > moment(Date.now())) return 'active'
+  if (moment(lastAction).add(4, 'months') > moment(Date.now()) && history.active === true) return 'active'
   return 'tabled'
 }
 

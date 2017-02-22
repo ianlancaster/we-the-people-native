@@ -3,6 +3,7 @@ import { Text, View, Button, ScrollView } from 'react-native'
 import styles from './Styles/BillDetailStyle'
 import Separator from '../Components/Separator'
 import prettifyDate from '../Helpers/DatePrettifier'
+import BillStatusSvg from '../Components/BillStatus'
 
 export default class BillDetail extends React.Component {
   constructor (props) {
@@ -66,8 +67,14 @@ export default class BillDetail extends React.Component {
             <Text style={styles.status}>
               <Text style={styles.boldSpan}>Status:</Text> {status}
             </Text>
+            <Text style={styles.status}>
+              <Text style={styles.boldSpan}>Progress:</Text> {progress.text}
+            </Text>
+            <Text style={styles.status}>
+              <Text style={styles.boldSpan}>Next Action:</Text> {detailedStatus}
+            </Text>
             <Text style={styles.lastAction}>
-              <Text style={styles.boldSpan}>Last Action:</Text> {prettifyDate(lastAction)}
+              <Text style={styles.boldSpan}>Last Action On:</Text> {prettifyDate(lastAction)}
             </Text>
             <Separator backgroundColor={'#dddddd'} />
           </View>
@@ -84,9 +91,11 @@ export default class BillDetail extends React.Component {
           <Text style={styles.billProgressHeadline}>
             Bill Progress
           </Text>
-          <Text style={styles.detailedStatus}>
-            {detailedStatus}
-          </Text>
+          <BillStatusSvg
+            status={this.state.status}
+            progress={this.state.progress}
+            chamber={this.state.chamber}
+          />
         </ScrollView>
       </View>
     )

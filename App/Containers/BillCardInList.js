@@ -98,11 +98,7 @@ export default class BillCardInList extends React.Component {
           </Text>
           {this.props.detailedStatus}
         </Text>
-        <BillStatusSvg
-          status={this.props.status}
-          progress={this.props.progress}
-          chamber={this.props.chamber}
-        />
+        <BillStatusSvg {...this.state} />
         <Separator backgroundColor={'#dddddd'} />
         <View style={styles.lowerContainer}>
           <Image
