@@ -22,6 +22,20 @@ export default class BillCardInList extends React.Component {
     }
   }
 
+  sendDataUpToBills (id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus) {
+    this.props.onChange(
+      id,
+      title,
+      dateIntroduced,
+      lastAction,
+      chamber,
+      sponsor,
+      status,
+      progress,
+      detailedStatus
+    )
+  }
+
   render () {
     const { showDetailedBill } = this.props
     const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus } = this.state
@@ -31,16 +45,16 @@ export default class BillCardInList extends React.Component {
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() => {
-            this.props.onChange(
-            id,
-            title,
-            dateIntroduced,
-            lastAction,
-            chamber,
-            sponsor,
-            status,
-            progress,
-            detailedStatus
+            this.sendDataUpToBills(
+              id,
+              title,
+              dateIntroduced,
+              lastAction,
+              chamber,
+              sponsor,
+              status,
+              progress,
+              detailedStatus
             )
           }}
           >
@@ -94,16 +108,16 @@ export default class BillCardInList extends React.Component {
           />
           <TouchableOpacity
             onPress={() => {
-              this.props.onChange(
-              id,
-              title,
-              dateIntroduced,
-              lastAction,
-              chamber,
-              sponsor,
-              status,
-              progress,
-              detailedStatus
+              this.sendDataUpToBills(
+                id,
+                title,
+                dateIntroduced,
+                lastAction,
+                chamber,
+                sponsor,
+                status,
+                progress,
+                detailedStatus
               )
             }}
           >
@@ -127,5 +141,8 @@ BillCardInList.propTypes = {
   chamber: React.PropTypes.string,
   onChange: React.PropTypes.func,
   showDetailedBill: React.PropTypes.func,
-  sponsor: React.PropTypes.object
+  sponsor: React.PropTypes.object,
+  status: React.PropTypes.string,
+  progress: React.PropTypes.object,
+  detailedStatus: React.PropTypes.string
 }

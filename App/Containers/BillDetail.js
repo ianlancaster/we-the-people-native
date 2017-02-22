@@ -95,6 +95,6 @@ BillDetail.propTypes = {
   sponsor: React.PropTypes.string,
   billTitle: React.PropTypes.string,
   status: React.PropTypes.string,
-  progress: React.PropTypes.string,
+  progress: React.PropTypes.object,
   detailedStatus: React.PropTypes.string
 }
