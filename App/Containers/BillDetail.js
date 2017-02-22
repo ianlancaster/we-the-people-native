@@ -58,7 +58,7 @@ export default class BillDetail extends React.Component {
           <View style={styles.labelWrapper}>
             <Text style={styles.status}>
               <Text style={styles.boldSpan}>Status:</Text> {status}
-              </Text>
+            </Text>
             <Text style={styles.lastAction}>
               <Text style={styles.boldSpan}>Last Action:</Text> {prettifyDate(lastAction)}
             </Text>
