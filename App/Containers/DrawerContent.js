@@ -42,6 +42,11 @@ class DrawerContent extends Component {
     NavigationActions.billsSortByDateIntroduced()
   }
 
+  handleEastAsia = () => {
+    this.toggleDrawer()
+    NavigationActions.billsEastAsia()
+  }
+
   handleEducation = () => {
     this.toggleDrawer()
     NavigationActions.billsEducation()
@@ -70,6 +75,11 @@ class DrawerContent extends Component {
   handleHealthCare = () => {
     this.toggleDrawer()
     NavigationActions.billsHealthCare()
+  }
+
+  handleMilitary = () => {
+    this.toggleDrawer()
+    NavigationActions.billsMilitary()
   }
 
   handleTabledBills = () => {
@@ -110,6 +120,9 @@ class DrawerContent extends Component {
         />
         <Text style={styles.sectionTitle}>Filter By Issue:</Text>
         <DrawerButton
+          text='China/Japan/East Asia' onPress={this.handleEastAsia}
+        />
+        <DrawerButton
           text='Education' onPress={this.handleEducation}
         />
         <Separator backgroundColor={'#000'} />
@@ -123,6 +136,10 @@ class DrawerContent extends Component {
         <Separator backgroundColor={'#000'} />
         <DrawerButton
           text='Health Care' onPress={this.handleHealthCare}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Military/Defense' onPress={this.handleMilitary}
         />
         <Separator backgroundColor={'#000'} />
       </ScrollView>
