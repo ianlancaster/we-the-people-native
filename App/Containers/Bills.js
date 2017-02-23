@@ -97,10 +97,13 @@ export default class Bills extends React.Component {
 
   render () {
     const { bills, showOnlyActive, sortByDateIntroduced } = this.state
-    if (bills) {
+    if (bills && bills._dataBlob.s1.length) {
       return (
         <View style={styles.container}>
+          <Text style={styles.text}>Bills</Text>
           <ListView
+            enableEmptySections
+            styles={styles.listViewContainer}
             dataSource={bills}
             renderRow={(bill) => (
               <BillCardInList

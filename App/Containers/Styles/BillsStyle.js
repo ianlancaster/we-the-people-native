@@ -10,6 +10,9 @@ const styles = {
     margin: 20,
     textAlign: 'center'
   },
+  listViewContainer: {
+    paddingTop: 70
+  },
   scrollContainer: {
     flex: 5
   },
