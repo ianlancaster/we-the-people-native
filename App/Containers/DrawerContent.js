@@ -47,6 +47,11 @@ class DrawerContent extends Component {
     NavigationActions.billsSortByClosestToBecomingLaw()
   }
 
+  handleCrime = () => {
+    this.toggleDrawer()
+    NavigationActions.billsCrime()
+  }
+
   handleDateIntroduced = () => {
     this.toggleDrawer()
     NavigationActions.billsSortByDateIntroduced()
@@ -147,6 +152,10 @@ class DrawerContent extends Component {
         <Separator backgroundColor={'#000'} />
         <DrawerButton
           text='China/Japan/East Asia' onPress={this.handleEastAsia}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Crime' onPress={this.handleCrime}
         />
         <Separator backgroundColor={'#000'} />
         <DrawerButton
