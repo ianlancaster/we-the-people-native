@@ -17,7 +17,7 @@ export default class Bills extends React.Component {
       sortByClosestToBecomingLaw: this.props.sortByClosestToBecomingLaw || false,
       sortByTopic: this.props.sortByTopic || false,
       status: this.props.status || '',
-      topic: this.props.topic || ''
+      topics: this.props.topics || ''
     }
   }
 
@@ -48,16 +48,22 @@ export default class Bills extends React.Component {
       })
     }
     if (this.state.sortByTopic) {
-      bills = this.filterBillsByTopic(bills, this.state.topic)
+      bills = this.filterBillsByTopic(bills, this.state.topics)
     }
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.setState({ bills: ds.cloneWithRows(bills) })
   }
 
-  filterBillsByTopic (bills, topic) {
-    return bills.filter((bill) => {
-      return bill.official_title.toLowerCase().includes(topic)
-    })
+  filterBillsByTopic (bills, topics) {
+    let newBills = []
+    for (var i = 0; i < bills.length; i++) {
+      for (var j = 0; j < topics.length; j++) {
+        if (bills[i].official_title.includes(topics[j])) {
+          newBills.push(bills[i])
+        }
+      }
+    }
+    return newBills
   }
 
   filterBillsByStatus (bills, status) {
@@ -129,5 +135,5 @@ Bills.propTypes = {
   sortByClosestToBecomingLaw: React.PropTypes.bool,
   status: React.PropTypes.string,
   sortByTopic: React.PropTypes.bool,
-  topic: React.PropTypes.string
+  topics: React.PropTypes.array
 }
