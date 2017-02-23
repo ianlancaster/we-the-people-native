@@ -24,7 +24,7 @@ class DrawerContent extends Component {
 
   handleActiveBills = () => {
     this.toggleDrawer()
-    NavigationActions.billsActive()
+    NavigationActions.billsActive({status: 'active'})
   }
 
   handleBills = () => {
@@ -34,12 +34,47 @@ class DrawerContent extends Component {
 
   handleClosestToBecomingLaw = () => {
     this.toggleDrawer()
-    // need to fill this out
+    NavigationActions.billsSortByClosestToBecomingLaw()
   }
 
   handleDateIntroduced = () => {
     this.toggleDrawer()
     NavigationActions.billsSortByDateIntroduced()
+  }
+
+  handleEducation = () => {
+    this.toggleDrawer()
+    NavigationActions.billsEducation()
+  }
+
+  handleEnactedBills = () => {
+    this.toggleDrawer()
+    NavigationActions.billsEnacted({status: 'enacted'})
+  }
+
+  handleEnergy = () => {
+    this.toggleDrawer()
+    NavigationActions.billsEnergy()
+  }
+
+  handleEnvironment = () => {
+    this.toggleDrawer()
+    NavigationActions.billsEnvironment()
+  }
+
+  handleFailedBills = () => {
+    this.toggleDrawer()
+    NavigationActions.billsFailed({status: 'failed'})
+  }
+
+  handleHealthCare = () => {
+    this.toggleDrawer()
+    NavigationActions.billsHealthCare()
+  }
+
+  handleTabledBills = () => {
+    this.toggleDrawer()
+    NavigationActions.billsTabled({status: 'tabled'})
   }
 
   render () {
@@ -49,19 +84,47 @@ class DrawerContent extends Component {
         <DrawerButton
           text='See All Bills' onPress={this.handleBills}
         />
-        <Separator backgroundColor={'#000'} />
-        <DrawerButton
-          text='See Only Active Bills' onPress={this.handleActiveBills}
-        />
         <Text style={styles.sectionTitle}>Sort By:</Text>
         <DrawerButton
           text='Closest to Becoming Law' onPress={this.handleClosestToBecomingLaw}
         />
         <Separator backgroundColor={'#000'} />
         <DrawerButton
-          text='Date Introduced' onPress={this.handleDateIntroduced}
+          text='Date Introduced (Most Recent First)' onPress={this.handleDateIntroduced}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Status: Active' onPress={this.handleActiveBills}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Status: Enacted' onPress={this.handleEnactedBills}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Status: Failed' onPress={this.handleFailedBills}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Status: Tabled' onPress={this.handleTabledBills}
         />
         <Text style={styles.sectionTitle}>Filter By Issue:</Text>
+        <DrawerButton
+          text='Education' onPress={this.handleEducation}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Energy' onPress={this.handleEnergy}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Environment' onPress={this.handleEnvironment}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Health Care' onPress={this.handleHealthCare}
+        />
+        <Separator backgroundColor={'#000'} />
       </ScrollView>
     )
   }
