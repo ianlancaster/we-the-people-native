@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, ScrollView, TouchableOpacity, Button } from 'react-native'
+import { Text, View, ListView, ScrollView, TouchableOpacity, Button } from 'react-native'
 import styles from './Styles/BillsStyle'
 import BillCardInList from './BillCardInList'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -26,7 +26,7 @@ export default class Bills extends React.Component {
   }
 
   makeAPICall () {
-    fetch('http://localhost:3000/api/bills/1', {
+    fetch('http://localhost:3000/api/bills/', {
     }).then(res => res.json())
     .then(bills => {
       this.mapBills(bills)
@@ -50,14 +50,8 @@ export default class Bills extends React.Component {
     if (this.state.sortByTopic) {
       bills = this.filterBillsByTopic(bills, this.state.topic)
     }
-    this.setState({ bills: bills.map((bill) => {
-      return <BillCardInList
-        {...bill}
-        key={bill.bill_id}
-        onChange={this.showDetailedBill}
-        />
-    })
-    })
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+    this.setState({ bills: ds.cloneWithRows(bills) })
   }
 
   filterBillsByTopic (bills, topic) {
@@ -97,30 +91,19 @@ export default class Bills extends React.Component {
 
   render () {
     const { bills, showOnlyActive, sortByDateIntroduced } = this.state
-    if (bills && bills.length) {
+    if (bills) {
       return (
         <View style={styles.container}>
-          <ScrollView style={styles.scrollContainer} ref={() => 'container'}>
-            {showOnlyActive ? <Text
-              style={styles.text}
-              >
-              Active Bills:
-            </Text> : <Text
-              style={styles.text}
-            >
-            Bills:
-          </Text>}
-            {showOnlyActive ? <TouchableOpacity
-              onPress={this.showAllBills}
-            >
-              <Text style={styles.showHideBills}>Show All Bills</Text>
-            </TouchableOpacity> : <TouchableOpacity
-              onPress={this.showOnlyActiveBills}
-            >
-              <Text style={styles.showHideBills}>Show Only Active Bills</Text>
-            </TouchableOpacity>}
-            {bills || <Text>Loading....</Text>}
-          </ScrollView>
+          <ListView
+            dataSource={bills}
+            renderRow={(bill) => (
+              <BillCardInList
+                {...bill}
+                key={bill.bill_id}
+                onChange={this.showDetailedBill}
+              />
+            )}
+          />
         </View>
       )
     } else {
