@@ -53,6 +53,10 @@ class NavigationRouter extends Component {
             <Scene key='billsEnvironment' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['environment', 'drilling', 'fracking']} />
             <Scene key='billsMilitary' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['military', 'army', 'navy', 'marines', 'air force', 'pentagon', 'soldier', 'afghanistan', 'iraq', 'syria', 'armed forces']} />
             <Scene key='billsEastAsia' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['japan', 'china', 'korea', 'taiwan', 'vietnam', 'yuan']} />
+            <Scene key='billsCentralAsia' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['russia', 'ukraine', 'putin', 'pakistan']} />
+            <Scene key='billsMiddleEast' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['israel', 'palestine', 'afghanistan', 'iraq', 'syria', 'iran', 'qaeda', 'libya', 'netanyahu', 'gaza']} />
+            <Scene key='billsEconomy' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['tax', 'economy', 'economic', 'deficit', 'unemployment', 'underemployment', 'recession', 'income']} />
+            <Scene key='billsAgriculture' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['agriculture', 'farm', 'corn', 'wheat', 'ranch']} />
 
             <Scene key='header' component={Header} title='Header' />
             <Scene key='bill-card-in-list' component={BillCardInList} title='BillCardInList' />
