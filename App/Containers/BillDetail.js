@@ -37,7 +37,7 @@ export default class BillDetail extends React.Component {
   }
 
   showFullTitle = () => {
-    this.setState({ title: this.props.title })
+    this.setState({ title: this.props.billTitle })
   }
 
   render () {
