@@ -6,28 +6,46 @@ const moment = require('moment')
 const returnDetailedStatus = require('./returnDetailedStatus')
 const returnProgress = require('./returnProgress')
 
-router.get('/api/bills/:page', (req, res) => {
-  fetch(`https://congress.api.sunlightfoundation.com/bills`)
-  .then(response => response.json())
-  .then(billsAll => billsAll.results.reduce((billsPruned, bill) => {
-    billsPruned.push(Object.assign({},
-      pick(bill, [
-        'official_title',
-        'bill_id',
-        'introduced_on',
-        'last_action_at',
-        'chamber',
-        'history',
-        'sponsor',
-        'urls'
-      ]),
-      additionalData(bill.history, bill.chamber, bill.last_action_at)
-    ))
-    return billsPruned
-  }, []))
-  .then(billsPruned => (res.json(billsPruned)))
-  .catch(err => res.json(err))
+router.get('/api/bills/', (req, res) => {
+  res.json(allBills)
 })
+
+let billsPage = 1
+let allBills = []
+
+const getAllBills = () => {
+  fetch(`https://congress.api.sunlightfoundation.com/bills?congress=115&per_page=50&page=${billsPage}`)
+    .then(response => response.json())
+    .then(billsAll => billsAll.results.reduce((billsPruned, bill) => {
+      billsPruned.push(Object.assign({},
+        pick(bill, [
+          'official_title',
+          'bill_id',
+          'introduced_on',
+          'last_action_at',
+          'chamber',
+          'history',
+          'sponsor',
+          'urls'
+        ]),
+        additionalData(bill.history, bill.chamber, bill.last_action_at)
+      ))
+      return billsPruned
+    }, []))
+    .then(billsPruned => {
+      allBills = [ ...allBills, ...billsPruned ]
+      if (billsPruned.length === 50) {
+        billsPage++
+        getAllBills()
+      } else {
+        billsPage = 1
+        console.log('done fetching all bills')
+      }
+    })
+    .catch(err => console.log(err))
+}
+
+getAllBills()
 
 const additionalData = (history, chamber, lastAction) => {
   const status = returnStatus(history, lastAction)
