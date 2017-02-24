@@ -27,9 +27,19 @@ class DrawerContent extends Component {
     NavigationActions.billsActive({status: 'active'})
   }
 
+  handleAgriculture = () => {
+    this.toggleDrawer()
+    NavigationActions.billsAgriculture()
+  }
+
   handleBills = () => {
     this.toggleDrawer()
     NavigationActions.bills()
+  }
+
+  handleCentralAsia = () => {
+    this.toggleDrawer()
+    NavigationActions.billsCentralAsia()
   }
 
   handleClosestToBecomingLaw = () => {
@@ -37,9 +47,24 @@ class DrawerContent extends Component {
     NavigationActions.billsSortByClosestToBecomingLaw()
   }
 
+  handleCrime = () => {
+    this.toggleDrawer()
+    NavigationActions.billsCrime()
+  }
+
   handleDateIntroduced = () => {
     this.toggleDrawer()
     NavigationActions.billsSortByDateIntroduced()
+  }
+
+  handleEastAsia = () => {
+    this.toggleDrawer()
+    NavigationActions.billsEastAsia()
+  }
+
+  handleEconomy = () => {
+    this.toggleDrawer()
+    NavigationActions.billsEconomy()
   }
 
   handleEducation = () => {
@@ -72,6 +97,16 @@ class DrawerContent extends Component {
     NavigationActions.billsHealthCare()
   }
 
+  handleMilitary = () => {
+    this.toggleDrawer()
+    NavigationActions.billsMilitary()
+  }
+
+  handleMiddleEast = () => {
+    this.toggleDrawer()
+    NavigationActions.billsMiddleEast()
+  }
+
   handleTabledBills = () => {
     this.toggleDrawer()
     NavigationActions.billsTabled({status: 'tabled'})
@@ -84,6 +119,7 @@ class DrawerContent extends Component {
         <DrawerButton
           text='See All Bills' onPress={this.handleBills}
         />
+
         <Text style={styles.sectionTitle}>Sort By:</Text>
         <DrawerButton
           text='Closest to Becoming Law' onPress={this.handleClosestToBecomingLaw}
@@ -108,7 +144,24 @@ class DrawerContent extends Component {
         <DrawerButton
           text='Status: Tabled' onPress={this.handleTabledBills}
         />
+
         <Text style={styles.sectionTitle}>Filter By Issue:</Text>
+        <DrawerButton
+          text='Agriculture' onPress={this.handleAgriculture}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='China/Japan/East Asia' onPress={this.handleEastAsia}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Crime' onPress={this.handleCrime}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Economy and Taxes' onPress={this.handleEconomy}
+        />
+        <Separator backgroundColor={'#000'} />
         <DrawerButton
           text='Education' onPress={this.handleEducation}
         />
@@ -125,6 +178,18 @@ class DrawerContent extends Component {
           text='Health Care' onPress={this.handleHealthCare}
         />
         <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Middle East' onPress={this.handleMiddleEast}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Military/Defense' onPress={this.handleMilitary}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='Russia/Central Asia/South Asia' onPress={this.handleCentralAsia}
+        />
+
       </ScrollView>
     )
   }

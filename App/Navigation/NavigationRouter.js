@@ -47,10 +47,18 @@ class NavigationRouter extends Component {
             <Scene key='billsTabled' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} showOnlyTabled />
             <Scene key='billsSortByDateIntroduced' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByDateIntroduced />
             <Scene key='billsSortByClosestToBecomingLaw' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByClosestToBecomingLaw />
-            <Scene key='billsEducation' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topic={'education'} />
-            <Scene key='billsHealthCare' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topic={'health care'} />
-            <Scene key='billsEnergy' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topic={'energy'} />
-            <Scene key='billsEnvironment' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topic={'environment'} />
+            <Scene key='billsEducation' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['education', 'school', 'vouchers', 'student loan', 'university', 'universities', 'college', 'high school', 'apprentice']} />
+            <Scene key='billsHealthCare' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['health care', 'health', 'doctor', 'medicine', 'medical', 'hospital', 'prescription', 'medicare', 'medicaid', 'obamacare']} />
+            <Scene key='billsEnergy' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['energy', 'oil', 'natural gas', 'petroleum', 'coal']} />
+            <Scene key='billsEnvironment' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['environment', 'drilling', 'fracking']} />
+            <Scene key='billsMilitary' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['military', 'army', 'navy', 'marines', 'air force', 'pentagon', 'soldier', 'afghanistan', 'iraq', 'syria', 'armed forces']} />
+            <Scene key='billsEastAsia' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['japan', 'china', 'korea', 'taiwan', 'vietnam', 'yuan']} />
+            <Scene key='billsCentralAsia' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['russia', 'ukraine', 'putin', 'pakistan']} />
+            <Scene key='billsMiddleEast' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['israel', 'palestine', 'afghanistan', 'iraq', 'syria', 'iran', 'qaeda', 'libya', 'netanyahu', 'gaza']} />
+            <Scene key='billsEconomy' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['tax', 'economy', 'economic', 'deficit', 'unemployment', 'underemployment', 'recession', 'income']} />
+            <Scene key='billsAgriculture' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['agriculture', 'farm', 'corn', 'wheat', 'ranch']} />
+            <Scene key='billsCrime' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['crime', 'criminal', 'prison', 'incarceration', 'police']} />
+
             <Scene key='header' component={Header} title='Header' />
             <Scene key='bill-card-in-list' component={BillCardInList} title='BillCardInList' />
             <Scene key='nav-side-menu' component={NavSideMenu} title='NavSideMenu' />
