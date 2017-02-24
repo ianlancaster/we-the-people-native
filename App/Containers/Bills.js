@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, ListView, ScrollView, TouchableOpacity, Button } from 'react-native'
+import { Text, View, ListView, ScrollView, TouchableOpacity, Button, TextInput } from 'react-native'
 import styles from './Styles/BillsStyle'
 import BillCardInList from './BillCardInList'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -17,7 +17,8 @@ export default class Bills extends React.Component {
       sortByClosestToBecomingLaw: this.props.sortByClosestToBecomingLaw || false,
       sortByTopic: this.props.sortByTopic || false,
       status: this.props.status || '',
-      topics: this.props.topics || ''
+      topics: this.props.topics || '',
+      search: 'Search Bills'
     }
   }
 
@@ -101,6 +102,11 @@ export default class Bills extends React.Component {
       return (
         <View style={styles.container}>
           <Text style={styles.text}>Bills</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(search) => this.setState({search})}
+            value={this.state.search}
+          />
           <ListView
             enableEmptySections
             styles={styles.listViewContainer}
