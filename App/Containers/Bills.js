@@ -9,6 +9,7 @@ export default class Bills extends React.Component {
     super(props)
     this.state = {
       bills: null,
+      rawBills: [],
       showOnlyActive: this.props.showOnlyActive || false,
       sortByDateIntroduced: this.props.sortByDateIntroduced || false,
       showOnlyEnacted: this.props.showOnlyEnacted || false,
@@ -51,8 +52,12 @@ export default class Bills extends React.Component {
     if (this.state.sortByTopic) {
       bills = this.filterBillsByTopic(bills, this.state.topics)
     }
+    if (this.state.search) {
+      this.filterBillsBySearch(bills, this.state.search)
+    }
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.setState({ bills: ds.cloneWithRows(bills) })
+    this.setState({ rawBills: bills })
   }
 
   filterBillsByTopic (bills, topics) {
@@ -65,6 +70,18 @@ export default class Bills extends React.Component {
       }
     }
     return newBills
+  }
+
+  handleSearch (search) {
+    this.setState({ search })
+    this.mapBills(this.state.rawBills)
+  }
+
+  filterBillsBySearch = (bills, search) => {
+    return bills.filter((bill) => {
+      return bill.official_title.toLowerCase().includes(search)
+    })
+      // this.mapBills(filteredBills)
   }
 
   filterBillsByStatus (bills, status) {
@@ -104,8 +121,7 @@ export default class Bills extends React.Component {
           <Text style={styles.text}>Bills</Text>
           <TextInput
             style={styles.input}
-            onChangeText={(search) => this.setState({search})}
-            value={this.state.search}
+            onChangeText={(search) => this.handleSearch(search)}
           />
           <ListView
             enableEmptySections
