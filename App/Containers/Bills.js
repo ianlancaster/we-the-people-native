@@ -18,8 +18,7 @@ export default class Bills extends React.Component {
       sortByClosestToBecomingLaw: this.props.sortByClosestToBecomingLaw || false,
       sortByTopic: this.props.sortByTopic || false,
       status: this.props.status || '',
-      topics: this.props.topics || '',
-      search: 'Search Bills'
+      topics: this.props.topics || ''
     }
   }
 
@@ -53,7 +52,7 @@ export default class Bills extends React.Component {
       bills = this.filterBillsByTopic(bills, this.state.topics)
     }
     if (this.state.search) {
-      this.filterBillsBySearch(bills, this.state.search)
+      bills = this.filterBillsBySearch(bills, this.state.search)
     }
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.setState({ bills: ds.cloneWithRows(bills) })
@@ -79,6 +78,7 @@ export default class Bills extends React.Component {
 
   filterBillsBySearch = (bills, search) => {
     return bills.filter((bill) => {
+      console.log('the search query is: ', search)
       return bill.official_title.toLowerCase().includes(search)
     })
       // this.mapBills(filteredBills)
