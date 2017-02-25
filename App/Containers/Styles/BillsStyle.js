@@ -17,6 +17,7 @@ const styles = {
     height: 30,
     marginRight: 10,
     marginLeft: 10,
+    marginTop: 5,
     paddingLeft: 20,
     paddingRight: 20,
     backgroundColor: 'white',
@@ -37,6 +38,10 @@ const styles = {
     fontSize: 40,
     paddingTop: 70,
     textAlign: 'center'
+  },
+  searchText: {
+    textAlign: 'center',
+    fontSize: 18
   },
   verticalBlock: {
     flex: 1

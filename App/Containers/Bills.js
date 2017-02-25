@@ -145,7 +145,6 @@ export default class Bills extends React.Component {
           enableEmptySections
           onScroll={this.handleScroll}
           scrollEventThrottle={200}
-          styles={styles.listViewContainer}
           dataSource={bills}
           renderRow={(bill) => (
             <BillCardInList
@@ -178,6 +177,7 @@ export default class Bills extends React.Component {
       <View style={styles.container}>
         {showSearch && (<View style={styles.verticalBlock} />)}
         <View style={styles.searchContainer}>
+          <Text style={styles.searchText}>Search</Text>
           <TextInput
             style={styles.input}
             onChangeText={(search) => this.handleSearch(search)}
