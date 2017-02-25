@@ -16,7 +16,7 @@ export default class Landing extends React.Component {
       <View style={styles.container}>
         <View style={styles.topSection}>
           <Image
-            source={Images.congressBackground}
+            source={Images.bernie}
             style={styles.topImage}
           />
         </View>

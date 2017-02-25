@@ -24,6 +24,7 @@ const styles = {
   },
   text: {
     color: '#FFF',
+    fontWeight: '600',
     padding: 10,
     textAlign: 'center'
   },
