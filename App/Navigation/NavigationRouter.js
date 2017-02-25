@@ -41,10 +41,10 @@ class NavigationRouter extends Component {
           <Scene key='drawerChildrenWrapper' navigationBarStyle={Styles.navBar} titleStyle={Styles.title} leftButtonIconStyle={Styles.leftButton} rightButtonTextStyle={Styles.rightButton}>
             <Scene key='landing' component={Landing} title='Landing' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
             <Scene key='bills' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByClosestToBecomingLaw />
-            <Scene key='billsActive' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} showOnlyActive />
-            <Scene key='billsEnacted' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} showOnlyEnacted />
-            <Scene key='billsFailed' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} showOnlyFailed />
-            <Scene key='billsTabled' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} showOnlyTabled />
+            <Scene key='billsActive' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
+            <Scene key='billsEnacted' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
+            <Scene key='billsFailed' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
+            <Scene key='billsTabled' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
             <Scene key='billsSortByDateIntroduced' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByDateIntroduced />
             <Scene key='billsSortByClosestToBecomingLaw' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByClosestToBecomingLaw />
             <Scene key='billsEducation' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['education', 'school', 'vouchers', 'student loan', 'university', 'universities', 'college', 'high school', 'apprentice']} />

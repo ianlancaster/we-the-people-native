@@ -34,7 +34,7 @@ class DrawerContent extends Component {
 
   handleBills = () => {
     this.toggleDrawer()
-    NavigationActions.bills()
+    NavigationActions.bills({status: 'all'})
   }
 
   handleCentralAsia = () => {

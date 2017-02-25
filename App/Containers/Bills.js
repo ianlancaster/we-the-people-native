@@ -10,14 +10,10 @@ export default class Bills extends React.Component {
     this.state = {
       bills: null,
       rawBills: [],
-      showOnlyActive: this.props.showOnlyActive || false,
       sortByDateIntroduced: this.props.sortByDateIntroduced || false,
-      showOnlyEnacted: this.props.showOnlyEnacted || false,
-      showOnlyFailed: this.props.showOnlyFailed || false,
-      showOnlyTabled: this.props.showOnlyTabled || false,
       sortByClosestToBecomingLaw: this.props.sortByClosestToBecomingLaw || false,
       sortByTopic: this.props.sortByTopic || false,
-      status: this.props.status || '',
+      status: this.props.status || 'active',
       topics: this.props.topics || '',
       search: '',
       scroll: 0,
@@ -44,9 +40,10 @@ export default class Bills extends React.Component {
   mapBills () {
     let bills = this.state.rawBills
 
-    if (this.state.showOnlyActive || this.state.showOnlyEnacted || this.state.showOnlyTabled || this.state.showOnlyFailed) {
+    if (this.state.status !== 'all') {
       bills = this.filterBillsByStatus(bills, this.state.status)
     }
+
     if (this.state.sortByDateIntroduced) {
       bills = bills.sort((a, b) => {
         return Date.parse(b.introduced_on) - Date.parse(a.introduced_on)
