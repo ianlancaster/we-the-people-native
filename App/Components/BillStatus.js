@@ -7,15 +7,15 @@ import Svg, {
     Text
 } from 'react-native-svg'
 
-const white = '#ffffff'
-const black = '#000000'
-const green = '#B8E986'
-let yellow = '#FFF1BF'
-const red = '#FFD1D1'
-const lightBlue = '#50739C'
-const grey = '#D9D9D9'
-
 const BillStatus = ({ status, progress, chamber }) => {
+  const white = '#ffffff'
+  const black = '#000000'
+  const green = '#B8E986'
+  let yellow = '#FFF1BF'
+  const red = '#FFD1D1'
+  const lightBlue = '#50739C'
+  const grey = '#D9D9D9'
+
   if (status === 'tabled') yellow = grey
 
   const chartText = chamber === 'house'
@@ -391,6 +391,37 @@ const BillStatus = ({ status, progress, chamber }) => {
     chartColors.P = green
   }
 
+  const TextBubble = ({ text, xIndex, yOffset, color }) => {
+    const x = (xIndex * ((325 - 20) / 6)) + 20
+    const y = yOffset + 30
+    return (
+      <G
+        x={x || '20'}
+        y={y || '30'}
+      >
+        {text.length > 1 && (
+          <Circle
+            r='10'
+            fill={color}
+          />
+        )}
+        <Circle
+          cx='5'
+          r='10'
+          fill={color}
+        />
+        <Text
+          y='-8'
+          x={text.length > 1 ? '2' : '5'}
+          fill={lightBlue}
+          fontSize='12'
+          fontWeight='bold'
+          textAnchor='middle'
+        >{text}</Text>
+      </G>
+    )
+  }
+
   return (
     <Svg
       height='60'
@@ -481,39 +512,13 @@ const BillStatus = ({ status, progress, chamber }) => {
 }
 
 BillStatus.propTypes = {
-  exampleProp1: PropTypes.number,
-  exampleProp2: PropTypes.number
-}
-
-const TextBubble = ({ text, xIndex, yOffset, color }) => {
-  const x = (xIndex * ((325 - 20) / 6)) + 20
-  const y = yOffset + 30
-  return (
-    <G
-      x={x || '20'}
-      y={y || '30'}
-    >
-      {text.length > 1 && (
-        <Circle
-          r='10'
-          fill={color}
-        />
-      )}
-      <Circle
-        cx='5'
-        r='10'
-        fill={color}
-      />
-      <Text
-        y='-8'
-        x={text.length > 1 ? '2' : '5'}
-        fill={lightBlue}
-        fontSize='12'
-        fontWeight='bold'
-        textAnchor='middle'
-      >{text}</Text>
-    </G>
-  )
+  status: React.PropTypes.string.isRequired,
+  progress: PropTypes.object.isRequired,
+  chamber: PropTypes.string.isRequired,
+  text: PropTypes.string,
+  xIndex: PropTypes.number,
+  yOffset: PropTypes.number,
+  color: PropTypes.string
 }
 
 module.exports = BillStatus
