@@ -14,43 +14,74 @@ export default class Footer extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <TouchableHighlight onPress={this.goToBillsPage}>
-          <Image
-            source={Images.billScroll}
-          />
+        <TouchableHighlight
+          style={styles.touchableHighlight}
+          onPress={this.goToBillsPage}
+        >
+          <View style={styles.navItem}>
+            <Image
+              source={Images.billScroll}
+            />
+            <Text
+              style={styles.text}
+            >
+            Bills
+            </Text>
+          </View>
         </TouchableHighlight>
-        <Text
-          style={styles.text}
+
+        <TouchableHighlight
+          style={styles.touchableHighlight}
+          onPress={this.goToBillsPage}
         >
-        Bills
-        </Text>
-        <Image
-          source={Images.congress}
-          style={styles.icon}
-        />
-        <Text
-          style={styles.text}
+          <View style={styles.navItem}>
+            <Image
+              source={Images.congress}
+              style={styles.icon}
+            />
+            <Text
+              style={styles.text}
+            >
+            Congress
+            </Text>
+          </View>
+        </TouchableHighlight>
+
+        <TouchableHighlight
+          style={styles.touchableHighlight}
+          onPress={this.goToBillsPage}
         >
-        Congress
-        </Text>
-        <Image
-          source={Images.bell}
-          style={styles.icon}
-        />
-        <Text
-          style={styles.text}
+          <View style={styles.navItem}>
+            <Image
+              source={Images.bell}
+              style={styles.icon}
+            />
+            <Text
+              style={styles.text}
+            >
+            Notifications
+            </Text>
+
+          </View>
+        </TouchableHighlight>
+
+        <TouchableHighlight
+          style={styles.touchableHighlight}
+          onPress={this.goToBillsPage}
         >
-        Notifications
-        </Text>
-        <Image
-          source={Images.me}
-          style={styles.icon}
-        />
-        <Text
-          style={styles.text}
-        >
-        Me
-        </Text>
+          <View style={styles.navItem}>
+            <Image
+              source={Images.me}
+              style={styles.icon}
+            />
+            <Text
+              style={styles.text}
+            >
+            Me
+            </Text>
+
+          </View>
+        </TouchableHighlight>
       </View>
     )
   }
