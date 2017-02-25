@@ -27,6 +27,10 @@ export default class Bills extends React.Component {
     this.makeAPICall()
   }
 
+  componentDidUpdate () {
+
+  }
+
   makeAPICall () {
     fetch('http://localhost:3000/api/bills/', {
     }).then(res => res.json())
@@ -123,41 +127,57 @@ export default class Bills extends React.Component {
     })
   }
 
+  renderBillsList () {
+    const { bills, showOnlyActive, sortByDateIntroduced } = this.state
+    return (
+      <View style={styles.contentContainer}>
+        <ListView
+          enableEmptySections
+          ref='listView'
+          styles={styles.listViewContainer}
+          dataSource={bills}
+          renderRow={(bill) => (
+            <BillCardInList
+              {...bill}
+              key={bill.bill_id}
+              onChange={this.showDetailedBill}
+            />
+          )}
+        />
+      </View>
+    )
+  }
+
+  renderNoBillsMessage () {
+    return (
+      <View style={styles.contentContainer}>
+        <Text style={styles.failureMessage}>No bills match this search. Please try another search.</Text>
+        <Button
+          title='See All Bills'
+          onPress={NavigationActions.bills}
+        />
+      </View>
+    )
+  }
+
   render () {
     const { bills, showOnlyActive, sortByDateIntroduced } = this.state
-    if (bills && bills._dataBlob.s1.length) {
-      return (
-        <View style={styles.container}>
-          <Text style={styles.text}>Bills</Text>
+
+    return (
+      <View style={styles.container}>
+        <ScrollView style={styles.searchContainer}>
           <TextInput
             style={styles.input}
             onChangeText={(search) => this.handleSearch(search)}
+            clearButtonMode='always'
           />
-          <ListView
-            enableEmptySections
-            styles={styles.listViewContainer}
-            dataSource={bills}
-            renderRow={(bill) => (
-              <BillCardInList
-                {...bill}
-                key={bill.bill_id}
-                onChange={this.showDetailedBill}
-              />
-            )}
-          />
-        </View>
-      )
-    } else {
-      return (
-        <View style={styles.container}>
-          <Text style={styles.failureMessage}>No bills match this search. Please try another search.</Text>
-          <Button
-            title='See All Bills'
-            onPress={NavigationActions.bills}
-          />
-        </View>
-      )
-    }
+        </ScrollView>
+        {bills && bills._dataBlob.s1.length
+          ? this.renderBillsList()
+          : this.renderNoBillsMessage()
+        }
+      </View>
+    )
   }
 }
 
