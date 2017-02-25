@@ -9,13 +9,10 @@ export default class Landing extends React.Component {
   render () {
     return (
       <View style={styles.container}>
-        <View style={styles.topSection} />
-        <View style={styles.bottomSection} />
         <Image
-          source={Images.congressBackground}
+          source={Images.landingPageBackground}
           style={styles.bottomImage}
         />
-
       </View>
     )
   }

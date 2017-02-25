@@ -1,6 +1,7 @@
 const styles = {
   bottomImage: {
-    height: 150
+    height: 150,
+    resizeMode: 'cover'
   },
   bottomSection: {
     width: 300,
@@ -8,8 +9,6 @@ const styles = {
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'rgba(39, 91, 136, 58)'
   },
   topSection: {
