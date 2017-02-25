@@ -1,15 +1,24 @@
 const styles = {
   container: {
     backgroundColor: '#112E50',
-    flex: 0,
-    alignItems: 'flex-end',
     flexDirection: 'row'
   },
-  icon: {
-    marginLeft: 30
+  touchableHighlight: {
+    flex: 1,
+    height: 50,
+    paddingTop: 5,
+    paddingBottom: 5
   },
   text: {
-    color: '#FFF'
+    color: '#FFF',
+    textAlign: 'center'
+  },
+  navItem: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-around'
+    // justifyContent: 'center'
   }
 }
 
