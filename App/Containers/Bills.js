@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, ListView, ScrollView, TouchableOpacity, Button } from 'react-native'
+import { Text, View, ListView, ScrollView, TouchableOpacity, Button, TextInput } from 'react-native'
 import styles from './Styles/BillsStyle'
 import BillCardInList from './BillCardInList'
 import { Actions as NavigationActions } from 'react-native-router-flux'
@@ -9,6 +9,7 @@ export default class Bills extends React.Component {
     super(props)
     this.state = {
       bills: null,
+      rawBills: [],
       showOnlyActive: this.props.showOnlyActive || false,
       sortByDateIntroduced: this.props.sortByDateIntroduced || false,
       showOnlyEnacted: this.props.showOnlyEnacted || false,
@@ -17,7 +18,8 @@ export default class Bills extends React.Component {
       sortByClosestToBecomingLaw: this.props.sortByClosestToBecomingLaw || false,
       sortByTopic: this.props.sortByTopic || false,
       status: this.props.status || '',
-      topics: this.props.topics || ''
+      topics: this.props.topics || '',
+      search: ''
     }
   }
 
@@ -28,12 +30,14 @@ export default class Bills extends React.Component {
   makeAPICall () {
     fetch('http://localhost:3000/api/bills/', {
     }).then(res => res.json())
-    .then(bills => {
-      this.mapBills(bills)
-    }).catch(err => { throw new Error(err) })
+    .then(rawBills => this.setState({ rawBills }))
+    .then(() => this.mapBills())
+    .catch(err => { throw new Error(err) })
   }
 
-  mapBills (bills) {
+  mapBills () {
+    let bills = this.state.rawBills
+
     if (this.state.showOnlyActive || this.state.showOnlyEnacted || this.state.showOnlyTabled || this.state.showOnlyFailed) {
       bills = this.filterBillsByStatus(bills, this.state.status)
     }
@@ -50,6 +54,9 @@ export default class Bills extends React.Component {
     if (this.state.sortByTopic) {
       bills = this.filterBillsByTopic(bills, this.state.topics)
     }
+
+    bills = this.filterBillsBySearch(bills, this.state.search)
+
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.setState({ bills: ds.cloneWithRows(bills) })
   }
@@ -64,6 +71,27 @@ export default class Bills extends React.Component {
       }
     }
     return newBills
+  }
+
+  handleSearch (search) {
+    const promise = new Promise((resolve, reject) => {
+      this.setState({ search })
+
+      if (typeof this.state.search !== 'string') {
+        reject(new Error('There was a problem. The search query is not a string'))
+      }
+
+      resolve(this.state.search)
+    })
+
+    promise.then(() => this.mapBills())
+    promise.catch(err => { throw new Error(err) })
+  }
+
+  filterBillsBySearch = (bills, search) => {
+    return bills.filter((bill) => {
+      return bill.official_title.toLowerCase().includes(search.toLowerCase())
+    })
   }
 
   filterBillsByStatus (bills, status) {
@@ -101,6 +129,10 @@ export default class Bills extends React.Component {
       return (
         <View style={styles.container}>
           <Text style={styles.text}>Bills</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(search) => this.handleSearch(search)}
+          />
           <ListView
             enableEmptySections
             styles={styles.listViewContainer}

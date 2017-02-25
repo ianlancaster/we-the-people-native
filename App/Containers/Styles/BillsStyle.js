@@ -13,6 +13,13 @@ const styles = {
   listViewContainer: {
     paddingTop: 70
   },
+  input: {
+    borderColor: '#112E50',
+    borderWidth: 1,
+    marginTop: 10,
+    marginBottom: 20,
+    height: 30
+  },
   scrollContainer: {
     flex: 5
   },
