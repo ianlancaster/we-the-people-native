@@ -14,6 +14,11 @@ const styles = {
     flex: 1,
     backgroundColor: 'rgba(39, 91, 136, 58)'
   },
+  text: {
+    color: '#FFF',
+    padding: 10,
+    textAlign: 'center'
+  },
   topImage: {
     resizeMode: 'cover'
   },
