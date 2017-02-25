@@ -16,14 +16,13 @@ const styles = {
   container: {
     backgroundColor: colors.backgroundWhite,
     flex: 1,
-    marginBottom: 20,
+    shadowOpacity: 0.5,
+    margin: 10,
+    paddingTop: 20,
     shadowColor: colors.shadow,
     shadowOffset: {
       height: 5
-    },
-    shadowOpacity: 0.5,
-    width: 350,
-    paddingTop: 20
+    }
   },
   dateIntroduced: {
     textAlign: centerLabels.textAlign
