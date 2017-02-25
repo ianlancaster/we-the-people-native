@@ -5,7 +5,7 @@ const styles = {
     flexDirection: 'column'
   },
   contentContainer: {
-    flex: 4
+    flex: 8
   },
   failureMessage: {
     fontSize: 30,
@@ -14,7 +14,6 @@ const styles = {
   },
   input: {
     borderRadius: 15,
-    marginTop: 83,
     height: 30,
     marginRight: 10,
     marginLeft: 10,
@@ -39,8 +38,12 @@ const styles = {
     paddingTop: 70,
     textAlign: 'center'
   },
-  searchContainer: {
+  verticalBlock: {
     flex: 1
+  },
+  searchContainer: {
+    flex: 1,
+    justifyContent: 'center'
   }
 }
 

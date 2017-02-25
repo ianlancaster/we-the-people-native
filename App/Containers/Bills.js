@@ -19,7 +19,9 @@ export default class Bills extends React.Component {
       sortByTopic: this.props.sortByTopic || false,
       status: this.props.status || '',
       topics: this.props.topics || '',
-      search: ''
+      search: '',
+      scroll: 0,
+      showSearch: false
     }
   }
 
@@ -127,13 +129,25 @@ export default class Bills extends React.Component {
     })
   }
 
+  handleScroll = (e) => {
+    let currentScroll = e.nativeEvent.contentOffset.y
+    if (currentScroll < 0) {
+      this.setState({ showSearch: true })
+    }
+    if (currentScroll > this.state.scroll && currentScroll > 20) {
+      this.setState({ showSearch: false })
+    }
+    this.setState({ scroll: e.nativeEvent.contentOffset.y })
+  }
+
   renderBillsList () {
     const { bills, showOnlyActive, sortByDateIntroduced } = this.state
     return (
       <View style={styles.contentContainer}>
         <ListView
           enableEmptySections
-          ref='listView'
+          onScroll={this.handleScroll}
+          scrollEventThrottle={200}
           styles={styles.listViewContainer}
           dataSource={bills}
           renderRow={(bill) => (
@@ -161,17 +175,18 @@ export default class Bills extends React.Component {
   }
 
   render () {
-    const { bills, showOnlyActive, sortByDateIntroduced } = this.state
+    const { bills, showSearch } = this.state
 
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.searchContainer}>
+        {showSearch && (<View style={styles.verticalBlock} />)}
+        <View style={styles.searchContainer}>
           <TextInput
             style={styles.input}
             onChangeText={(search) => this.handleSearch(search)}
             clearButtonMode='always'
           />
-        </ScrollView>
+        </View>
         {bills && bills._dataBlob.s1.length
           ? this.renderBillsList()
           : this.renderNoBillsMessage()
