@@ -16,12 +16,15 @@ const styles = {
     borderColor: '#FFF',
     borderWidth: 1,
     color: '#FFF',
-    margin: 40,
+    fontWeight: '600',
+    fontSize: 20,
+    marginTop: 60,
     padding: 10
   },
   text: {
     color: '#FFF',
     fontWeight: '600',
+    fontSize: 20,
     padding: 10,
     textAlign: 'center'
   },
