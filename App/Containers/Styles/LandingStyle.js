@@ -1,6 +1,11 @@
 const styles = {
   bottomImage: {
-    resizeMode: 'cover'
+    flex: 1,
+    width: undefined,
+    height: undefined,
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   bottomSection: {
 

@@ -15,12 +15,12 @@ export default class Landing extends React.Component {
             style={styles.topImage}
           />
         </View>
-        <View style={styles.bottomSection}>
-          <Image
-            source={Images.landingPageBackground}
-            style={styles.bottomImage}
-            />
-        </View>
+        <Image
+          source={Images.landingPageBackground}
+          style={styles.bottomImage}
+        >
+          <Text>I am some text.</Text>
+        </Image>
       </View>
     )
   }
