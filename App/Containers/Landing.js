@@ -1,5 +1,6 @@
 import React from 'react'
-import { Text, View, ScrollView, Button, Image, TouchableOpacity } from 'react-native'
+import { Text, View, ScrollView, Button, Image, TouchableOpacity, WebView } from 'react-native'
+// import { Video } from 'react-native-video'
 import styles from './Styles/LandingStyle'
 import { Images } from '../Themes'
 import BillStatus from '../Components/BillStatus'
@@ -15,9 +16,9 @@ export default class Landing extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.topSection}>
-          <Image
-            source={Images.bernie}
-            style={styles.topImage}
+          <WebView
+            source={{uri: 'https://www.youtube.com/embed/5tu32CCA_Ig'}}
+            style={{marginTop: 20}}
           />
         </View>
         <Image

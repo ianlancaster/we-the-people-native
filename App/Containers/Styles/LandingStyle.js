@@ -29,7 +29,12 @@ const styles = {
     textAlign: 'center'
   },
   topImage: {
-    resizeMode: 'cover'
+    flex: 1,
+    width: undefined,
+    height: undefined,
+    backgroundColor: 'transparent',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   topSection: {
     height: 300
