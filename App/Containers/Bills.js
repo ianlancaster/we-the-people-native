@@ -18,7 +18,8 @@ export default class Bills extends React.Component {
       sortByClosestToBecomingLaw: this.props.sortByClosestToBecomingLaw || false,
       sortByTopic: this.props.sortByTopic || false,
       status: this.props.status || '',
-      topics: this.props.topics || ''
+      topics: this.props.topics || '',
+      search: ''
     }
   }
 
@@ -29,12 +30,14 @@ export default class Bills extends React.Component {
   makeAPICall () {
     fetch('http://localhost:3000/api/bills/', {
     }).then(res => res.json())
-    .then(bills => {
-      this.mapBills(bills)
-    }).catch(err => { throw new Error(err) })
+    .then(rawBills => this.setState({ rawBills }))
+    .then(() => this.mapBills())
+    .catch(err => { throw new Error(err) })
   }
 
-  mapBills (bills) {
+  mapBills () {
+    let bills = this.state.rawBills
+
     if (this.state.showOnlyActive || this.state.showOnlyEnacted || this.state.showOnlyTabled || this.state.showOnlyFailed) {
       bills = this.filterBillsByStatus(bills, this.state.status)
     }
@@ -51,12 +54,11 @@ export default class Bills extends React.Component {
     if (this.state.sortByTopic) {
       bills = this.filterBillsByTopic(bills, this.state.topics)
     }
-    if (this.state.search) {
-      bills = this.filterBillsBySearch(bills, this.state.search)
-    }
+
+    bills = this.filterBillsBySearch(bills, this.state.search)
+
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.setState({ bills: ds.cloneWithRows(bills) })
-    this.setState({ rawBills: bills })
   }
 
   filterBillsByTopic (bills, topics) {
@@ -72,16 +74,24 @@ export default class Bills extends React.Component {
   }
 
   handleSearch (search) {
-    this.setState({ search })
-    this.mapBills(this.state.rawBills)
+    const promise = new Promise((resolve, reject) => {
+      this.setState({ search })
+
+      if (typeof this.state.search !== 'string') {
+        reject(new Error('There was a problem. The search query is not a string'))
+      }
+
+      resolve(this.state.search)
+    })
+
+    promise.then(() => this.mapBills())
+    promise.catch(err => { throw new Error(err) })
   }
 
   filterBillsBySearch = (bills, search) => {
     return bills.filter((bill) => {
-      console.log('the search query is: ', search)
-      return bill.official_title.toLowerCase().includes(search)
+      return bill.official_title.toLowerCase().includes(search.toLowerCase())
     })
-      // this.mapBills(filteredBills)
   }
 
   filterBillsByStatus (bills, status) {
