@@ -7,9 +7,6 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center'
   },
-  bottomSection: {
-
-  },
   container: {
     flex: 1,
     backgroundColor: 'rgba(39, 91, 136, 58)'
@@ -38,6 +35,9 @@ const styles = {
   },
   topSection: {
     height: 300
+  },
+  videoEmbed: {
+    marginTop: 60
   }
 }
 

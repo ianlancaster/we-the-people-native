@@ -18,7 +18,7 @@ export default class Landing extends React.Component {
         <View style={styles.topSection}>
           <WebView
             source={{uri: 'https://www.youtube.com/embed/5tu32CCA_Ig'}}
-            style={{marginTop: 20}}
+            style={styles.videoEmbed}
           />
         </View>
         <Image
