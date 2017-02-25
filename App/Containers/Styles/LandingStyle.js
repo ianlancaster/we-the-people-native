@@ -14,6 +14,14 @@ const styles = {
     flex: 1,
     backgroundColor: 'rgba(39, 91, 136, 58)'
   },
+  goToBillsButton: {
+    backgroundColor: 'rgba(17, 46, 80, 0.6)',
+    borderColor: '#FFF',
+    borderWidth: 1,
+    color: '#FFF',
+    margin: 40,
+    padding: 10
+  },
   text: {
     color: '#FFF',
     padding: 10,

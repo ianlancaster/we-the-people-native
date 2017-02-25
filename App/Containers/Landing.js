@@ -24,11 +24,16 @@ export default class Landing extends React.Component {
           source={Images.landingPageBackground}
           style={styles.bottomImage}
         >
-          <Text style={styles.text}>Welcome to We The People! Help keep Congress accountable to the people it serves. View current bills and new laws, and then take action!</Text>
+          <Text
+            style={styles.text}
+          >
+            Welcome to We The People! Help keep Congress accountable to the people it serves. View current bills and new laws, and then take action!</Text>
           <TouchableOpacity
             onPress={this.goToBills}
           >
-            <Text>
+            <Text
+              style={styles.goToBillsButton}
+            >
               Go to Bills!
             </Text>
           </TouchableOpacity>
