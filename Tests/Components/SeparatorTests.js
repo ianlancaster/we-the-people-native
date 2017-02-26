@@ -7,22 +7,10 @@ import { shallow } from 'enzyme'
 const wrapper = shallow(<Separator backgroundColor={'#FFF'} />)
 
 test('component exists', (t) => {
-  t.is(wrapper.length, 1) // exists
+  t.is(wrapper.length, 1)
 })
 
-// test('component structure', (t) => {
-//   t.is(wrapper.name(), 'TouchableOpacity') // the right root component
-//   t.is(wrapper.children().length, 1) // has 1 child
-//   t.is(wrapper.children().first().name(), 'Text') // that child is Text
-// })
-//
-// test('onPress', (t) => {
-//   let i = 0
-//   const onPress = () => i++
-//   const wrapperPress = shallow(<DrawerButton onPress={onPress} text='hi' />)
-//
-//   t.is(wrapperPress.prop('onPress'), onPress) // uses the right handler
-//   t.is(i, 0)
-//   wrapperPress.simulate('press')
-//   t.is(i, 1)
-// })
+test('component structure', (t) => {
+  t.is(wrapper.name(), 'View')
+  t.is(wrapper.children().length, 0)
+})
