@@ -93,6 +93,9 @@
     ],
     "babel": "inherit"
   },
+  "babel": {
+    "presets": ["@ava/stage-4", "react"]
+  },
   "standard": {
     "parser": "babel-eslint",
     "globals": [
