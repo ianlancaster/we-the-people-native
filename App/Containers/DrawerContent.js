@@ -124,23 +124,23 @@ class DrawerContent extends Component {
         <DrawerButton
           text='Closest to Becoming Law' onPress={this.handleClosestToBecomingLaw}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Date Introduced (Most Recent First)' onPress={this.handleDateIntroduced}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Status: Active' onPress={this.handleActiveBills}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Status: Enacted' onPress={this.handleEnactedBills}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Status: Failed' onPress={this.handleFailedBills}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Status: Tabled' onPress={this.handleTabledBills}
         />
@@ -149,43 +149,43 @@ class DrawerContent extends Component {
         <DrawerButton
           text='Agriculture' onPress={this.handleAgriculture}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='China/Japan/East Asia' onPress={this.handleEastAsia}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Crime' onPress={this.handleCrime}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Economy and Taxes' onPress={this.handleEconomy}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Education' onPress={this.handleEducation}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Energy' onPress={this.handleEnergy}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Environment' onPress={this.handleEnvironment}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Health Care' onPress={this.handleHealthCare}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Middle East' onPress={this.handleMiddleEast}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Military/Defense' onPress={this.handleMilitary}
         />
-        <Separator backgroundColor={'#000'} />
+        <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Russia/Central Asia/South Asia' onPress={this.handleCentralAsia}
         />
