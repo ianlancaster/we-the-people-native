@@ -1,9 +1,9 @@
 import React from 'react'
-import { Text, View, Button, ScrollView, AsyncStorage, Alert } from 'react-native'
+import { Text, View, Button, ScrollView, AsyncStorage, Alert, TouchableOpacity } from 'react-native'
 import styles from './Styles/BillDetailStyle'
 import Separator from '../Components/Separator'
 import prettifyDate from '../Helpers/DatePrettifier'
-import shortenSummary from '../Helpers/ShortenSummary'
+import { shortenSummary, summaryIsTooLong } from '../Helpers/ShortenSummary'
 import sliceTitle from '../Helpers/TitleSlicer'
 import BillStatusSvg from '../Components/BillStatus'
 
@@ -21,9 +21,12 @@ export default class BillDetail extends React.Component {
       progress: this.props.progress,
       detailedStatus: this.props.detailedStatus,
       isThereATitleButton: false,
+      isThereASummaryButton: false,
       urls: this.props.urls,
       summary: 'loading',
-      storedBills: []
+      storedBills: [],
+      fullSummary: '',
+      showFullSummary: false
     }
   }
 
@@ -52,10 +55,18 @@ export default class BillDetail extends React.Component {
       this.setState({ isThereATitleButton: true })
     }
 
+    // if (summaryIsTooLong(this.state.summary)) {
+    //   console.log('it hits')
+    //   this.setState({ summary: shortenSummary(this.state.summary) })
+    //   console.log('summary state', this.state.summary)
+    //   this.setState({ isThereASummaryButton: true })
+    // }
+
     fetch('http://localhost:3000/api/bill', {
       headers: { url: this.state.urls.congress }
     }).then(res => res.json())
       .then(summary => this.setState({ summary }))
+      .then(() => this.setState({ fullSummary: this.state.summary }))
   }
 
   addToMyBills = (id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, urls) => {
@@ -88,8 +99,13 @@ export default class BillDetail extends React.Component {
     this.setState({ title: this.props.billTitle })
   }
 
+  showFullSummary = () => {
+    this.setState({ summary: this.state.fullSummary })
+    this.setState({ showFullSummary: true })
+  }
+
   render () {
-    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, isThereATitleButton, summary, urls } = this.state
+    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, isThereATitleButton, isThereASummaryButton, summary, urls, showFullSummary, fullSummary } = this.state
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollContainer}>
@@ -149,11 +165,18 @@ export default class BillDetail extends React.Component {
             Brief Bill Summary
           </Text>
           <Text style={styles.billSummaryDetailed}>
-            {shortenSummary(summary)}
+            {summaryIsTooLong(summary) && !showFullSummary ? <Text>{shortenSummary(summary)}</Text> : <Text>{summary}</Text>}
           </Text>
-          <Text style={styles.readFullBillSummary}>
-            Read Full Bill Summary &raquo;
-          </Text>
+          {summaryIsTooLong(summary) && !showFullSummary
+            ? <TouchableOpacity
+              onPress={this.showFullSummary}
+              >
+              <Text style={styles.readFullBillSummary}
+                >
+                Read Full Bill Summary &raquo;
+              </Text>
+            </TouchableOpacity>
+          : <Text />}
           <Separator backgroundColor={'#dddddd'} />
           <Text style={styles.billProgressHeadline}>
             Bill Progress

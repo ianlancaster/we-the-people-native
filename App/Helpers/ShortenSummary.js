@@ -1,9 +1,16 @@
-const shortenSummary = (summary) => {
-  let newSummary = summary
+const summaryIsTooLong = (summary) => {
   if (summary.split(' ').length > 100) {
-    newSummary = `${summary.split(' ').slice(0, 100).join(' ')}...`
+    return true
+  } else {
+    return false
   }
-  return newSummary
 }
 
-export default shortenSummary
+const shortenSummary = (summary) => {
+  return `${summary.split(' ').slice(0, 100).join(' ')}...`
+}
+
+Object.assign(exports, {
+  shortenSummary,
+  summaryIsTooLong
+})
