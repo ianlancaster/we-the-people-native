@@ -1,5 +1,5 @@
 require('babel-register')({
-  presets: ['react', 'es2015']
+  presets: ['react', 'es2015', 'stage-0']
 });
 
 require('babel-polyfill');
@@ -16,3 +16,4 @@ global.document = require('jsdom').jsdom(`
 
 global.window = document.defaultView;
 global.navigator = window.navigator;
+global.__DEV__ = true;
