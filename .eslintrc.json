@@ -24,7 +24,8 @@
     "react/require-default-props": "off",
     "no-return-assign": "off",
     "react/prop-types": "warn",
-    "no-fallthrough": "off"
+    "no-fallthrough": "off",
+    "no-lone-blocks": "off"
   },
   "globals": {
     "__DEV__": false,

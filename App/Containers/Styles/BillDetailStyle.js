@@ -2,6 +2,9 @@ const standardLabelFontSize = 18
 const standardLabelPaddingBottom = 10
 
 const styles = {
+  addBillContainer: {
+    marginBottom: 40
+  },
   billSummaryDetailed: {
     textAlign: 'center'
   },

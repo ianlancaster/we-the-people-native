@@ -10,21 +10,23 @@ export default class Bills extends React.Component {
     this.state = {
       bills: null,
       rawBills: [],
-      showOnlyActive: this.props.showOnlyActive || false,
       sortByDateIntroduced: this.props.sortByDateIntroduced || false,
-      showOnlyEnacted: this.props.showOnlyEnacted || false,
-      showOnlyFailed: this.props.showOnlyFailed || false,
-      showOnlyTabled: this.props.showOnlyTabled || false,
       sortByClosestToBecomingLaw: this.props.sortByClosestToBecomingLaw || false,
       sortByTopic: this.props.sortByTopic || false,
-      status: this.props.status || '',
+      status: this.props.status || 'active',
       topics: this.props.topics || '',
-      search: ''
+      search: '',
+      scroll: 0,
+      showSearch: false
     }
   }
 
   componentWillMount () {
     this.makeAPICall()
+  }
+
+  componentDidUpdate () {
+
   }
 
   makeAPICall () {
@@ -38,9 +40,10 @@ export default class Bills extends React.Component {
   mapBills () {
     let bills = this.state.rawBills
 
-    if (this.state.showOnlyActive || this.state.showOnlyEnacted || this.state.showOnlyTabled || this.state.showOnlyFailed) {
+    if (this.state.status !== 'all') {
       bills = this.filterBillsByStatus(bills, this.state.status)
     }
+
     if (this.state.sortByDateIntroduced) {
       bills = bills.sort((a, b) => {
         return Date.parse(b.introduced_on) - Date.parse(a.introduced_on)
@@ -123,41 +126,70 @@ export default class Bills extends React.Component {
     })
   }
 
-  render () {
+  handleScroll = (e) => {
+    let currentScroll = e.nativeEvent.contentOffset.y
+    if (currentScroll < 0) {
+      this.setState({ showSearch: true })
+    }
+    if (currentScroll > this.state.scroll && currentScroll > 20) {
+      this.setState({ showSearch: false })
+    }
+    this.setState({ scroll: e.nativeEvent.contentOffset.y })
+  }
+
+  renderBillsList () {
     const { bills, showOnlyActive, sortByDateIntroduced } = this.state
-    if (bills && bills._dataBlob.s1.length) {
-      return (
-        <View style={styles.container}>
-          <Text style={styles.text}>Bills</Text>
+    return (
+      <View style={styles.contentContainer}>
+        <ListView
+          enableEmptySections
+          onScroll={this.handleScroll}
+          scrollEventThrottle={200}
+          dataSource={bills}
+          renderRow={(bill) => (
+            <BillCardInList
+              {...bill}
+              key={bill.bill_id}
+              onChange={this.showDetailedBill}
+            />
+          )}
+        />
+      </View>
+    )
+  }
+
+  renderNoBillsMessage () {
+    return (
+      <View style={styles.contentContainer}>
+        <Text style={styles.failureMessage}>No bills match this search. Please try another search.</Text>
+        <Button
+          title='See All Bills'
+          onPress={NavigationActions.bills}
+        />
+      </View>
+    )
+  }
+
+  render () {
+    const { bills, showSearch } = this.state
+
+    return (
+      <View style={styles.container}>
+        {showSearch && (<View style={styles.verticalBlock} />)}
+        <View style={styles.searchContainer}>
+          <Text style={styles.searchText}>Search</Text>
           <TextInput
             style={styles.input}
             onChangeText={(search) => this.handleSearch(search)}
-          />
-          <ListView
-            enableEmptySections
-            styles={styles.listViewContainer}
-            dataSource={bills}
-            renderRow={(bill) => (
-              <BillCardInList
-                {...bill}
-                key={bill.bill_id}
-                onChange={this.showDetailedBill}
-              />
-            )}
+            clearButtonMode='always'
           />
         </View>
-      )
-    } else {
-      return (
-        <View style={styles.container}>
-          <Text style={styles.failureMessage}>No bills match this search. Please try another search.</Text>
-          <Button
-            title='See All Bills'
-            onPress={NavigationActions.bills}
-          />
-        </View>
-      )
-    }
+        {bills && bills._dataBlob.s1.length
+          ? this.renderBillsList()
+          : this.renderNoBillsMessage()
+        }
+      </View>
+    )
   }
 }
 

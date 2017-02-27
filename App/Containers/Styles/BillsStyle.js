@@ -1,27 +1,27 @@
 const styles = {
   container: {
+    backgroundColor: '#D8D8D8',
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#D8D8D8'
+    flexDirection: 'column'
+  },
+  contentContainer: {
+    flex: 8
   },
   failureMessage: {
     fontSize: 30,
     margin: 20,
     textAlign: 'center'
   },
-  listViewContainer: {
-    paddingTop: 70
-  },
   input: {
-    borderColor: '#112E50',
-    borderWidth: 1,
-    marginTop: 10,
-    marginBottom: 20,
-    height: 30
-  },
-  scrollContainer: {
-    flex: 5
+    borderRadius: 15,
+    height: 30,
+    marginRight: 10,
+    marginLeft: 10,
+    marginTop: 5,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: 'white',
+    textAlign: 'center'
   },
   showHideBills: {
     backgroundColor: '#112E50',
@@ -38,6 +38,17 @@ const styles = {
     fontSize: 40,
     paddingTop: 70,
     textAlign: 'center'
+  },
+  searchText: {
+    textAlign: 'center',
+    fontSize: 18
+  },
+  verticalBlock: {
+    flex: 1
+  },
+  searchContainer: {
+    flex: 1,
+    justifyContent: 'center'
   }
 }
 

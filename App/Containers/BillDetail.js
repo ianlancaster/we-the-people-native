@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Button, ScrollView } from 'react-native'
+import { Text, View, Button, ScrollView, AsyncStorage, Alert } from 'react-native'
 import styles from './Styles/BillDetailStyle'
 import Separator from '../Components/Separator'
 import prettifyDate from '../Helpers/DatePrettifier'
@@ -20,11 +20,23 @@ export default class BillDetail extends React.Component {
       detailedStatus: this.props.detailedStatus,
       isThereATitleButton: false,
       urls: this.props.urls,
-      summary: 'loading'
+      summary: 'loading',
+      storedBills: []
     }
   }
 
   componentWillMount () {
+    AsyncStorage.getItem('bills')
+      .then((bills) => {
+        const parsedBills = JSON.parse(bills)
+        if (!Array.isArray(parsedBills)) {
+          AsyncStorage.setItem('bills', JSON.stringify([]))
+          return
+        }
+        this.setState({ storedBills: parsedBills })
+      })
+      .catch((err) => { throw new Error(err) })
+
     if (this.state.title.split(' ').length > 50) {
       this.setState({ title: `${this.state.title.split(' ').slice(0, 50).join(' ')}...` })
       this.setState({ isThereATitleButton: true })
@@ -36,12 +48,38 @@ export default class BillDetail extends React.Component {
       .then(summary => this.setState({ summary }))
   }
 
+  addToMyBills = (id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, urls) => {
+    const newBillToStore = {
+      id,
+      title,
+      dateIntroduced,
+      lastAction,
+      chamber,
+      sponsor,
+      status,
+      progress,
+      detailedStatus,
+      urls
+    }
+
+    this.state.storedBills.filter((bill) => {
+      return bill.id !== newBillToStore.id
+    })
+
+    AsyncStorage.setItem('bills', JSON.stringify([
+      ...this.state.storedBills,
+      newBillToStore
+    ]))
+
+    Alert.alert('You have successfully saved your bill to storage.')
+  }
+
   showFullTitle = () => {
     this.setState({ title: this.props.billTitle })
   }
 
   render () {
-    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, isThereATitleButton, summary } = this.state
+    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, isThereATitleButton, summary, urls } = this.state
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollContainer}>
@@ -76,6 +114,25 @@ export default class BillDetail extends React.Component {
             <Text style={styles.lastAction}>
               <Text style={styles.boldSpan}>Last Action On:</Text> {prettifyDate(lastAction)}
             </Text>
+            <View style={styles.addBillContainer}>
+              <Button
+                title='Add to My Bills'
+                onPress={() => {
+                  this.addToMyBills(
+                    id,
+                    title,
+                    dateIntroduced,
+                    lastAction,
+                    chamber,
+                    sponsor,
+                    status,
+                    progress,
+                    detailedStatus,
+                    urls
+                  )
+                }}
+              />
+            </View>
             <Separator backgroundColor={'#dddddd'} />
           </View>
           <Text style={styles.billSummaryHeadline}>

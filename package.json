@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native run-ios && nodemon server",
+    "start": "react-native run-ios && node server",
     "old start": "node node_modules/react-native/local-cli/cli.js start",
     "lint": "eslint App/Containers",
     "lintdiff": "git diff --name-only --cached --relative | grep '\\.js$' | xargs standard | snazzy",
@@ -62,7 +62,6 @@
     "react-native-router-flux": "^3.37.0",
     "react-native-svg": "4.4.0",
     "react-native-vector-icons": "^3.0.0",
-    "react-native-video": "^1.0.0",
     "react-redux": "^4.4.6",
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
