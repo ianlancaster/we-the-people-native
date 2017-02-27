@@ -26,6 +26,14 @@ export default class BillDetail extends React.Component {
   }
 
   componentWillMount () {
+    const titleIsTooLong = (title) => {
+      if (title.split(' ').length > 50) {
+        return true
+      } else {
+        return false
+      }
+    }
+
     AsyncStorage.getItem('bills')
       .then((bills) => {
         const parsedBills = JSON.parse(bills)
@@ -37,7 +45,7 @@ export default class BillDetail extends React.Component {
       })
       .catch((err) => { throw new Error(err) })
 
-    if (this.state.title.split(' ').length > 50) {
+    if (titleIsTooLong(this.state.title)) {
       this.setState({ title: `${this.state.title.split(' ').slice(0, 50).join(' ')}...` })
       this.setState({ isThereATitleButton: true })
     }
