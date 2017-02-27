@@ -6,10 +6,6 @@ const moment = require('moment')
 const returnDetailedStatus = require('./returnDetailedStatus')
 const returnProgress = require('./returnProgress')
 
-router.get('/api/bills/', (req, res) => {
-  res.json(allBills)
-})
-
 let billsPage = 1
 let allBills = []
 
@@ -45,8 +41,6 @@ const getAllBills = () => {
     .catch(err => console.log(err))
 }
 
-getAllBills()
-
 const additionalData = (history, chamber, lastAction) => {
   const status = returnStatus(history, lastAction)
   const progress = returnProgress(history, chamber)
@@ -70,5 +64,13 @@ const returnStatus = (history, lastAction) => {
   if (moment(lastAction).add(4, 'months') > moment(Date.now()) && history.active === true) return 'active'
   return 'tabled'
 }
+
+router.get('/api/bills/', (req, res) => {
+  res.json(allBills)
+})
+
+getAllBills()
+// refresh bills list every 12 hours
+setInterval(() => { getAllBills() }, 1000 * 60 * 60 * 12)
 
 module.exports = router
