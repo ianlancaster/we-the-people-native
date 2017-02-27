@@ -36,8 +36,18 @@ export default class BillDetail extends React.Component {
       .then(summary => this.setState({ summary }))
   }
 
-  addToMyBills = (id) => {
-    AsyncStorage.setItem('bills', JSON.stringify(id))
+  addToMyBills = (id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus) => {
+    AsyncStorage.mergeItem('bills', JSON.stringify({
+      id,
+      title,
+      dateIntroduced,
+      lastAction,
+      chamber,
+      sponsor,
+      status,
+      progress,
+      detailedStatus
+    }))
   }
 
   showFullTitle = () => {
