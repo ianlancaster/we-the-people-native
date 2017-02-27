@@ -118,7 +118,7 @@ export default class MyBills extends React.Component {
     if (this.state.billsOnPage) {
       return (
         <ScrollView style={styles.container}>
-          {this.billsComponent || <Text>You have no stored bills. Try saving some bills!</Text>}
+          {this.billsComponent || <Text style={styles.noStoredBillsMessage}>You have no stored bills. Try saving some bills!</Text>}
           <Button
             title='Delete All of My Bills'
             onPress={this.deleteAllBills}

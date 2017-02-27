@@ -1,6 +1,6 @@
 const styles = {
   container: {
-    backgroundColor: '#D8D8D8',
+    backgroundColor: '#FFF',
     flex: 1,
     flexDirection: 'column',
     paddingTop: 70
@@ -11,6 +11,12 @@ const styles = {
     margin: 10,
     padding: 20,
     shadowOpacity: 0.5
+  },
+  noStoredBillsMessage: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 80,
+    marginBottom: 60
   },
   spanText: {
     fontWeight: '700'

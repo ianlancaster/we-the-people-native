@@ -114,23 +114,25 @@ export default class BillDetail extends React.Component {
             <Text style={styles.lastAction}>
               <Text style={styles.boldSpan}>Last Action On:</Text> {prettifyDate(lastAction)}
             </Text>
-            <Button
-              title='Add to My Bills'
-              onPress={() => {
-                this.addToMyBills(
-                  id,
-                  title,
-                  dateIntroduced,
-                  lastAction,
-                  chamber,
-                  sponsor,
-                  status,
-                  progress,
-                  detailedStatus,
-                  urls
-                )
-              }}
-            />
+            <View style={styles.addBillContainer}>
+              <Button
+                title='Add to My Bills'
+                onPress={() => {
+                  this.addToMyBills(
+                    id,
+                    title,
+                    dateIntroduced,
+                    lastAction,
+                    chamber,
+                    sponsor,
+                    status,
+                    progress,
+                    detailedStatus,
+                    urls
+                  )
+                }}
+              />
+            </View>
             <Separator backgroundColor={'#dddddd'} />
           </View>
           <Text style={styles.billSummaryHeadline}>
