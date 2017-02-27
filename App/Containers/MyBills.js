@@ -52,61 +52,68 @@ export default class MyBills extends React.Component {
   }
 
   mapBills = (bills) => {
-    this.billsComponent = bills.map((bill) => {
-      return (
-        <View
-          key={bill.id}
-          style={styles.eachBillContainer}
-        >
-          <Text
-            style={styles.text}
+    if (!bills.length) {
+      this.billsComponent =
+        <View>
+          <Text style={styles.noStoredBillsMessage}>You have no stored bills. Try saving some bills!</Text>
+        </View>
+    } else {
+      this.billsComponent = bills.map((bill) => {
+        return (
+          <View
+            key={bill.id}
+            style={styles.eachBillContainer}
           >
             <Text
-              style={styles.spanText}
+              style={styles.text}
             >
-            Title: &nbsp;
+              <Text
+                style={styles.spanText}
+              >
+                Title: &nbsp;
+              </Text>
+              {bill.title}
             </Text>
-            {bill.title}
-          </Text>
-          <Text
-            style={styles.text}
-          >
             <Text
-              style={styles.spanText}
+              style={styles.text}
             >
-            Date Introduced: &nbsp;
+              <Text
+                style={styles.spanText}
+              >
+          Date Introduced: &nbsp;
             </Text>
-            {prettifyDate(bill.dateIntroduced)}
-          </Text>
-          <Text
-            style={styles.text}
-          >
+              {prettifyDate(bill.dateIntroduced)}
+            </Text>
             <Text
-              style={styles.spanText}
+              style={styles.text}
             >
-            Status: &nbsp;
-            </Text>
-            {bill.progress.text}
+              <Text
+                style={styles.spanText}
+              >
+          Status: &nbsp;
           </Text>
-          <Button
-            title='Detailed view...'
-            onPress={() => {
-              this.showDetailedBill(
-                bill.id,
-                bill.title,
-                bill.dateIntroduced,
-                bill.lastAction,
-                bill.chamber,
-                bill.sponsor,
-                bill.status,
-                bill.progress,
-                bill.detailedStatus,
-                bill.urls
-              )
-            }}
+              {bill.progress.text}
+            </Text>
+            <Button
+              title='Detailed view...'
+              onPress={() => {
+                this.showDetailedBill(
+              bill.id,
+              bill.title,
+              bill.dateIntroduced,
+              bill.lastAction,
+              bill.chamber,
+              bill.sponsor,
+              bill.status,
+              bill.progress,
+              bill.detailedStatus,
+              bill.urls
+            )
+              }}
           />
-        </View>)
-    })
+          </View>)
+      })
+    }
   }
 
   setBillState = (result) => {
