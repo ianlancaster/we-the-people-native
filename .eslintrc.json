@@ -4,7 +4,8 @@
     "standard-react"
   ],
   "plugins": [
-    "react"
+    "react",
+    "mocha"
   ],
   "ecmafeatures":{
     "arrowFunctions": true
@@ -27,7 +28,10 @@
     "no-lone-blocks": "off"
   },
   "globals": {
-    "__DEV__": false
+    "__DEV__": false,
+    "describe": true,
+    "context": true,
+    "it": true
   },
   "parser": "babel-eslint"
 }

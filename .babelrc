@@ -1,8 +1,15 @@
 {
-  "presets": [ "react-native" ],
-  "env": {
-    "development": {
-      "sourceMaps": "inline"
-    }
+    "presets":
+      [
+        "es2015",
+        "react",
+        "react-native",
+        "stage-0"
+      ],
+    "plugins": ["transform-class-properties"],
+    "env": {
+      "development": {
+        "sourceMaps": "inline"
+      }
   }
 }
