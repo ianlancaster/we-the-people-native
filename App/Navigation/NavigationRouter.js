@@ -28,6 +28,7 @@ import BillCardInList from '../Containers/BillCardInList'
 import Header from '../Containers/Header'
 import NavSideMenu from '../Containers/NavSideMenu'
 import BillDetail from '../Containers/BillDetail'
+import MyBills from '../Containers/MyBills'
 
 /* **************************
 * Documentation: https://github.com/aksonov/react-native-router-flux
@@ -58,6 +59,7 @@ class NavigationRouter extends Component {
             <Scene key='billsEconomy' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['tax', 'economy', 'economic', 'deficit', 'unemployment', 'underemployment', 'recession', 'income']} />
             <Scene key='billsAgriculture' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['agriculture', 'farm', 'corn', 'wheat', 'ranch']} />
             <Scene key='billsCrime' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['crime', 'criminal', 'prison', 'incarceration', 'police']} />
+            <Scene key='myBills' component={MyBills} title='My Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
 
             <Scene key='header' component={Header} title='Header' />
             <Scene key='bill-card-in-list' component={BillCardInList} title='BillCardInList' />
