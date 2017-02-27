@@ -3,6 +3,7 @@ import { Text, View, Button, ScrollView, AsyncStorage, Alert } from 'react-nativ
 import styles from './Styles/BillDetailStyle'
 import Separator from '../Components/Separator'
 import prettifyDate from '../Helpers/DatePrettifier'
+import shortenSummary from '../Helpers/ShortenSummary'
 import sliceTitle from '../Helpers/TitleSlicer'
 import BillStatusSvg from '../Components/BillStatus'
 
@@ -148,7 +149,7 @@ export default class BillDetail extends React.Component {
             Brief Bill Summary
           </Text>
           <Text style={styles.billSummaryDetailed}>
-            {summary}
+            {shortenSummary(summary)}
           </Text>
           <Text style={styles.readFullBillSummary}>
             Read Full Bill Summary &raquo;
