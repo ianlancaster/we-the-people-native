@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, AsyncStorage, Button } from 'react-native'
+import { Text, ScrollView, View, AsyncStorage, Button } from 'react-native'
 import styles from './Styles/MyBillsStyle'
 import { uniqBy } from 'lodash'
 import prettifyDate from '../Helpers/DatePrettifier'
@@ -54,10 +54,40 @@ export default class MyBills extends React.Component {
   mapBills = (bills) => {
     this.billsComponent = bills.map((bill) => {
       return (
-        <View key={bill.id}>
-          <Text>Title: {bill.title}</Text>
-          <Text>Date Introduced: {prettifyDate(bill.dateIntroduced)}</Text>
-          <Text>Status: {bill.progress.text}</Text>
+        <View
+          key={bill.id}
+          style={styles.eachBillContainer}
+        >
+          <Text
+            style={styles.text}
+          >
+            <Text
+              style={styles.spanText}
+            >
+            Title: &nbsp;
+            </Text>
+            {bill.title}
+          </Text>
+          <Text
+            style={styles.text}
+          >
+            <Text
+              style={styles.spanText}
+            >
+            Date Introduced: &nbsp;
+            </Text>
+            {prettifyDate(bill.dateIntroduced)}
+          </Text>
+          <Text
+            style={styles.text}
+          >
+            <Text
+              style={styles.spanText}
+            >
+            Status: &nbsp;
+            </Text>
+            {bill.progress.text}
+          </Text>
           <Button
             title='Detailed view...'
             onPress={() => {
@@ -87,14 +117,13 @@ export default class MyBills extends React.Component {
   render () {
     if (this.state.billsOnPage) {
       return (
-        <View style={styles.container}>
-          <Text style={styles.text}>I am the My Bills component.</Text>
+        <ScrollView style={styles.container}>
           {this.billsComponent || <Text>You have no stored bills. Try saving some bills!</Text>}
           <Button
             title='Delete All of My Bills'
             onPress={this.deleteAllBills}
           />
-        </View>
+        </ScrollView>
       )
     } else {
       return (
