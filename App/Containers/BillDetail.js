@@ -3,6 +3,7 @@ import { Text, View, Button, ScrollView, AsyncStorage, Alert } from 'react-nativ
 import styles from './Styles/BillDetailStyle'
 import Separator from '../Components/Separator'
 import prettifyDate from '../Helpers/DatePrettifier'
+import sliceTitle from '../Helpers/TitleSlicer'
 import BillStatusSvg from '../Components/BillStatus'
 
 export default class BillDetail extends React.Component {
@@ -46,7 +47,7 @@ export default class BillDetail extends React.Component {
       .catch((err) => { throw new Error(err) })
 
     if (titleIsTooLong(this.state.title)) {
-      this.setState({ title: `${this.state.title.split(' ').slice(0, 50).join(' ')}...` })
+      this.setState({ title: sliceTitle(this.state.title) })
       this.setState({ isThereATitleButton: true })
     }
 
