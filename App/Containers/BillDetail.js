@@ -20,11 +20,23 @@ export default class BillDetail extends React.Component {
       detailedStatus: this.props.detailedStatus,
       isThereATitleButton: false,
       urls: this.props.urls,
-      summary: 'loading'
+      summary: 'loading',
+      storedBills: []
     }
   }
 
   componentWillMount () {
+    AsyncStorage.getItem('bills')
+      .then((bills) => {
+        const parsedBills = JSON.parse(bills)
+        if (!Array.isArray(parsedBills)) {
+          AsyncStorage.setItem('bills', [])
+          return
+        }
+        this.setState({ storedBills: parsedBills })
+      })
+      .catch(AsyncStorage.setItem('bills', JSON.stringify([])))
+
     if (this.state.title.split(' ').length > 50) {
       this.setState({ title: `${this.state.title.split(' ').slice(0, 50).join(' ')}...` })
       this.setState({ isThereATitleButton: true })
@@ -37,7 +49,7 @@ export default class BillDetail extends React.Component {
   }
 
   addToMyBills = (id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus) => {
-    AsyncStorage.mergeItem('bills', JSON.stringify({
+    const newBillToStore = {
       id,
       title,
       dateIntroduced,
@@ -47,7 +59,12 @@ export default class BillDetail extends React.Component {
       status,
       progress,
       detailedStatus
-    }))
+    }
+
+    AsyncStorage.setItem('bills', JSON.stringify([
+      ...this.state.storedBills,
+      newBillToStore
+    ]))
   }
 
   showFullTitle = () => {

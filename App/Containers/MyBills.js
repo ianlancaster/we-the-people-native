@@ -20,7 +20,7 @@ export default class MyBills extends React.Component {
   }
 
   mapBills = (result) => {
-
+    const parsedBills = JSON.parse(result)
   }
 
   render () {
