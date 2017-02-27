@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Button, ScrollView, AsyncStorage } from 'react-native'
+import { Text, View, Button, ScrollView, AsyncStorage, Alert } from 'react-native'
 import styles from './Styles/BillDetailStyle'
 import Separator from '../Components/Separator'
 import prettifyDate from '../Helpers/DatePrettifier'
@@ -48,7 +48,7 @@ export default class BillDetail extends React.Component {
       .then(summary => this.setState({ summary }))
   }
 
-  addToMyBills = (id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus) => {
+  addToMyBills = (id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, urls) => {
     const newBillToStore = {
       id,
       title,
@@ -58,13 +58,16 @@ export default class BillDetail extends React.Component {
       sponsor,
       status,
       progress,
-      detailedStatus
+      detailedStatus,
+      urls
     }
 
     AsyncStorage.setItem('bills', JSON.stringify([
       ...this.state.storedBills,
       newBillToStore
     ]))
+
+    Alert.alert('You have successfully saved your bill to storage.')
   }
 
   showFullTitle = () => {
@@ -72,7 +75,7 @@ export default class BillDetail extends React.Component {
   }
 
   render () {
-    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, isThereATitleButton, summary } = this.state
+    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, isThereATitleButton, summary, urls } = this.state
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollContainer}>
@@ -120,6 +123,7 @@ export default class BillDetail extends React.Component {
                   status,
                   progress,
                   detailedStatus,
+                  urls
                 )
               }}
             />
