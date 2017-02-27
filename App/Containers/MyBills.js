@@ -7,7 +7,9 @@ export default class MyBills extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      bills: []
+      bills: [],
+      billsComponent: null,
+      billsOnPage: false
     }
   }
 
@@ -16,18 +18,43 @@ export default class MyBills extends React.Component {
   }
 
   getBills = () => {
-    AsyncStorage.getItem('bills').then((result) => { this.mapBills(result) }).catch(() => { throw new Error('There was a problem retrieving your stored bills.') })
+    AsyncStorage.getItem('bills')
+      .then((result) => { this.setBillState(result) })
+      .then(() => { this.mapBills(this.state.bills) })
+      .then(() => { this.setState({ billsOnPage: true }) })
+      .catch(() => {
+        throw new Error('There was a problem retrieving your stored bills.')
+      })
   }
 
-  mapBills = (result) => {
+  mapBills = (bills) => {
+    this.billsComponent = bills.map((bill) => {
+      return (
+        <View>
+          <Text>{bill.title}</Text>
+        </View>)
+    })
+  }
+
+  setBillState = (result) => {
     const parsedBills = JSON.parse(result)
+    this.setState({bills: parsedBills})
   }
 
   render () {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.text}>I am the My Bills component.</Text>
-      </View>
-    )
+    if (this.state.billsOnPage) {
+      return (
+        <View style={styles.container}>
+          <Text style={styles.text}>I am the My Bills component.</Text>
+          {this.billsComponent || <Text>You have no stored bills. Try saving some bills!</Text>}
+        </View>
+      )
+    } else {
+      return (
+        <View>
+          <Text>Loading...</Text>
+        </View>
+      )
+    }
   }
 }

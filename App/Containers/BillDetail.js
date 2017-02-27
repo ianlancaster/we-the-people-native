@@ -30,7 +30,7 @@ export default class BillDetail extends React.Component {
       .then((bills) => {
         const parsedBills = JSON.parse(bills)
         if (!Array.isArray(parsedBills)) {
-          AsyncStorage.setItem('bills', [])
+          AsyncStorage.setItem('bills', JSON.stringify([]))
           return
         }
         this.setState({ storedBills: parsedBills })
