@@ -62,6 +62,10 @@ export default class BillDetail extends React.Component {
       urls
     }
 
+    this.state.storedBills.filter((bill) => {
+      return bill.id !== newBillToStore.id
+    })
+
     AsyncStorage.setItem('bills', JSON.stringify([
       ...this.state.storedBills,
       newBillToStore

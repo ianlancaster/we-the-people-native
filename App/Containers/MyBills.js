@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, AsyncStorage, Button } from 'react-native'
 import styles from './Styles/MyBillsStyle'
+import { uniqBy } from 'lodash'
 import prettifyDate from '../Helpers/DatePrettifier'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
@@ -79,8 +80,8 @@ export default class MyBills extends React.Component {
   }
 
   setBillState = (result) => {
-    const parsedBills = JSON.parse(result)
-    this.setState({bills: parsedBills})
+    const noDupes = uniqBy(JSON.parse(result), 'id')
+    this.setState({bills: noDupes})
   }
 
   render () {
