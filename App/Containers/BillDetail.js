@@ -35,7 +35,7 @@ export default class BillDetail extends React.Component {
         }
         this.setState({ storedBills: parsedBills })
       })
-      .catch(AsyncStorage.setItem('bills', JSON.stringify([])))
+      .catch((err) => { throw new Error(err) })
 
     if (this.state.title.split(' ').length > 50) {
       this.setState({ title: `${this.state.title.split(' ').slice(0, 50).join(' ')}...` })
