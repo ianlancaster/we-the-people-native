@@ -26,6 +26,24 @@ export default class MyBills extends React.Component {
     this.billsOnPage = false
   }
 
+  deleteBill = (id) => {
+    AsyncStorage.getItem('bills')
+    .then((bills) => { this.filterOutBill(bills, id) })
+    .then(() => { this.mapBills(this.state.bills) })
+    .then(() => { this.setState({ billsOnPage: true }) })
+    .catch(() => {
+      throw new Error('There was a problem retrieving your stored bills.')
+    })
+  }
+
+  filterOutBill = (bills, id) => {
+    const filteredBills = JSON.parse(bills).filter((bill) => {
+      return bill.id !== id
+    })
+    this.setState({ bills: filteredBills })
+    AsyncStorage.setItem('bills', JSON.stringify(filteredBills))
+  }
+
   getBills = () => {
     AsyncStorage.getItem('bills')
       .then((result) => { this.setBillState(result) })
@@ -108,6 +126,14 @@ export default class MyBills extends React.Component {
               bill.progress,
               bill.detailedStatus,
               bill.urls
+            )
+              }}
+          />
+            <Button
+              title='Delete This Bill'
+              onPress={() => {
+                this.deleteBill(
+              bill.id,
             )
               }}
           />
