@@ -14,6 +14,7 @@ const styles = {
   },
   noStoredBillsMessage: {
     fontSize: 16,
+    fontWeight: '700',
     textAlign: 'center',
     marginTop: 80,
     marginBottom: 60

@@ -80,7 +80,7 @@ export default class Footer extends React.Component {
             <Text
               style={styles.text}
             >
-            Me
+            My Bills
             </Text>
 
           </View>
