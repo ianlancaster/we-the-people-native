@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Button, ScrollView } from 'react-native'
+import { Text, View, Button, ScrollView, AsyncStorage } from 'react-native'
 import styles from './Styles/BillDetailStyle'
 import Separator from '../Components/Separator'
 import prettifyDate from '../Helpers/DatePrettifier'
@@ -34,6 +34,10 @@ export default class BillDetail extends React.Component {
       headers: { url: this.state.urls.congress }
     }).then(res => res.json())
       .then(summary => this.setState({ summary }))
+  }
+
+  addToMyBills = (id) => {
+    AsyncStorage.setItem('bills', JSON.stringify(id))
   }
 
   showFullTitle = () => {
@@ -76,6 +80,22 @@ export default class BillDetail extends React.Component {
             <Text style={styles.lastAction}>
               <Text style={styles.boldSpan}>Last Action On:</Text> {prettifyDate(lastAction)}
             </Text>
+            <Button
+              title='Add to My Bills'
+              onPress={() => {
+                this.addToMyBills(
+                  id,
+                  title,
+                  dateIntroduced,
+                  lastAction,
+                  chamber,
+                  sponsor,
+                  status,
+                  progress,
+                  detailedStatus,
+                )
+              }}
+            />
             <Separator backgroundColor={'#dddddd'} />
           </View>
           <Text style={styles.billSummaryHeadline}>
