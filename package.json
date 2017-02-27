@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "react-native run-ios && nodemon server",
+    "start": "react-native run-ios && node server",
     "old start": "node node_modules/react-native/local-cli/cli.js start",
     "lint": "eslint App/Containers",
     "lintdiff": "git diff --name-only --cached --relative | grep '\\.js$' | xargs standard | snazzy",
