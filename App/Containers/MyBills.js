@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, ScrollView, View, AsyncStorage, Button } from 'react-native'
+import { Text, ScrollView, View, AsyncStorage, Button, Image, TouchableOpacity } from 'react-native'
 import styles from './Styles/MyBillsStyle'
 import { uniqBy } from 'lodash'
 import prettifyDate from '../Helpers/DatePrettifier'
@@ -129,14 +129,18 @@ export default class MyBills extends React.Component {
             )
               }}
           />
-            <Button
-              title='Delete This Bill'
+            <TouchableOpacity
               onPress={() => {
                 this.deleteBill(
-              bill.id,
+                bill.id,
             )
               }}
-          />
+        >
+              <Image
+                source={require('../Images/cancel-circle.png')}
+                style={styles.deleteIcon}
+              />
+            </TouchableOpacity>
           </View>)
       })
     }
