@@ -2,13 +2,16 @@ import React from 'react'
 import { Text, View, Button, Image, TouchableHighlight } from 'react-native'
 import styles from './Styles/FooterStyle'
 import { Images } from '../Themes'
-// import DrawerButton from '../Components/DrawerButton'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class Footer extends React.Component {
 
   goToBillsPage () {
     NavigationActions.bills()
+  }
+
+  goToMyBills () {
+    NavigationActions.myBills()
   }
 
   render () {
@@ -67,7 +70,7 @@ export default class Footer extends React.Component {
 
         <TouchableHighlight
           style={styles.touchableHighlight}
-          onPress={this.goToBillsPage}
+          onPress={this.goToMyBills}
         >
           <View style={styles.navItem}>
             <Image
@@ -77,7 +80,7 @@ export default class Footer extends React.Component {
             <Text
               style={styles.text}
             >
-            Me
+            My Bills
             </Text>
 
           </View>

@@ -107,6 +107,11 @@ class DrawerContent extends Component {
     NavigationActions.billsMiddleEast()
   }
 
+  handleMyBills = () => {
+    this.toggleDrawer()
+    NavigationActions.myBills()
+  }
+
   handleTabledBills = () => {
     this.toggleDrawer()
     NavigationActions.billsTabled({status: 'tabled'})
@@ -118,6 +123,11 @@ class DrawerContent extends Component {
         <Text style={styles.sectionTitle}>Main:</Text>
         <DrawerButton
           text='See All Bills' onPress={this.handleBills}
+        />
+        <Separator backgroundColor={'#000'} />
+        <DrawerButton
+          text='My Bills'
+          onPress={this.handleMyBills}
         />
 
         <Text style={styles.sectionTitle}>Sort By:</Text>

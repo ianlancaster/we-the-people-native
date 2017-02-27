@@ -33,7 +33,7 @@
     "eslint-plugin-react": "^6.9.0",
     "express": "^4.14.1",
     "format-json": "^1.0.3",
-    "lodash": "^4.17.2",
+    "lodash": "^4.17.4",
     "moment": "^2.17.1",
     "nodemon": "^1.11.0",
     "querystringify": "0.0.4",
