@@ -1,8 +1,9 @@
 import React from 'react'
-import { Text, ScrollView, View, AsyncStorage, Button } from 'react-native'
+import { Text, ScrollView, View, AsyncStorage, Button, Image, TouchableOpacity } from 'react-native'
 import styles from './Styles/MyBillsStyle'
 import { uniqBy } from 'lodash'
 import prettifyDate from '../Helpers/DatePrettifier'
+import getRidOfTargetBill from '../Helpers/GetRidOfTargetBill'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class MyBills extends React.Component {
@@ -21,9 +22,7 @@ export default class MyBills extends React.Component {
 
   deleteAllBills = () => {
     AsyncStorage.setItem('bills', JSON.stringify([]))
-    this.setState({bills: []})
-    this.billsComponent = null
-    this.billsOnPage = false
+    this.resetStates()
   }
 
   deleteBill = (id) => {
@@ -36,10 +35,14 @@ export default class MyBills extends React.Component {
     })
   }
 
+  resetStates = () => {
+    this.setState({bills: []})
+    this.billsComponent = null
+    this.billsOnPage = false
+  }
+
   filterOutBill = (bills, id) => {
-    const filteredBills = JSON.parse(bills).filter((bill) => {
-      return bill.id !== id
-    })
+    const filteredBills = getRidOfTargetBill(bills, id)
     this.setState({ bills: filteredBills })
     AsyncStorage.setItem('bills', JSON.stringify(filteredBills))
   }
@@ -129,14 +132,18 @@ export default class MyBills extends React.Component {
             )
               }}
           />
-            <Button
-              title='Delete This Bill'
+            <TouchableOpacity
               onPress={() => {
                 this.deleteBill(
-              bill.id,
+                bill.id,
             )
               }}
-          />
+        >
+              <Image
+                source={require('../Images/cancel-circle.png')}
+                style={styles.deleteIcon}
+              />
+            </TouchableOpacity>
           </View>)
       })
     }
