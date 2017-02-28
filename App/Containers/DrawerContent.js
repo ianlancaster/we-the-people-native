@@ -133,11 +133,13 @@ class DrawerContent extends Component {
         <Text style={styles.sectionTitle}>Main:</Text>
         <DrawerButton
           text='See All Bills' onPress={this.handleBills}
+          source={require('../Images/bill-icon.png')}
         />
         <Separator backgroundColor={'#000'} />
         <DrawerButton
           text='My Bills'
           onPress={this.handleMyBills}
+          source={require('../Images/eye-icon.png')}
         />
 
         <Text style={styles.sectionTitle}>Sort By:</Text>
