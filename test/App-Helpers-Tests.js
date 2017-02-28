@@ -4,6 +4,7 @@ import getRidOfTargetBill from '../App/Helpers/getRidOfTargetBill'
 import prettifyDate from '../App/Helpers/DatePrettifier'
 import { summaryIsTooLong, shortenSummary } from '../App/Helpers/ShortenSummary'
 import sortByClosestToBecomingLaw from '../App/Helpers/SortByClosestToBecomingLaw'
+import sortByDateIntroduced from '../App/Helpers/SortByDateIntroduced'
 
 import { fakeBills, stringifiedFakeBills, fakeLongSummary, fakeShortSummary } from './helpers/fake-bills'
 
@@ -92,4 +93,26 @@ describe('sortByClosestToBecomingLaw', function () {
     assert.strictEqual(result[0].official_title, 'A bill to make everyone happy.');
     assert.strictEqual(result[1].official_title, 'A bill to impeach Donald Trump.');
   });
+});
+
+describe('sortByDateIntroduced', function () {
+  const result = sortByDateIntroduced(fakeBills)
+
+  it('should be a function', function () {
+
+    assert.isFunction(sortByDateIntroduced);
+  });
+
+  it('should return an array of the same length as the original', function () {
+
+    assert.strictEqual(result.length, 2);
+  });
+
+  it('should put the most recent bills at the beginning of the result array', function () {
+
+    assert.strictEqual(result[0].official_title, 'A bill to make everyone happy.');
+    assert.strictEqual(result[0].id, 3345);
+    assert.strictEqual(result[1].progress.index, 1);
+  });
+
 });
