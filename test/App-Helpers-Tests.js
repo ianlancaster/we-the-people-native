@@ -137,8 +137,22 @@ describe('sliceTitle', function () {
 });
 
 describe('truncateTitle', function () {
+  const longResult = truncateTitle(fakeLongTitle)
+  const shortResult = truncateTitle(fakeShortTitle)
+
   it('should be a function', function () {
 
     assert.isFunction(truncateTitle);
   });
+
+  it('should cut the length of a title to 10 characters', function () {
+
+    assert.strictEqual(longResult.split(' ').length, 10);
+  });
+
+  it('should return the same title if its length is less than 10', function () {
+
+    assert.strictEqual(shortResult.split(' ').length, 8);
+  });
+
 });
