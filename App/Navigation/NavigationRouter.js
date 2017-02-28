@@ -22,7 +22,6 @@ import Bills from '../Containers/Bills'
 import Landing from '../Containers/Landing'
 import Footer from '../Containers/Footer'
 import BillCardInList from '../Containers/BillCardInList'
-import NavSideMenu from '../Containers/NavSideMenu'
 import BillDetail from '../Containers/BillDetail'
 import MyBills from '../Containers/MyBills'
 
@@ -58,7 +57,6 @@ class NavigationRouter extends Component {
             <Scene key='myBills' component={MyBills} title='My Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
 
             <Scene key='bill-card-in-list' component={BillCardInList} title='BillCardInList' />
-            <Scene key='nav-side-menu' component={NavSideMenu} title='NavSideMenu' />
             <Scene key='billDetail' component={BillDetail} title='Bill Detail' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
           </Scene>
         </Scene>
