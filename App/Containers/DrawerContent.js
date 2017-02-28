@@ -117,6 +117,11 @@ class DrawerContent extends Component {
     NavigationActions.billsTabled({status: 'tabled'})
   }
 
+  handleWomen = () => {
+    this.toggleDrawer()
+    NavigationActions.billsWomen()
+  }
+
   render () {
     return (
       <ScrollView style={styles.container}>
@@ -193,13 +198,16 @@ class DrawerContent extends Component {
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
-          text='Military/Defense' onPress={this.handleMilitary}
+          text='Military/Defense/Veterans' onPress={this.handleMilitary}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Russia/Central Asia/South Asia' onPress={this.handleCentralAsia}
         />
-
+        <Separator backgroundColor={'#D8D8D8'} />
+        <DrawerButton
+          text='Women' onPress={this.handleWomen}
+        />
       </ScrollView>
     )
   }
