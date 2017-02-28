@@ -135,7 +135,6 @@ export default class Bills extends React.Component {
 
   renderBillsList () {
     const { bills, showOnlyActive, sortByDateIntroduced } = this.state
-    console.log('bills', bills)
     return (
       <View style={styles.contentContainer}>
         <ListView
