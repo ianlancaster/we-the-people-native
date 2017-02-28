@@ -3,6 +3,7 @@ import { Text, ScrollView, View, AsyncStorage, Button, Image, TouchableOpacity }
 import styles from './Styles/MyBillsStyle'
 import { uniqBy } from 'lodash'
 import prettifyDate from '../Helpers/DatePrettifier'
+import getRidOfTargetBill from '../Helpers/GetRidOfTargetBill'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class MyBills extends React.Component {
@@ -41,9 +42,7 @@ export default class MyBills extends React.Component {
   }
 
   filterOutBill = (bills, id) => {
-    const filteredBills = JSON.parse(bills).filter((bill) => {
-      return bill.id !== id
-    })
+    const filteredBills = getRidOfTargetBill(bills, id)
     this.setState({ bills: filteredBills })
     AsyncStorage.setItem('bills', JSON.stringify(filteredBills))
   }
