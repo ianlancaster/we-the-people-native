@@ -174,6 +174,7 @@ class DrawerContent extends Component {
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='China/Japan/East Asia' onPress={this.handleEastAsia}
+          source={require('../Images/china-icon.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton

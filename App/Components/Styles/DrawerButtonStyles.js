@@ -9,7 +9,11 @@ export default {
   },
   icon: {
     alignSelf: 'flex-start',
-    margin: 10
+    height: 30,
+    marginBottom: 10,
+    marginRight: 30,
+    marginTop: 10,
+    width: 30
   },
   text: {
     // alignSelf: 'flex-end',
