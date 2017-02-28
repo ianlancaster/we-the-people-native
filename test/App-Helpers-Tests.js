@@ -6,6 +6,7 @@ import { summaryIsTooLong, shortenSummary } from '../App/Helpers/ShortenSummary'
 import sortByClosestToBecomingLaw from '../App/Helpers/SortByClosestToBecomingLaw'
 import sortByDateIntroduced from '../App/Helpers/SortByDateIntroduced'
 import sliceTitle from '../App/Helpers/TitleSlicer'
+import truncateTitle from '../App/Helpers/TruncateTitle'
 
 import { fakeBills, stringifiedFakeBills, fakeLongSummary, fakeShortSummary, fakeLongTitle, fakeShortTitle } from './helpers/fake-bills'
 
@@ -133,4 +134,11 @@ describe('sliceTitle', function () {
     assert.strictEqual(shortResult.split(' ').length, 8);
   });
 
+});
+
+describe('truncateTitle', function () {
+  it('should be a function', function () {
+
+    assert.isFunction(truncateTitle);
+  });
 });
