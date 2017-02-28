@@ -97,6 +97,11 @@ class DrawerContent extends Component {
     NavigationActions.billsHealthCare()
   }
 
+  handleLGBT = () => {
+    this.toggleDrawer()
+    NavigationActions.billsLGBT()
+  }
+
   handleMilitary = () => {
     this.toggleDrawer()
     NavigationActions.billsMilitary()
@@ -191,6 +196,10 @@ class DrawerContent extends Component {
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Health Care' onPress={this.handleHealthCare}
+        />
+        <Separator backgroundColor={'#D8D8D8'} />
+        <DrawerButton
+          text='LGBT Issues/Gay Rights' onPress={this.handleLGBT}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
