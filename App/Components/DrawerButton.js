@@ -1,7 +1,7 @@
 // @flow
 
 import React, { Component } from 'react'
-import { Text, TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity, Image } from 'react-native'
 import styles from './Styles/DrawerButtonStyles'
 import ExamplesRegistry from '../Services/ExamplesRegistry'
 
@@ -24,6 +24,10 @@ class DrawerButton extends Component {
   render () {
     return (
       <TouchableOpacity onPress={this.props.onPress} style={styles.container}>
+        <Image
+          source={this.props.source}
+          style={styles.icon}
+        />
         <Text style={styles.text}>{this.props.text}</Text>
       </TouchableOpacity>
     )
@@ -31,3 +35,7 @@ class DrawerButton extends Component {
 }
 
 export default DrawerButton
+
+DrawerButton.propTypes = {
+  source: React.PropTypes.number
+}

@@ -167,7 +167,9 @@ class DrawerContent extends Component {
 
         <Text style={styles.sectionTitle}>Filter By Issue:</Text>
         <DrawerButton
-          text='Agriculture' onPress={this.handleAgriculture}
+          text='Agriculture'
+          onPress={this.handleAgriculture}
+          source={require('../Images/agriculture-icon.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
