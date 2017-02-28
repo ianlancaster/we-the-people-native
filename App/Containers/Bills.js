@@ -3,6 +3,7 @@ import { Text, View, ListView, ScrollView, TouchableOpacity, Button, TextInput }
 import styles from './Styles/BillsStyle'
 import BillCardInList from './BillCardInList'
 import sortByDateIntroduced from '../Helpers/SortByDateIntroduced'
+import sortByClosestToBecomingLaw from '../Helpers/SortByClosestToBecomingLaw'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class Bills extends React.Component {
@@ -48,11 +49,11 @@ export default class Bills extends React.Component {
     if (this.state.sortByDateIntroduced) {
       bills = sortByDateIntroduced(bills)
     }
+
     if (this.state.sortByClosestToBecomingLaw) {
-      bills = bills.sort((a, b) => {
-        return b.progress.index - a.progress.index
-      })
+      bills = sortByClosestToBecomingLaw(bills)
     }
+
     if (this.state.sortByTopic) {
       bills = this.filterBillsByTopic(bills, this.state.topics)
     }

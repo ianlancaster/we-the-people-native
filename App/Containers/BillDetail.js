@@ -55,13 +55,6 @@ export default class BillDetail extends React.Component {
       this.setState({ isThereATitleButton: true })
     }
 
-    // if (summaryIsTooLong(this.state.summary)) {
-    //   console.log('it hits')
-    //   this.setState({ summary: shortenSummary(this.state.summary) })
-    //   console.log('summary state', this.state.summary)
-    //   this.setState({ isThereASummaryButton: true })
-    // }
-
     fetch('http://localhost:3000/api/bill', {
       headers: { url: this.state.urls.congress }
     }).then(res => res.json())
