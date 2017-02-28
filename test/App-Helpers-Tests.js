@@ -3,6 +3,7 @@ import { expect, assert } from 'chai'
 import getRidOfTargetBill from '../App/Helpers/getRidOfTargetBill'
 import prettifyDate from '../App/Helpers/DatePrettifier'
 import { summaryIsTooLong, shortenSummary } from '../App/Helpers/ShortenSummary'
+import sortByClosestToBecomingLaw from '../App/Helpers/SortByClosestToBecomingLaw'
 
 import { fakeBills, stringifiedFakeBills, fakeLongSummary, fakeShortSummary } from './helpers/fake-bills'
 
@@ -70,4 +71,25 @@ describe('shortenSummary', function () {
     assert.strictEqual(lenShort, 10, 'The length of the output summary is the same as the input.');
   });
 
+});
+
+describe('sortByClosestToBecomingLaw', function () {
+  const result = sortByClosestToBecomingLaw(fakeBills)
+
+  it('should be a function', function () {
+
+    assert.isFunction(sortByClosestToBecomingLaw);
+  });
+
+  it('should return an array of the same length as the original', function () {
+
+    assert.strictEqual(result.length, 2);
+  });
+
+  it('should sort the bills by putting earlier in the array those bills that are closest to becoming law', function () {
+
+    assert.strictEqual(result[0].progress.index, 2);
+    assert.strictEqual(result[0].official_title, 'A bill to make everyone happy.');
+    assert.strictEqual(result[1].official_title, 'A bill to impeach Donald Trump.');
+  });
 });

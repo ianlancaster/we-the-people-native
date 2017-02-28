@@ -6,14 +6,22 @@ const fakeBills = [
     official_title: 'A bill to impeach Donald Trump.',
     introduced_on: '2017-02-01',
     last_action_at: '2017-02-02',
-    chamber: 'senate'
+    chamber: 'senate',
+    progress: {
+      index: 1,
+      text: 'The bill is just a thought now, really.'
+    }
   },
   {
     id: 3345,
     official_title: 'A bill to make everyone happy.',
     introduced_on: '2017-02-12',
     last_action_at: '2017-02-14',
-    chamber: 'house'
+    chamber: 'house',
+    progress: {
+      index: 2,
+      text: 'The bill is now close to becoming law.'
+    }
   }
 ]
 
