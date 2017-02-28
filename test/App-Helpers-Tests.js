@@ -2,7 +2,9 @@
 import { expect, assert } from 'chai'
 import getRidOfTargetBill from '../App/Helpers/getRidOfTargetBill'
 import prettifyDate from '../App/Helpers/DatePrettifier'
-import { fakeBills, stringifiedFakeBills } from './helpers/fake-bills'
+import { summaryIsTooLong, shortenSummary } from '../App/Helpers/ShortenSummary'
+
+import { fakeBills, stringifiedFakeBills, fakeLongSummary, fakeShortSummary } from './helpers/fake-bills'
 
 
 describe('getRidOfTargetBill', function () {
@@ -25,10 +27,20 @@ describe('prettifyDate', function () {
     assert.isFunction(prettifyDate)
     });
 
-    it('should return a properly formatted date', function () {
-      const date = '2017-02-01'
-      assert.strictEqual(prettifyDate(date), 'Feb 1, 2017', 'The date output is formatted correctly.');
-      assert.isString(prettifyDate(date), 'The result is a string.')
-    })
+  it('should return a properly formatted date', function () {
+    const date = '2017-02-01'
+    assert.strictEqual(prettifyDate(date), 'Feb 1, 2017', 'The date output is formatted correctly.');
+    assert.isString(prettifyDate(date), 'The result is a string.')
+  })
+
+});
+
+describe('summaryIsTooLong', function () {
+  it('should return true of the summary is too long and false otherwise', function () {
+
+    assert.strictEqual(summaryIsTooLong(fakeLongSummary), true, 'The function correctly says that the summary is too long.');
+
+    assert.strictEqual(summaryIsTooLong(fakeShortSummary), false, 'The function correctly says that the summary is not too long.');
+  });
 
 });
