@@ -145,10 +145,12 @@ class DrawerContent extends Component {
         <Text style={styles.sectionTitle}>Sort By:</Text>
         <DrawerButton
           text='Closest to Becoming Law' onPress={this.handleClosestToBecomingLaw}
+          source={require('../Images/check-icon.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
-          text='Date Introduced (Most Recent First)' onPress={this.handleDateIntroduced}
+          text='Date Introduced' onPress={this.handleDateIntroduced}
+          source={require('../Images/calendar-icon.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
