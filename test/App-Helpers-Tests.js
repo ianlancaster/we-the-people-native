@@ -7,6 +7,7 @@ import sortByClosestToBecomingLaw from '../App/Helpers/SortByClosestToBecomingLa
 import sortByDateIntroduced from '../App/Helpers/SortByDateIntroduced'
 import sliceTitle from '../App/Helpers/TitleSlicer'
 import truncateTitle from '../App/Helpers/TruncateTitle'
+import filterBillsByTopic from '../App/Helpers/FilterBillsByTopic'
 
 import { fakeBills, stringifiedFakeBills, fakeLongSummary, fakeShortSummary, fakeLongTitle, fakeShortTitle } from './helpers/fake-bills'
 
@@ -153,6 +154,35 @@ describe('truncateTitle', function () {
   it('should return the same title if its length is less than 10', function () {
 
     assert.strictEqual(shortResult.split(' ').length, 8);
+  });
+
+});
+
+describe('filterBillsByTopic', function () {
+
+  it('should be a function', function () {
+
+    assert.isFunction(filterBillsByTopic);
+  });
+
+  it('should filter bills according to the topics entered in', function () {
+    const topics = ['impeach']
+    const result = filterBillsByTopic(fakeBills, topics)
+    const topics2 = ['bill']
+    const result2 = filterBillsByTopic(fakeBills, topics2)
+    const topics3 = ['happy']
+    const result3 = filterBillsByTopic(fakeBills, topics3)
+
+    assert.strictEqual(result.length, 1);
+    assert.strictEqual(result[0].official_title, 'A bill to impeach Donald Trump.');
+    assert.strictEqual(result[0].chamber, 'senate');
+
+    assert.strictEqual(result2.length, 2)
+
+    assert.strictEqual(result3.length, 1);
+    assert.strictEqual(result3[0].official_title, 'A bill to make everyone happy.');
+    assert.strictEqual(result3[0].chamber, 'house');
+
   });
 
 });
