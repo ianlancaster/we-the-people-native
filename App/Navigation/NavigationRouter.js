@@ -1,5 +1,3 @@
-// @flow
-
 import React, { Component } from 'react'
 import { Scene, Router } from 'react-native-router-flux'
 import Styles from './Styles/NavigationContainerStyle'
@@ -7,7 +5,6 @@ import NavigationDrawer from './NavigationDrawer'
 import NavItems from './NavItems'
 import CustomNavBar from '../Navigation/CustomNavBar'
 
-// screens identified by the router
 import PresentationScreen from '../Containers/PresentationScreen'
 import AllComponentsScreen from '../Containers/AllComponentsScreen'
 import UsageExamplesScreen from '../Containers/UsageExamplesScreen'
@@ -25,7 +22,6 @@ import Bills from '../Containers/Bills'
 import Landing from '../Containers/Landing'
 import Footer from '../Containers/Footer'
 import BillCardInList from '../Containers/BillCardInList'
-import Header from '../Containers/Header'
 import NavSideMenu from '../Containers/NavSideMenu'
 import BillDetail from '../Containers/BillDetail'
 import MyBills from '../Containers/MyBills'
@@ -61,7 +57,6 @@ class NavigationRouter extends Component {
             <Scene key='billsCrime' component={Bills} title='Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} sortByTopic topics={['crime', 'criminal', 'prison', 'incarceration', 'police']} />
             <Scene key='myBills' component={MyBills} title='My Bills' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
 
-            <Scene key='header' component={Header} title='Header' />
             <Scene key='bill-card-in-list' component={BillCardInList} title='BillCardInList' />
             <Scene key='nav-side-menu' component={NavSideMenu} title='NavSideMenu' />
             <Scene key='billDetail' component={BillDetail} title='Bill Detail' renderRightButton={NavItems.hamburgerButton} renderBackButton={NavItems.backButton} />
