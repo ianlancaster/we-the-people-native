@@ -5,8 +5,9 @@ import prettifyDate from '../App/Helpers/DatePrettifier'
 import { summaryIsTooLong, shortenSummary } from '../App/Helpers/ShortenSummary'
 import sortByClosestToBecomingLaw from '../App/Helpers/SortByClosestToBecomingLaw'
 import sortByDateIntroduced from '../App/Helpers/SortByDateIntroduced'
+import sliceTitle from '../App/Helpers/TitleSlicer'
 
-import { fakeBills, stringifiedFakeBills, fakeLongSummary, fakeShortSummary } from './helpers/fake-bills'
+import { fakeBills, stringifiedFakeBills, fakeLongSummary, fakeShortSummary, fakeLongTitle, fakeShortTitle } from './helpers/fake-bills'
 
 
 describe('getRidOfTargetBill', function () {
@@ -113,6 +114,23 @@ describe('sortByDateIntroduced', function () {
     assert.strictEqual(result[0].official_title, 'A bill to make everyone happy.');
     assert.strictEqual(result[0].id, 3345);
     assert.strictEqual(result[1].progress.index, 1);
+  });
+
+});
+
+describe('sliceTitle', function () {
+  const longResult = sliceTitle(fakeLongTitle)
+  const shortResult = sliceTitle(fakeShortTitle)
+
+  it('should return a string', function () {
+
+    assert.isString(longResult);
+  });
+
+  it('should reduce a title\'s length to 50 words', function () {
+
+    assert.strictEqual(longResult.split(' ').length, 50);
+    assert.strictEqual(shortResult.split(' ').length, 8);
   });
 
 });
