@@ -27,10 +27,6 @@ export default class Bills extends React.Component {
     this.makeAPICall()
   }
 
-  componentDidUpdate () {
-
-  }
-
   makeAPICall () {
     fetch('http://localhost:3000/api/bills/', {
     }).then(res => res.json())

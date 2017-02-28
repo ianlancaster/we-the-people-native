@@ -21,9 +21,7 @@ export default class MyBills extends React.Component {
 
   deleteAllBills = () => {
     AsyncStorage.setItem('bills', JSON.stringify([]))
-    this.setState({bills: []})
-    this.billsComponent = null
-    this.billsOnPage = false
+    this.resetStates()
   }
 
   deleteBill = (id) => {
@@ -34,6 +32,12 @@ export default class MyBills extends React.Component {
     .catch(() => {
       throw new Error('There was a problem retrieving your stored bills.')
     })
+  }
+
+  resetStates = () => {
+    this.setState({bills: []})
+    this.billsComponent = null
+    this.billsOnPage = false
   }
 
   filterOutBill = (bills, id) => {
