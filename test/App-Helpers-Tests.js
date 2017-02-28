@@ -44,3 +44,30 @@ describe('summaryIsTooLong', function () {
   });
 
 });
+
+describe('shortenSummary', function () {
+  const resultLong = shortenSummary(fakeLongSummary)
+  const lenLong = resultLong.split(' ').length
+  const resultShort = shortenSummary(fakeShortSummary)
+  const lenShort = resultShort.split(' ').length
+
+  it('should be a function', function () {
+    assert.isFunction(shortenSummary);
+  });
+
+  it('should output a string', function () {
+
+    assert.isString(shortenSummary(fakeLongSummary));
+  });
+
+  it('should cut the length of its input to 100 words if the input is longer than this', function () {
+
+    assert.strictEqual(lenLong, 100, 'The function cut the output to 100 words.')
+  });
+
+  it('should return the same summary if the input summary is less than 100 words', function () {
+
+    assert.strictEqual(lenShort, 10, 'The length of the output summary is the same as the input.');
+  });
+
+});
