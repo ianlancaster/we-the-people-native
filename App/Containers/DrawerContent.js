@@ -194,7 +194,9 @@ class DrawerContent extends Component {
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
-          text='Energy' onPress={this.handleEnergy}
+          text='Energy'
+          onPress={this.handleEnergy}
+          source={require('../Images/energy-icon-2.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
