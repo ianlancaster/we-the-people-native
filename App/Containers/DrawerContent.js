@@ -178,7 +178,9 @@ class DrawerContent extends Component {
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
-          text='Crime' onPress={this.handleCrime}
+          text='Crime'
+          onPress={this.handleCrime}
+          source={require('../Images/sheriff-icon.gif')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton

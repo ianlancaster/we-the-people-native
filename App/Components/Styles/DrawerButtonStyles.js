@@ -11,6 +11,7 @@ export default {
     alignSelf: 'flex-start',
     height: 30,
     marginBottom: 10,
+    marginLeft: 5,
     marginRight: 30,
     marginTop: 10,
     width: 30
