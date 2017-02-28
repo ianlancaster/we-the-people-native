@@ -155,18 +155,22 @@ class DrawerContent extends Component {
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Status: Active' onPress={this.handleActiveBills}
+          source={require('../Images/flag-icon-2.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Status: Enacted' onPress={this.handleEnactedBills}
+          source={require('../Images/enacted-icon.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Status: Failed' onPress={this.handleFailedBills}
+          source={require('../Images/failed-icon.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Status: Tabled' onPress={this.handleTabledBills}
+          source={require('../Images/tabled-icon.png')}
         />
 
         <Text style={styles.sectionTitle}>Filter By Issue:</Text>
