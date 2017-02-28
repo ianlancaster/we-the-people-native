@@ -185,10 +185,12 @@ class DrawerContent extends Component {
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Economy and Taxes' onPress={this.handleEconomy}
+          source={require('../Images/dollar-icon.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Education' onPress={this.handleEducation}
+          source={require('../Images/education-icon.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton

@@ -3,7 +3,6 @@ import { Metrics } from '../../Themes'
 export default {
   container: {
     alignItems: 'center',
-    // justifyContent: 'center',
     backgroundColor: 'white',
     flexDirection: 'row'
   },
@@ -17,7 +16,6 @@ export default {
     width: 30
   },
   text: {
-    // alignSelf: 'flex-end',
     marginVertical: Metrics.baseMargin,
     paddingLeft: 20,
     fontSize: 16
