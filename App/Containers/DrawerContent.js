@@ -221,14 +221,18 @@ class DrawerContent extends Component {
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Military/Defense/Veterans' onPress={this.handleMilitary}
+          source={require('../Images/tank-icon.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
-          text='Russia/Central Asia/South Asia' onPress={this.handleCentralAsia}
+          text='Russia/Central Asia/S. Asia' onPress={this.handleCentralAsia}
+          source={require('../Images/russia-icon.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
-          text='Women' onPress={this.handleWomen}
+          text='Women'
+          onPress={this.handleWomen}
+          source={require('../Images/women-symbol-icon.png')}
         />
       </ScrollView>
     )
