@@ -211,10 +211,12 @@ class DrawerContent extends Component {
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='LGBT Issues/Gay Rights' onPress={this.handleLGBT}
+          source={require('../Images/lgbt-icon.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Middle East' onPress={this.handleMiddleEast}
+          source={require('../Images/mideast-icon.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
