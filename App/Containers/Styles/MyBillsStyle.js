@@ -5,6 +5,11 @@ const styles = {
     flexDirection: 'column',
     paddingTop: 70
   },
+  deleteIcon: {
+    alignSelf: 'center',
+    marginBottom: 10,
+    marginTop: 10
+  },
   eachBillContainer: {
     borderColor: '#000',
     borderWidth: 1,

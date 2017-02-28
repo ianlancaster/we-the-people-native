@@ -2,6 +2,7 @@ import React from 'react'
 import { Text, View, Button, TouchableOpacity, Image } from 'react-native'
 import styles from './Styles/BillCardInListStyle'
 import prettifyDate from '../Helpers/DatePrettifier'
+import truncateTitle from '../Helpers/TruncateTitle'
 import Separator from '../Components/Separator'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 import BillStatusSvg from '../Components/BillStatus'
@@ -41,7 +42,7 @@ export default class BillCardInList extends React.Component {
   render () {
     const { showDetailedBill } = this.props
     const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, urls } = this.state
-    const truncTitle = `${title.split(' ').slice(0, 10).join(' ')}...`
+    const truncTitle = truncateTitle(title)
 
     return (
       <View style={styles.container}>

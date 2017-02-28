@@ -2,6 +2,8 @@ import React from 'react'
 import { Text, View, ListView, ScrollView, TouchableOpacity, Button, TextInput } from 'react-native'
 import styles from './Styles/BillsStyle'
 import BillCardInList from './BillCardInList'
+import sortByDateIntroduced from '../Helpers/SortByDateIntroduced'
+import sortByClosestToBecomingLaw from '../Helpers/SortByClosestToBecomingLaw'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class Bills extends React.Component {
@@ -25,10 +27,6 @@ export default class Bills extends React.Component {
     this.makeAPICall()
   }
 
-  componentDidUpdate () {
-
-  }
-
   makeAPICall () {
     fetch('http://localhost:3000/api/bills/', {
     }).then(res => res.json())
@@ -45,15 +43,13 @@ export default class Bills extends React.Component {
     }
 
     if (this.state.sortByDateIntroduced) {
-      bills = bills.sort((a, b) => {
-        return Date.parse(b.introduced_on) - Date.parse(a.introduced_on)
-      })
+      bills = sortByDateIntroduced(bills)
     }
+
     if (this.state.sortByClosestToBecomingLaw) {
-      bills = bills.sort((a, b) => {
-        return b.progress.index - a.progress.index
-      })
+      bills = sortByClosestToBecomingLaw(bills)
     }
+
     if (this.state.sortByTopic) {
       bills = this.filterBillsByTopic(bills, this.state.topics)
     }

@@ -1,8 +1,10 @@
 import React from 'react'
-import { Text, View, Button, ScrollView, AsyncStorage, Alert } from 'react-native'
+import { Text, View, Button, ScrollView, AsyncStorage, Alert, TouchableOpacity } from 'react-native'
 import styles from './Styles/BillDetailStyle'
 import Separator from '../Components/Separator'
 import prettifyDate from '../Helpers/DatePrettifier'
+import { shortenSummary, summaryIsTooLong } from '../Helpers/ShortenSummary'
+import sliceTitle from '../Helpers/TitleSlicer'
 import BillStatusSvg from '../Components/BillStatus'
 
 export default class BillDetail extends React.Component {
@@ -19,13 +21,24 @@ export default class BillDetail extends React.Component {
       progress: this.props.progress,
       detailedStatus: this.props.detailedStatus,
       isThereATitleButton: false,
+      isThereASummaryButton: false,
       urls: this.props.urls,
       summary: 'loading',
-      storedBills: []
+      storedBills: [],
+      fullSummary: '',
+      showFullSummary: false
     }
   }
 
   componentWillMount () {
+    const titleIsTooLong = (title) => {
+      if (title.split(' ').length > 50) {
+        return true
+      } else {
+        return false
+      }
+    }
+
     AsyncStorage.getItem('bills')
       .then((bills) => {
         const parsedBills = JSON.parse(bills)
@@ -37,8 +50,8 @@ export default class BillDetail extends React.Component {
       })
       .catch((err) => { throw new Error(err) })
 
-    if (this.state.title.split(' ').length > 50) {
-      this.setState({ title: `${this.state.title.split(' ').slice(0, 50).join(' ')}...` })
+    if (titleIsTooLong(this.state.title)) {
+      this.setState({ title: sliceTitle(this.state.title) })
       this.setState({ isThereATitleButton: true })
     }
 
@@ -46,6 +59,7 @@ export default class BillDetail extends React.Component {
       headers: { url: this.state.urls.congress }
     }).then(res => res.json())
       .then(summary => this.setState({ summary }))
+      .then(() => this.setState({ fullSummary: this.state.summary }))
   }
 
   addToMyBills = (id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, urls) => {
@@ -78,8 +92,13 @@ export default class BillDetail extends React.Component {
     this.setState({ title: this.props.billTitle })
   }
 
+  showFullSummary = () => {
+    this.setState({ summary: this.state.fullSummary })
+    this.setState({ showFullSummary: true })
+  }
+
   render () {
-    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, isThereATitleButton, summary, urls } = this.state
+    const { id, title, dateIntroduced, lastAction, chamber, sponsor, status, progress, detailedStatus, isThereATitleButton, isThereASummaryButton, summary, urls, showFullSummary, fullSummary } = this.state
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollContainer}>
@@ -139,11 +158,18 @@ export default class BillDetail extends React.Component {
             Brief Bill Summary
           </Text>
           <Text style={styles.billSummaryDetailed}>
-            {summary}
+            {summaryIsTooLong(summary) && !showFullSummary ? <Text>{shortenSummary(summary)}</Text> : <Text>{summary}</Text>}
           </Text>
-          <Text style={styles.readFullBillSummary}>
-            Read Full Bill Summary &raquo;
-          </Text>
+          {summaryIsTooLong(summary) && !showFullSummary
+            ? <TouchableOpacity
+              onPress={this.showFullSummary}
+              >
+              <Text style={styles.readFullBillSummary}
+                >
+                Read Full Bill Summary &raquo;
+              </Text>
+            </TouchableOpacity>
+          : <Text />}
           <Separator backgroundColor={'#dddddd'} />
           <Text style={styles.billProgressHeadline}>
             Bill Progress
