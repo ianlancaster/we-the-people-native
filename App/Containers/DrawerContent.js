@@ -201,10 +201,12 @@ class DrawerContent extends Component {
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Environment' onPress={this.handleEnvironment}
+          source={require('../Images/enviro-icon.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
           text='Health Care' onPress={this.handleHealthCare}
+          source={require('../Images/health-icon.png')}
         />
         <Separator backgroundColor={'#D8D8D8'} />
         <DrawerButton
