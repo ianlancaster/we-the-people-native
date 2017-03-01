@@ -1,27 +1,19 @@
 import { expect } from 'chai'
-import returnDetailedStatus from '../server/routes/bills/returnDetailedStatus'
-import returnProgress from '../server/routes/bills/returnProgress'
+import returnDetailedStatus from '../../server/routes/bills/returnDetailedStatus'
 
-describe('Server Test', () => {
-  context('returnProgress', () => {
-    it('should pass', () => {
-      expect(true)
-    })
-  })
+describe('returnDetailedStatus', () => {
+  const stati = [ 'active', 'tabled' ]
+  const progressIndexLength = 24
+  const chambers = [ 'house', 'senate' ]
 
-  context('returnDetailedStatus', () => {
-    const stati = [ 'active', 'tabled' ]
-    const progressIndexLength = 24
-    const chambers = [ 'house', 'senate' ]
-
-    it('should return all of the correct expected values', () => {
-      stati.forEach(status => {
-        for (var i = 0; i < 24; i++) {
-          chambers.forEach(chamber => {
-            expect(returnDetailedStatus(status, { index: i, text: 'default to progress.text' }, chamber)).to.equal(expectedValues[`${status}|${i}|${chamber}`])
-          })
-        }
-      })
+  it('should return all of the correct expected values', () => {
+    stati.forEach(status => {
+      for (var i = 0; i < 24; i++) {
+        chambers.forEach(chamber => {
+          expect(returnDetailedStatus(status, { index: i, text: 'default to progress.text' }, chamber))
+            .to.equal(expectedValues[`${status}|${i}|${chamber}`])
+        })
+      }
     })
   })
 })
