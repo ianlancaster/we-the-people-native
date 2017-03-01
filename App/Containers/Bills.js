@@ -4,6 +4,7 @@ import styles from './Styles/BillsStyle'
 import BillCardInList from './BillCardInList'
 import sortByDateIntroduced from '../Helpers/SortByDateIntroduced'
 import sortByClosestToBecomingLaw from '../Helpers/SortByClosestToBecomingLaw'
+import filterBillsByTopic from '../Helpers/FilterBillsByTopic'
 import { Actions as NavigationActions } from 'react-native-router-flux'
 
 export default class Bills extends React.Component {
@@ -51,25 +52,13 @@ export default class Bills extends React.Component {
     }
 
     if (this.state.sortByTopic) {
-      bills = this.filterBillsByTopic(bills, this.state.topics)
+      bills = filterBillsByTopic(bills, this.state.topics)
     }
 
     bills = this.filterBillsBySearch(bills, this.state.search)
 
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.setState({ bills: ds.cloneWithRows(bills) })
-  }
-
-  filterBillsByTopic (bills, topics) {
-    let newBills = []
-    for (var i = 0; i < bills.length; i++) {
-      for (var j = 0; j < topics.length; j++) {
-        if (bills[i].official_title.toLowerCase().includes(topics[j])) {
-          newBills.push(bills[i])
-        }
-      }
-    }
-    return newBills
   }
 
   handleSearch (search) {
