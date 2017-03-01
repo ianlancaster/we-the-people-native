@@ -20,16 +20,12 @@ Notes:
 
 Key technological and learning accomplishments:
 
-
-
-* The more powerful search feature
-* The data scraping
-* The server logic
-* Creating the bills progress graphic
-* Extensive tests for server and helper functions
-* The strong UI with the icons
-
-
+* A powerful search feature to filter bills by topic when a user taps on a topic name in the drawer. Rather than just filtering bills by a single keyword/term per topic (like "health care" for Health Care), our search uses an array of built-in key terms to more effectively display relevant bills (for health care, the array includes terms such as "doctor", "medicine", and "hospital"). This search feature effectively utilizes React's core data logic to pass props to where they are needed and filter the relevant data using the passed-in array.
+* [Insert data scraping, server logic, and bills graphic here]
+* We built a strong and intuitive UI. In particular, the landing page clearly shows the user what he/she can/should do, and the icons in the drawer significantly improve the user experience.
+* Finally, we extensively test our server and out client-side helper functions. The tests for the filter feature and for the bill progress logic are particularly robust.
 
 Sources that proved helpful in creating this project:
-[Bilal Budhani, "Using Image as a Container in React Native"](http://blog.bigbinary.com/2016/04/28/using-image-as-a-container-in-react-native.html)
+
+* [Bilal Budhani, "Using Image as a Container in React Native"](http://blog.bigbinary.com/2016/04/28/using-image-as-a-container-in-react-native.html)
+* The React Native docs, particularly the section on [ListView](https://facebook.github.io/react-native/docs/using-a-listview.html)
