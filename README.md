@@ -1,4 +1,4 @@
-#WeThePeople
+#We The People
 
 ![](https://media.giphy.com/media/3o7bu8DjJLh9KF01mo/giphy.gif)
 
