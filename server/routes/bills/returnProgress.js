@@ -103,7 +103,7 @@ const returnProgress = (h, chamber) => {
 
         // the president has eight days to sign or veto a bill before the law is ushered in
         // note: the edge case of a pocket veto is not built into this logic
-        if (moment(passDate).add(8, 'days') >= moment(Date.now())) {
+        if (moment(passDate).add(8, 'days').unix() >= moment(Date.now()).unix()) {
           // it('should return index 14 if history has a passing cloture result preceeded by passing reults from both chambers and less than eight days have passed since most recent passage result')
           return { index: 14, text: `Passed both House and Senate after cloture` }
         } else {
@@ -135,7 +135,7 @@ const returnProgress = (h, chamber) => {
       }
     }
 
-    if (moment(h[`${secondary}_passage_result_at`]).unix() > moment(h[`${primary}_cloture_result_at`]).unix()) {
+    if (moment(h[`${secondary}_passage_result_at`]).unix() > moment(h[`${secondary}_cloture_result_at`]).unix()) {
       // it('should return index 9 if history has a passing cloture result, the passage date of secondary is after primary, and the secondary passage result is pass')
       if (h[`${secondary}_passage_result`] === 'pass') {
         return { index: 9, text: `Passed in ${Secondary} after cloture` }

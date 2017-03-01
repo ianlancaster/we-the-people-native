@@ -22,31 +22,365 @@ describe('returnProgress', () => {
   const primary = 'house'
   const secondary = 'senate'
 
-  it('should return index 23 if history has passing override results from both chambers')
+  it('should return index 23 if history has passing override results from both chambers', () => {
+    let historyFail = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${secondary}_override_result`]: 'pass',
+      [`${secondary}_override_result_at`]: '2017-03-01',
+      [`${primary}_override_result`]: 'fail',
+      [`${primary}_override_result_at`]: '2017-03-02'
+    }
 
-  it('should return index 22 if the history has a passing override from the secondary chamber and fail from the primary')
+    let history = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${secondary}_override_result`]: 'pass',
+      [`${secondary}_override_result_at`]: '2017-03-01',
+      [`${primary}_override_result`]: 'pass',
+      [`${primary}_override_result_at`]: '2017-03-02'
+    }
 
-  it('should return index 21 if the history has a passing override from the primary chamber and fail from secondary')
+    expect(returnProgress(history, primary).index).to.equal(23)
+    expect(returnProgress(historyFail, primary).index).to.not.equal(23)
+  })
 
-  it('should return index 20 if the hisory has a failing override result from the secondary and no override result from the primary')
+  it('should return index 22 if the history has a passing override from the secondary chamber and fail from the primary', () => {
+    let history = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${secondary}_override_result`]: 'pass',
+      [`${secondary}_override_result_at`]: '2017-03-01',
+      [`${primary}_override_result`]: 'fail',
+      [`${primary}_override_result_at`]: '2017-03-02'
+    }
 
-  it('should return index 19 if the history has a failing override resutl from the primary and no override result from the secondary')
+    let historyFail = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${secondary}_override_result`]: 'pass',
+      [`${secondary}_override_result_at`]: '2017-03-01',
+      [`${primary}_override_result`]: 'pass',
+      [`${primary}_override_result_at`]: '2017-03-02'
+    }
 
-  it('should return index 18 if the history has a passing override result from the secondary and no override from the primary')
+    expect(returnProgress(history, primary).index).to.equal(22)
+    expect(returnProgress(historyFail, primary).index).to.not.equal(22)
+  })
 
-  it('should return index 17 if the history has a passing override result from the primary and no override from the secondary')
+  it('should return index 21 if the history has a passing override from the primary chamber and fail from secondary', () => {
+    let history = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${primary}_override_result`]: 'pass',
+      [`${primary}_override_result_at`]: '2017-03-01',
+      [`${secondary}_override_result`]: 'fail',
+      [`${secondary}_override_result_at`]: '2017-03-02'
+    }
 
-  it('should return index 16 if history.enacted === true')
+    let historyFail = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${primary}_override_result`]: 'pass',
+      [`${primary}_override_result_at`]: '2017-03-01',
+      [`${secondary}_override_result`]: 'pass',
+      [`${secondary}_override_result_at`]: '2017-03-02'
+    }
 
-  it('should retun index 15 if history.vetoed === true and there are no override results')
+    expect(returnProgress(history, primary).index).to.equal(21)
+    expect(returnProgress(historyFail, primary).index).to.not.equal(21)
+  })
 
-  it('should return index 14 if history has a passing cloture result preceeded by passing reults from both chambers and less than eight days have passed since most recent passage result')
+  it('should return index 20 if the hisory has a failing override result from the secondary and no override result from the primary', () => {
+    let history = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${secondary}_override_result`]: 'fail',
+      [`${secondary}_override_result_at`]: '2017-03-01'
+    }
 
-  it('should return index 16 if history has a passing cloture result preceeded by passing reults from both chambers and more than eight days have passed since most recent passage result')
+    let historyFail = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${secondary}_override_result`]: 'fail',
+      [`${secondary}_override_result_at`]: '2017-03-01',
+      [`${primary}_override_result`]: 'pass',
+      [`${primary}_override_result_at`]: '2017-03-02'
+    }
 
-  it('should return index 13 if history has a passing cloture result preceeded by a pass in the seconday and a fail in the primary')
+    expect(returnProgress(history, primary).index).to.equal(20)
+    expect(returnProgress(historyFail, primary).index).to.not.equal(20)
+  })
 
-  it('should return index 12 if history has a passing cloture result preceeded by a fail in the seconday and a pass in the primary')
+  it('should return index 19 if the history has a failing override resutl from the primary and no override result from the secondary', () => {
+    let history = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${primary}_override_result`]: 'fail',
+      [`${primary}_override_result_at`]: '2017-03-01'
+    }
+
+    let historyFail = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${primary}_override_result`]: 'fail',
+      [`${primary}_override_result_at`]: '2017-03-01',
+      [`${secondary}_override_result`]: 'pass',
+      [`${secondary}_override_result_at`]: '2017-03-02'
+    }
+
+    expect(returnProgress(history, primary).index).to.equal(19)
+    expect(returnProgress(historyFail, primary).index).to.not.equal(19)
+  })
+
+  it('should return index 18 if the history has a passing override result from the secondary and no override from the primary', () => {
+    let history = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${secondary}_override_result`]: 'pass',
+      [`${secondary}_override_result_at`]: '2017-03-01'
+    }
+
+    let historyFail = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${secondary}_override_result`]: 'pass',
+      [`${secondary}_override_result_at`]: '2017-03-01',
+      [`${primary}_override_result`]: 'pass',
+      [`${primary}_override_result_at`]: '2017-03-02'
+    }
+
+    expect(returnProgress(history, primary).index).to.equal(18)
+    expect(returnProgress(historyFail, primary).index).to.not.equal(18)
+  })
+
+  it('should return index 17 if the history has a passing override result from the primary and no override from the secondary', () => {
+    let history = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${primary}_override_result`]: 'pass',
+      [`${primary}_override_result_at`]: '2017-03-01'
+    }
+
+    let historyFail = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${primary}_override_result`]: 'pass',
+      [`${primary}_override_result_at`]: '2017-03-01',
+      [`${secondary}_override_result`]: 'pass',
+      [`${secondary}_override_result_at`]: '2017-03-02'
+    }
+
+    expect(returnProgress(history, primary).index).to.equal(17)
+    expect(returnProgress(historyFail, primary).index).to.not.equal(17)
+  })
+
+  it('should return index 16 if history.enacted === true', () => {
+    let history = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      enacted: true
+    }
+
+    expect(returnProgress(history, primary).index).to.equal(16)
+  })
+
+  it('should retun index 15 if history.vetoed === true and there are no override results', () => {
+    let history = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true
+    }
+
+    let historyFail = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15',
+      vetoed: true,
+      [`${primary}_override_result`]: 'pass',
+      [`${primary}_override_result_at`]: '2017-01-15'
+    }
+
+    expect(returnProgress(history, primary).index).to.equal(15)
+    expect(returnProgress(historyFail, primary).index).to.not.equal(15)
+  })
+
+  it('should return index 14 if history has a passing cloture result preceeded by passing reults from both chambers and less than eight days have passed since most recent passage result', () => {
+    // not tested due to the nature of date.now in testing
+  })
+
+  it('should return index 16 if history has a passing cloture result preceeded by passing reults from both chambers and more than eight days have passed since most recent passage result', () => {
+    let history = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15'
+    }
+
+    let historyFail = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2016-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15'
+    }
+
+    expect(returnProgress(history, primary).index).to.equal(16)
+    expect(returnProgress(historyFail, primary).index).to.not.equal(16)
+  })
+
+  it('should return index 13 if history has a passing cloture result preceeded by a pass in the seconday and a fail in the primary', () => {
+    let history = {
+      active: true,
+      [`${primary}_passage_result`]: 'fail',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15'
+    }
+
+    let historyFail = {
+      active: true,
+      [`${primary}_passage_result`]: 'fail',
+      [`${primary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_passage_result`]: 'pass',
+      [`${secondary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-03-15'
+    }
+
+    expect(returnProgress(history, primary).index).to.equal(13)
+    expect(returnProgress(historyFail, primary).index).to.not.equal(13)
+  })
+
+  it('should return index 12 if history has a passing cloture result preceeded by a fail in the seconday and a pass in the primary', () => {
+    let history = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_passage_result`]: 'fail',
+      [`${secondary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15'
+    }
+
+    let historyFail = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-01-01',
+      [`${secondary}_passage_result`]: 'fail',
+      [`${secondary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15'
+    }
+
+    expect(returnProgress(history, primary).index).to.equal(12)
+    expect(returnProgress(historyFail, primary).index).to.not.equal(12)
+  })
 
   it('should return index 11 if history has a passing cloture result, the passage date of secondary is after primary, and the secondary passage result is fail', () => {
     let history = {
@@ -59,7 +393,18 @@ describe('returnProgress', () => {
       [`${secondary}_cloture_result_at`]: '2017-01-15'
     }
 
+    let historyFail = {
+      active: true,
+      [`${primary}_passage_result`]: 'pass',
+      [`${primary}_passage_result_at`]: '2017-02-01',
+      [`${secondary}_passage_result`]: 'fail',
+      [`${secondary}_passage_result_at`]: '2017-02-02',
+      [`${secondary}_cloture_result`]: 'pass',
+      [`${secondary}_cloture_result_at`]: '2017-01-15'
+    }
+
     expect(returnProgress(history, primary).index).to.equal(11)
+    expect(returnProgress(historyFail, primary).index).to.not.equal(11)
   })
 
   it('should return index 10 if history has a passing cloture result, the passage date of secondary is before primary, and the primary passage result is fail', () => {
