@@ -1,6 +1,8 @@
-#We The People
+# We The People
 
 ![](https://media.giphy.com/media/3o7bu8DjJLh9KF01mo/giphy.gif)
+
+NOTE: We The People has been officially renamed MyGov (apparently a small company called 'The White House' took We The People already). MyGov took 1st place in the Turing School demo competition! We are currently planning a live deployment to iOS and web for the begging of June 2017. The project has also been officially moved to the [MyGov organization page](https://github.com/MyGovApp/MyGov). Please look their for future updates.
 
 **We The People** is an application created in [React Native](https://github.com/facebook/react-native) that allows a user to track current Congressional bills and new laws. Using the [Sunlight Congress API](https://sunlightlabs.github.io/congress/), the application brings in data on bills and laws including title, date introduced, date of last action, sponsor, current progress (in House Committee, passed by Senate, enacted...), and other data. This application is meant for concerned citizens (and non-citizens) to keep track of Congressional actions and to be better informed and empowered to take action on critical issues.
 
